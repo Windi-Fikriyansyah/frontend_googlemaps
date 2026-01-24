@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 const menuItems = [
     { icon: Search, label: "Search Leads", href: "/leads" },
-    { icon: History, label: "Search History", href: "#" },
+    { icon: Target, label: "Data Leads", href: "/leads/saved" },
     { icon: TrendingUp, label: "Analytics", href: "#" },
     { icon: CreditCard, label: "Subscription", href: "#" },
     { icon: Settings, label: "Settings", href: "#" },

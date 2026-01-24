@@ -7,6 +7,7 @@ export interface Lead {
     website?: string;
     rating?: number;
     category?: string;
+    is_saved?: boolean;
 }
 
 export interface SearchRequest {
