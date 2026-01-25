@@ -24,3 +24,20 @@ export interface SearchResponse {
     total_results: number;
     leads: Lead[];
 }
+
+export interface MessageTemplate {
+    id: number;
+    name: string;
+    content: string;
+    created_at: string;
+}
+
+export interface WhatsAppDevice {
+    id: number;
+    name: string;
+    device_number: string;
+    token: string;
+    status: string;
+    created_at: string;
+}
+

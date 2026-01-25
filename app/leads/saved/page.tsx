@@ -28,28 +28,30 @@ export default function SavedLeadsPage() {
 
     useEffect(() => {
         const fetchSavedLeads = async () => {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                router.push("/login");
-                return;
-            }
-
             setLoading(true);
             setError(null);
 
             try {
+                // Check session first
+                await api.get("/auth/me");
+
                 const response = await api.get("/leads/saved");
                 setLeads(response.data);
             } catch (err: any) {
                 console.error("Fetch saved leads error:", err);
-                setError(
-                    err.response?.data?.detail ||
-                    "Gagal memuat data leads. Pastikan Anda sudah login."
-                );
+                if (err.response?.status === 401) {
+                    router.push("/login");
+                } else {
+                    setError(
+                        err.response?.data?.detail ||
+                        "Gagal memuat data leads. Pastikan Anda sudah login."
+                    );
+                }
             } finally {
                 setLoading(false);
             }
         };
+
 
         fetchSavedLeads();
     }, [router]);

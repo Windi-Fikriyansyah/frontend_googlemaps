@@ -38,11 +38,10 @@ export default function RegisterPage() {
             loginData.append("username", email);
             loginData.append("password", password);
 
-            const loginResponse = await api.post("/auth/login", loginData, {
+            await api.post("/auth/login", loginData, {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
             });
 
-            localStorage.setItem("token", loginResponse.data.access_token);
             router.push("/leads");
         } catch (err: any) {
             setError(err.response?.data?.detail || "Registration failed. Please try again.");
@@ -55,10 +54,9 @@ export default function RegisterPage() {
         setLoading(true);
         setError(null);
         try {
-            const res = await api.post("/auth/google", {
+            await api.post("/auth/google", {
                 credential: response.credential,
             });
-            localStorage.setItem("token", res.data.access_token);
             router.push("/leads");
         } catch (err: any) {
             setError("Google Login failed. Please try again.");

@@ -1,8 +1,35 @@
 "use client";
 
 import { Bell, Search, User, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import api from "@/lib/api";
+
+interface UserData {
+    id: number;
+    email: string;
+    name: string | null;
+    plan_type: string;
+}
 
 export default function TopBar() {
+    const [user, setUser] = useState<UserData | null>(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await api.get("/auth/me");
+                setUser(response.data);
+            } catch (error) {
+                console.error("Failed to fetch user:", error);
+            }
+        };
+        fetchUser();
+    }, []);
+
+    // Get display name - fallback to email prefix if no name
+    const displayName = user?.name || user?.email?.split("@")[0] || "User";
+    const initials = displayName.slice(0, 2).toUpperCase();
+
     return (
         <header className="h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-40">
             <div className="flex items-center gap-4 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl group focus-within:ring-2 focus-within:ring-blue-500/20 transition-all w-96">
@@ -24,11 +51,11 @@ export default function TopBar() {
 
                 <button className="flex items-center gap-3 pl-1 pr-2 py-1 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                     <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 font-bold text-xs uppercase">
-                        JD
+                        {initials}
                     </div>
                     <div className="hidden md:block text-left">
-                        <p className="text-sm font-bold leading-tight">John Doe</p>
-                        <p className="text-[10px] text-slate-400 font-medium">Administrator</p>
+                        <p className="text-sm font-bold leading-tight">{displayName}</p>
+                        <p className="text-[10px] text-slate-400 font-medium capitalize">{user?.plan_type || "Free"}</p>
                     </div>
                     <ChevronDown className="w-4 h-4 text-slate-400" />
                 </button>

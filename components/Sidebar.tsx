@@ -11,17 +11,26 @@ import {
     LogOut,
     ChevronRight,
     TrendingUp,
-    CreditCard
+    CreditCard,
+    MessageSquare,
+    Send,
+    Smartphone
 } from "lucide-react";
+
+import api from "@/lib/api";
 import { cn } from "@/lib/utils";
+
 
 const menuItems = [
     { icon: Search, label: "Search Leads", href: "/leads" },
     { icon: Target, label: "Data Leads", href: "/leads/saved" },
-    { icon: TrendingUp, label: "Analytics", href: "#" },
-    { icon: CreditCard, label: "Subscription", href: "#" },
-    { icon: Settings, label: "Settings", href: "#" },
+    { icon: MessageSquare, label: "Templates Pesan", href: "/whatsapp/templates" },
+    { icon: Send, label: "Broadcast", href: "/whatsapp/broadcast" },
+    { icon: Smartphone, label: "Devices", href: "/whatsapp/devices" },
+    { icon: History, label: "History Pesan", href: "/whatsapp/history" },
+    { icon: CreditCard, label: "Harga", href: "/pricing" },
 ];
+
 
 export default function Sidebar() {
     const pathname = usePathname();
@@ -39,7 +48,7 @@ export default function Sidebar() {
                 </Link>
             </div>
 
-            <nav className="flex-1 px-4 space-y-1 mt-4">
+            <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto max-h-[calc(100vh-280px)]">
                 {menuItems.map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -73,15 +82,21 @@ export default function Sidebar() {
                 </div>
 
                 <button
-                    onClick={() => {
-                        localStorage.removeItem("token");
-                        window.location.href = "/login";
+                    onClick={async () => {
+                        try {
+                            await api.post("/auth/logout");
+                        } catch (e) {
+                            console.error("Logout error:", e);
+                        } finally {
+                            window.location.href = "/login";
+                        }
                     }}
                     className="flex items-center gap-3 w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors group"
                 >
                     <LogOut className="w-5 h-5 group-hover:scale-110 transition-transform" />
                     <span className="text-sm font-medium">Log Out</span>
                 </button>
+
             </div>
         </aside>
     );

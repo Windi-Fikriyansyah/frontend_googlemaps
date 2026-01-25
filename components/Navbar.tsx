@@ -3,13 +3,23 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X, Target, ArrowRight, LayoutDashboard } from "lucide-react";
+import api from "@/lib/api";
+
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        setIsLoggedIn(!!localStorage.getItem("token"));
+        const checkLogin = async () => {
+            try {
+                await api.get("/auth/me");
+                setIsLoggedIn(true);
+            } catch (e) {
+                setIsLoggedIn(false);
+            }
+        };
+        checkLogin();
     }, []);
 
     return (
