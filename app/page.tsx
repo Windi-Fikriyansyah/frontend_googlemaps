@@ -97,29 +97,29 @@ export default function LandingPage() {
                         Dapatkan 50 Kredit Gratis Untuk Pendaftaran Pertama
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 leading-[1.1]">
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-8 leading-[1.1]">
                         Cari Lead di Maps. <br />
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300">
                             Closing di WhatsApp.
                         </span>
                     </h1>
 
-                    <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-12 leading-relaxed">
+                    <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-12 leading-relaxed px-4">
                         Mesin outreach B2B terbaik. Ekstrak data bisnis dari Google Maps
                         dan mulai percakapan WhatsApp secara personal dalam hitungan menit.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
                         <Link
                             href="/register"
-                            className="group flex items-center gap-2 bg-blue-600 dark:bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-blue-500/30"
+                            className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-blue-600 dark:bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-blue-500/30"
                         >
                             Daftar & Klaim 50 Kredit
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link
                             href="/login"
-                            className="flex items-center gap-2 text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors shadow-sm"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2 text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors shadow-sm"
                         >
                             View Demo
                         </Link>

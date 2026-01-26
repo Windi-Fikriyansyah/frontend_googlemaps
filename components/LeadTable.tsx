@@ -15,6 +15,14 @@ interface LeadTableProps {
 export default function LeadTable({ leads }: LeadTableProps) {
     const [saving, setSaving] = useState<number | "all" | null>(null);
     const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize(); // Initial check
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         const initialSaved = new Set(leads.filter(l => l.is_saved).map(l => l.id));
@@ -97,6 +105,7 @@ export default function LeadTable({ leads }: LeadTableProps) {
             sortable: true,
             grow: 2,
             wrap: true,
+            omit: isMobile,
             cell: (row: Lead) => (
                 <div className="text-xs text-slate-600 dark:text-slate-400 py-2">
                     {row.address}
@@ -105,6 +114,7 @@ export default function LeadTable({ leads }: LeadTableProps) {
         },
         {
             name: 'Contact',
+            omit: isMobile,
             cell: (row: Lead) => (
                 <div className="flex flex-col gap-1 py-2">
                     {row.phone && (
@@ -127,6 +137,7 @@ export default function LeadTable({ leads }: LeadTableProps) {
             selector: (row: Lead) => row.rating || 0,
             sortable: true,
             width: '100px',
+            omit: isMobile,
             cell: (row: Lead) => (
                 row.rating ? (
                     <div className="inline-flex items-center gap-1 bg-amber-50 dark:bg-amber-950/20 px-2 py-0.5 rounded-full border border-amber-200/50">
@@ -214,23 +225,23 @@ export default function LeadTable({ leads }: LeadTableProps) {
 
     return (
         <div className="w-full max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                 <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200">
                     Search Results ({leads.length} found)
                 </h3>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
                     {!leads.every(l => savedIds.has(l.id)) && (
                         <Button
                             onClick={handleSaveAll}
                             disabled={saving === "all"}
                             variant="default"
-                            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
                         >
                             {saving === "all" ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                             Simpan Semua
                         </Button>
                     )}
-                    <Button onClick={exportToCSV} variant="outline" className="flex items-center gap-2 border-green-500/50 hover:bg-green-50 dark:hover:bg-green-950/20 text-green-600 dark:text-green-400">
+                    <Button onClick={exportToCSV} variant="outline" className="flex items-center gap-2 border-green-500/50 hover:bg-green-50 dark:hover:bg-green-950/20 text-green-600 dark:text-green-400 w-full sm:w-auto">
                         <Download className="w-4 h-4" />
                         Export to CSV
                     </Button>

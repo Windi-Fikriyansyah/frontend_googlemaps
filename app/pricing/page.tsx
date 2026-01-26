@@ -195,16 +195,16 @@ export default function PricingPage() {
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
             <Sidebar />
-            <div className="pl-64">
+            <div className="flex-1 flex flex-col lg:pl-64 transition-all duration-300">
                 <TopBar />
-                <main className="p-8">
+                <main className="p-4 md:p-8">
                     {/* Header */}
                     <div className="text-center mb-12">
                         <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-4">
                             <Sparkles className="w-4 h-4" />
                             Pilih Paket Terbaik
                         </span>
-                        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                        <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
                             Harga & Paket Kredit
                         </h1>
                         <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
@@ -316,9 +316,9 @@ export default function PricingPage() {
             {/* Payment Selection Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm animate-in fade-in duration-200">
-                    <div className="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-in zoom-in-95 duration-200">
+                    <div className="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
                         {/* Modal Header */}
-                        <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/50">
+                        <div className="p-4 md:p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/50 shrink-0">
                             <div className="flex items-center gap-3">
                                 <div className="p-2 rounded-xl bg-blue-600">
                                     <CreditCard className="w-5 h-5 text-white" />
@@ -333,7 +333,7 @@ export default function PricingPage() {
                             </button>
                         </div>
 
-                        <div className="flex flex-col md:flex-row h-[500px]">
+                        <div className="flex flex-col md:flex-row min-h-[400px] md:h-[500px] overflow-hidden">
                             {/* Left: Channel List */}
                             <div className="flex-1 overflow-y-auto p-4 border-r border-slate-100 dark:border-slate-800 custom-scrollbar">
                                 {loading ? (

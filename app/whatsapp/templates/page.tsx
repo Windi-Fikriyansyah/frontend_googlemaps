@@ -68,8 +68,8 @@ export default function TemplatesPage() {
     };
 
     return (
-        <div className="space-y-8 px-4 pb-12">
-            <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="space-y-8 px-4 pb-12 pt-6">
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                         <MessageSquare className="w-6 h-6 text-green-600 dark:text-green-400" />
@@ -82,7 +82,7 @@ export default function TemplatesPage() {
 
                 <Button
                     onClick={() => setIsCreating(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2 w-full md:w-auto"
                 >
                     <Plus className="w-4 h-4" /> Create Template
                 </Button>

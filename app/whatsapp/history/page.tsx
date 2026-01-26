@@ -34,6 +34,14 @@ export default function MessageHistoryPage() {
     const [refreshing, setRefreshing] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [filterText, setFilterText] = useState("");
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize(); // Initial check
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
     const router = useRouter();
 
     // Refresh status from Fonnte API
@@ -135,6 +143,7 @@ export default function MessageHistoryPage() {
             sortable: true,
             grow: 3,
             wrap: true,
+            omit: isMobile,
             cell: (row: MessageHistory) => (
                 <div className="text-sm text-slate-600 dark:text-slate-400 py-4 whitespace-pre-wrap line-clamp-2 hover:line-clamp-none transition-all cursor-default">
                     {row.message}
@@ -157,6 +166,7 @@ export default function MessageHistoryPage() {
             selector: (row: MessageHistory) => row.created_at,
             sortable: true,
             width: '200px',
+            omit: isMobile,
             cell: (row: MessageHistory) => (
                 <div className="text-xs text-slate-500 py-4">
                     {format(new Date(row.created_at), "dd MMM yyyy, HH:mm", { locale: localeID })}

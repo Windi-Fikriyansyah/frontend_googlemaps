@@ -114,10 +114,10 @@ export default function BroadcastPage() {
     );
 
     return (
-        <div className="space-y-8 px-4 pb-12">
+        <div className="space-y-8 px-4 pb-12 pt-6">
             <div className="max-w-6xl mx-auto">
-                <div className="flex items-center gap-3 mb-8">
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                <div className="flex flex-col md:flex-row md:items-center gap-3 mb-8">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg w-fit">
                         <Send className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
