@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Target, Mail, Lock, CheckCircle2, ArrowRight } from "lucide-react";
+import { toast } from "sonner";
 
 import api from "@/lib/api";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
@@ -17,7 +17,7 @@ export default function LoginPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setError(null);
+
 
         try {
             const formData = new URLSearchParams();
@@ -36,7 +36,7 @@ export default function LoginPage() {
 
             router.push("/leads");
         } catch (err: any) {
-            setError(err.response?.data?.detail || "Login failed. Please check your credentials.");
+            toast.error(err.response?.data?.detail || "Login failed. Please check your credentials.");
         } finally {
             setLoading(false);
         }
@@ -44,7 +44,7 @@ export default function LoginPage() {
 
     const handleGoogleLogin = async (response: any) => {
         setLoading(true);
-        setError(null);
+
         try {
             const res = await api.post("/auth/google", {
                 credential: response.credential,
@@ -54,7 +54,7 @@ export default function LoginPage() {
             }
             router.push("/leads");
         } catch (err: any) {
-            setError("Google Login failed. Please try again.");
+            toast.error("Google Login failed. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -82,7 +82,6 @@ export default function LoginPage() {
                 <div className="text-center mb-10">
                     <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
                     <p className="text-slate-500 dark:text-slate-400">Sign in to continue your prospecting</p>
-                    {error && <p className="mt-4 text-sm text-red-500 font-medium">{error}</p>}
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5">

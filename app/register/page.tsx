@@ -31,6 +31,7 @@ export default function RegisterPage() {
             await api.post("/auth/register", {
                 email,
                 password,
+                name: fullName,
             });
 
             // Auto login after registration (optional, but good UX)
@@ -48,6 +49,7 @@ export default function RegisterPage() {
 
             router.push("/leads");
         } catch (err: any) {
+            console.error("Registration error:", err);
             setError(err.response?.data?.detail || "Registration failed. Please try again.");
         } finally {
             setLoading(false);
