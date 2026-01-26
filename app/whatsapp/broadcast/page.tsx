@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Button, Input } from "@/components/ui/primitives";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "sonner";
 
 export default function BroadcastPage() {
     const [leads, setLeads] = useState<Lead[]>([]);
@@ -83,16 +84,25 @@ export default function BroadcastPage() {
             });
 
             if (res.data.fonnte_response?.status) {
-                setStatus({ type: 'success', message: `Successfully queued ${res.data.targets_count} messages!` });
+                toast.success(`Broadcasting...`, {
+                    description: `Successfully queued ${res.data.targets_count} messages!`
+                });
                 setSelectedLeads([]);
             } else {
-                setStatus({
-                    type: 'error',
-                    message: res.data.fonnte_response?.reason || "Failed to send messages. Check your device connection."
-                });
+                const reason = res.data.fonnte_response?.reason || "Failed to send messages. Check your device connection.";
+                toast.error("Bridge Error", { description: reason });
+                setStatus({ type: 'error', message: reason });
             }
         } catch (err: any) {
-            setStatus({ type: 'error', message: err.response?.data?.detail || "An unexpected error occurred." });
+            const errorMessage = err.response?.data?.detail || "An unexpected error occurred.";
+            if (err.response?.status === 403) {
+                toast.error("Insufficient Credits", {
+                    description: "Please top up your credits to send WhatsApp messages.",
+                });
+            } else {
+                toast.error(errorMessage);
+            }
+            setStatus({ type: 'error', message: errorMessage });
         } finally {
             setSending(false);
         }

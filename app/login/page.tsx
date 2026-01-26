@@ -24,11 +24,15 @@ export default function LoginPage() {
             formData.append("username", email);
             formData.append("password", password);
 
-            await api.post("/auth/login", formData, {
+            const response = await api.post("/auth/login", formData, {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
             });
+
+            if (response.data.access_token) {
+                localStorage.setItem("token", response.data.access_token);
+            }
 
             router.push("/leads");
         } catch (err: any) {
@@ -42,9 +46,12 @@ export default function LoginPage() {
         setLoading(true);
         setError(null);
         try {
-            await api.post("/auth/google", {
+            const res = await api.post("/auth/google", {
                 credential: response.credential,
             });
+            if (res.data.access_token) {
+                localStorage.setItem("token", res.data.access_token);
+            }
             router.push("/leads");
         } catch (err: any) {
             setError("Google Login failed. Please try again.");
@@ -69,12 +76,7 @@ export default function LoginPage() {
 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col justify-center items-center p-4">
-            <Link href="/" className="mb-8 flex items-center gap-2 group">
-                <div className="p-1.5 rounded-lg bg-blue-600 transition-transform group-hover:scale-110">
-                    <Target className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold dark:text-white">LeadFlow</span>
-            </Link>
+
 
             <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-[2rem] shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 p-8 md:p-10">
                 <div className="text-center mb-10">

@@ -2,12 +2,22 @@
 
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function WhatsAppLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const router = useRouter();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            router.push("/login");
+        }
+    }, [router]);
     return (
         <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
             {/* Sidebar - Fixed Width */}
@@ -27,7 +37,7 @@ export default function WhatsAppLayout({
 
                 <footer className="px-8 py-6 border-t border-slate-200 dark:border-slate-800 text-center">
                     <p className="text-xs text-slate-400 font-medium">
-                        © 2026 LeadFlow Control Panel. All rights reserved.
+                        © 2026 Wamaps Control Panel. All rights reserved.
                     </p>
                 </footer>
             </div>

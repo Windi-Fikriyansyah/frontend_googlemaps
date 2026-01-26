@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import {
     Target,
     Search,
@@ -20,6 +21,14 @@ import {
 import api from "@/lib/api";
 import { cn } from "@/lib/utils";
 
+interface UserData {
+    id: number;
+    email: string;
+    name: string | null;
+    plan_type: string;
+    credits: number;
+}
+
 
 const menuItems = [
     { icon: Search, label: "Search Leads", href: "/leads" },
@@ -34,6 +43,19 @@ const menuItems = [
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const [user, setUser] = useState<UserData | null>(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await api.get("/auth/me");
+                setUser(response.data);
+            } catch (error) {
+                console.error("Failed to fetch user:", error);
+            }
+        };
+        fetchUser();
+    }, []);
 
     return (
         <aside className="fixed left-0 top-0 h-screen w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col z-50">
@@ -43,7 +65,7 @@ export default function Sidebar() {
                         <Target className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400">
-                        LeadFlow
+                        Wamaps
                     </span>
                 </Link>
             </div>
@@ -74,9 +96,15 @@ export default function Sidebar() {
 
             <div className="p-4 border-t border-slate-200 dark:border-slate-800">
                 <div className="bg-slate-50 dark:bg-slate-950/50 rounded-2xl p-4 mb-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Credits</p>
+                    <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-bold text-slate-900 dark:text-white">{user?.credits?.toLocaleString() || 0}</span>
+                        <Link href="/pricing" className="text-[10px] text-blue-600 hover:underline">TOP UP</Link>
+                    </div>
+
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Plan</p>
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-bold text-blue-600 dark:text-blue-400">Pro Version</span>
+                        <span className="text-sm font-bold text-blue-600 dark:text-blue-400 capitalize">{user?.plan_type || "Free"}</span>
                         <span className="text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 px-2 py-0.5 rounded-full">ACTIVE</span>
                     </div>
                 </div>
@@ -88,7 +116,8 @@ export default function Sidebar() {
                         } catch (e) {
                             console.error("Logout error:", e);
                         } finally {
-                            window.location.href = "/login";
+                            localStorage.removeItem("token");
+                            window.location.href = "/";
                         }
                     }}
                     className="flex items-center gap-3 w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors group"

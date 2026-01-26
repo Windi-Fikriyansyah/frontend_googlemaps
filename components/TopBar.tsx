@@ -55,7 +55,7 @@ export default function TopBar() {
                     </div>
                     <div className="hidden md:block text-left">
                         <p className="text-sm font-bold leading-tight">{displayName}</p>
-                        <p className="text-[10px] text-slate-400 font-medium capitalize">{user?.plan_type || "Free"}</p>
+                        <p className="text-[10px] text-slate-400 font-medium capitalize"></p>
                     </div>
                     <ChevronDown className="w-4 h-4 text-slate-400" />
                 </button>

@@ -8,6 +8,7 @@ import api from "@/lib/api";
 import { Lead } from "@/types";
 import { MapPin, Target, Layers } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function Home() {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -35,12 +36,23 @@ export default function Home() {
         max_results,
       });
       setLeads(response.data.leads);
+      toast.success(`Success! Found ${response.data.leads.length} leads.`);
     } catch (err: any) {
-      console.error("Search error:", err);
-      setError(
-        err.response?.data?.detail ||
-        "Failed to fetch leads. Verify backend is running and API keys are set."
-      );
+      const isInsufficientCredits = err.response?.status === 403;
+      const errorMessage = err.response?.data?.detail || "Failed to fetch leads.";
+
+      if (isInsufficientCredits) {
+        toast.error("Insufficient Credits", {
+          description: "Please top up your credits to continue searching for leads.",
+        });
+        // We set error to null so the red alert box doesn't show for credits, 
+        // since the toast is enough and looks better.
+        setError(null);
+      } else {
+        console.error("Search error:", err);
+        toast.error(errorMessage);
+        setError(errorMessage);
+      }
     } finally {
       setLoading(false);
     }

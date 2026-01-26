@@ -12,6 +12,12 @@ export default function Navbar() {
 
     useEffect(() => {
         const checkLogin = async () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                setIsLoggedIn(false);
+                return;
+            }
+
             try {
                 await api.get("/auth/me");
                 setIsLoggedIn(true);
@@ -31,7 +37,7 @@ export default function Navbar() {
                             <Target className="w-5 h-5 text-white" />
                         </div>
                         <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400">
-                            LeadFlow
+                            Wamaps
                         </span>
                     </Link>
 

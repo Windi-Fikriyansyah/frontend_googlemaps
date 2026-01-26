@@ -11,6 +11,40 @@ const api = axios.create({
     withCredentials: true,
 });
 
+// Request interceptor: Attach token
+api.interceptors.request.use((config) => {
+    if (typeof window !== "undefined") {
+        const token = localStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+    }
+    return config;
+});
+
+// Response interceptor: Handle 401
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            const isAuthEndpoint = error.config?.url?.includes("/auth/login") ||
+                error.config?.url?.includes("/auth/register");
+
+            if (typeof window !== "undefined") {
+                if (!isAuthEndpoint) {
+                    console.warn("Unauthorized! Redirecting to login...");
+                    localStorage.removeItem("token");
+                    // Only redirect if NOT on the landing page or login page
+                    if (window.location.pathname !== "/" && window.location.pathname !== "/login") {
+                        window.location.href = "/login";
+                    }
+                }
+            }
+        }
+        return Promise.reject(error);
+    }
+);
+
 import { WhatsAppDevice } from "@/types";
 
 export const getDevices = () => api.get<WhatsAppDevice[]>("/whatsapp/devices");

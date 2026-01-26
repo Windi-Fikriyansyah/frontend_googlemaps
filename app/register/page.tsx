@@ -38,9 +38,13 @@ export default function RegisterPage() {
             loginData.append("username", email);
             loginData.append("password", password);
 
-            await api.post("/auth/login", loginData, {
+            const response = await api.post("/auth/login", loginData, {
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
             });
+
+            if (response.data.access_token) {
+                localStorage.setItem("token", response.data.access_token);
+            }
 
             router.push("/leads");
         } catch (err: any) {
@@ -54,9 +58,12 @@ export default function RegisterPage() {
         setLoading(true);
         setError(null);
         try {
-            await api.post("/auth/google", {
+            const res = await api.post("/auth/google", {
                 credential: response.credential,
             });
+            if (res.data.access_token) {
+                localStorage.setItem("token", res.data.access_token);
+            }
             router.push("/leads");
         } catch (err: any) {
             setError("Google Login failed. Please try again.");
@@ -84,13 +91,13 @@ export default function RegisterPage() {
                 <div className="p-1.5 rounded-lg bg-blue-600 transition-transform group-hover:scale-110">
                     <Target className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold dark:text-white">LeadFlow</span>
+                <span className="text-xl font-bold dark:text-white">Wamaps</span>
             </Link>
 
             <div className="w-full max-w-lg bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 p-8 md:p-12">
                 <div className="text-center mb-10">
                     <h1 className="text-3xl font-bold mb-2">Create your account</h1>
-                    <p className="text-slate-500 dark:text-slate-400">Join 5,000+ businesses finding leads today</p>
+                    <p className="text-slate-500 dark:text-slate-400">Bergabunglah dengan 5.000+ bisnis untuk mencari lead hari ini</p>
                     {error && <p className="mt-4 text-sm text-red-500 font-medium">{error}</p>}
                 </div>
 
