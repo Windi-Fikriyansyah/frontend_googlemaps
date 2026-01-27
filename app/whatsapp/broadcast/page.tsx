@@ -255,9 +255,25 @@ export default function BroadcastPage() {
 
                                 {selectedTemplate && (
                                     <div className="mt-4 p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-2xl border border-blue-100 dark:border-blue-800/50">
-                                        <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2">Preview</div>
+                                        <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2 flex justify-between items-center">
+                                            <span>Preview</span>
+                                            {selectedLeads.length > 0 && <span className="text-[9px] lowercase opacity-60 italic">Showing preview for {leads.find(l => l.id === selectedLeads[0])?.name}</span>}
+                                        </div>
                                         <p className="text-xs text-slate-600 dark:text-slate-300 whitespace-pre-wrap">
-                                            {templates.find(t => t.id === selectedTemplate)?.content}
+                                            {(() => {
+                                                let content = templates.find(t => t.id === selectedTemplate)?.content || "";
+                                                if (selectedLeads.length > 0) {
+                                                    const firstLead = leads.find(l => l.id === selectedLeads[0]);
+                                                    if (firstLead) {
+                                                        content = content
+                                                            .replace(/{{name}}/g, firstLead.name || "")
+                                                            .replace(/{{address}}/g, firstLead.address || "")
+                                                            .replace(/{{phone}}/g, firstLead.phone || "")
+                                                            .replace(/{{category}}/g, firstLead.category || "");
+                                                    }
+                                                }
+                                                return content;
+                                            })()}
                                         </p>
                                     </div>
                                 )}

@@ -113,7 +113,28 @@ export default function TemplatesPage() {
                                     placeholder="Write your WhatsApp message here..."
                                     value={newContent}
                                     onChange={(e) => setNewContent(e.target.value)}
+                                    id="template-content"
                                 />
+                                <div className="mt-3">
+                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Insert Variables</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {[
+                                            { label: "Business Name", value: "{{name}}" },
+                                            { label: "Address", value: "{{address}}" },
+                                            { label: "Phone", value: "{{phone}}" },
+                                            { label: "Category", value: "{{category}}" }
+                                        ].map((variable) => (
+                                            <button
+                                                key={variable.value}
+                                                onClick={() => setNewContent(prev => prev + variable.value)}
+                                                className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 transition-all"
+                                            >
+                                                {variable.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <p className="text-[10px] text-slate-400 mt-2 italic">Variables will be automatically replaced with actual data during broadcast.</p>
+                                </div>
                             </div>
                             <div className="flex justify-end gap-3 mt-6">
                                 <Button variant="ghost" onClick={() => setIsCreating(false)}>Cancel</Button>
