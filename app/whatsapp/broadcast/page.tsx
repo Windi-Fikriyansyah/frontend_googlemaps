@@ -83,11 +83,14 @@ export default function BroadcastPage() {
                 device_id: selectedDevice,
             });
 
-            if (res.data.fonnte_response?.status) {
-                toast.success(`Broadcasting...`, {
-                    description: `Successfully queued ${res.data.targets_count} messages!`
+            if (res.data.mode === "background" || res.data.fonnte_response?.status) {
+                toast.success(res.data.message || `Broadcasting...`, {
+                    description: res.data.batch_info || `Successfully queued ${res.data.targets_count} messages!`
                 });
                 setSelectedLeads([]);
+                if (res.data.mode === "background") {
+                    setStatus({ type: 'success', message: res.data.message });
+                }
             } else {
                 const reason = res.data.fonnte_response?.reason || "Failed to send messages. Check your device connection.";
                 toast.error("Bridge Error", { description: reason });
