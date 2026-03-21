@@ -51,7 +51,7 @@ export default function LandingPage() {
                         AOTOMATISASI LEAD GENERATION
                     </div>
 
-                    <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-8 leading-[1.1] max-w-5xl mx-auto">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-8 leading-[1.1] max-w-5xl mx-auto">
                         🔥 Ambil Leads dari Google Maps + Kirim WhatsApp Otomatis dalam <span className="text-blue-600 dark:text-blue-400">1 Klik!</span>
                     </h1>
 
@@ -75,10 +75,10 @@ export default function LandingPage() {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
                         <Link
-                            href="/login"
+                            href="#pricing"
                             className="w-full sm:w-auto group flex items-center justify-center gap-3 bg-blue-600 dark:bg-blue-500 text-white px-10 py-5 rounded-full text-xl font-black transition-all hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-blue-500/30"
                         >
-                            Mulai Sekarang Gratis
+                            Dapatkan Akses Sekarang
                             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
@@ -110,7 +110,7 @@ export default function LandingPage() {
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-4">
                             🎯 INTEREST
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black mb-6">Kenapa Tools Ini Powerful?</h2>
+                        <h2 className="text-2xl md:text-4xl font-black mb-6">Kenapa Tools Ini Powerful?</h2>
                     </div>
 
                     <div className="grid lg:grid-cols-2 gap-12">
@@ -187,7 +187,7 @@ export default function LandingPage() {
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-widest mb-4">
                             💰 DESIRE
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black mb-6">Bayangkan Jika Kamu Punya Ini…</h2>
+                        <h2 className="text-2xl md:text-4xl font-black mb-6">Bayangkan Jika Kamu Punya Ini…</h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
@@ -214,13 +214,13 @@ export default function LandingPage() {
                             <div className="md:flex-1 space-y-4">
                                 <p className="text-xs font-black uppercase tracking-widest text-blue-200">Banyak User Sudah:</p>
                                 <ul className="space-y-4">
-                                    <li className="flex items-center gap-4 font-black text-xl md:text-3xl">
+                                    <li className="flex items-center gap-4 font-black text-lg md:text-2xl">
                                         <CheckCircle2 className="w-8 h-8 text-blue-300" /> Dapat 100+ leads per hari
                                     </li>
-                                    <li className="flex items-center gap-4 font-black text-xl md:text-3xl">
+                                    <li className="flex items-center gap-4 font-black text-lg md:text-2xl">
                                         <CheckCircle2 className="w-8 h-8 text-blue-300" /> Closing lebih cepat via WA
                                     </li>
-                                    <li className="flex items-center gap-4 font-black text-xl md:text-3xl">
+                                    <li className="flex items-center gap-4 font-black text-lg md:text-2xl">
                                         <CheckCircle2 className="w-8 h-8 text-blue-300" /> Bikin agency lead gen sendiri
                                     </li>
                                 </ul>
@@ -268,7 +268,7 @@ export default function LandingPage() {
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-4">
                             🧠 CONVICTION
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black mb-6">Kenapa Harus Pakai Tools Ini?</h2>
+                        <h2 className="text-2xl md:text-3xl font-black mb-6">Kenapa Harus Pakai Tools Ini?</h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 text-center">
@@ -350,7 +350,7 @@ export default function LandingPage() {
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12 relative z-10">
                     <div className="space-y-2">
                         <div className="text-2xl font-black text-blue-600 uppercase tracking-tighter">🚀 CALL TO ACTION</div>
-                        <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[1]">
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tighter leading-[1]">
                             🔥 Mulai Sekarang & Ambil <br />
                             Leads Pertamamu!
                         </h2>
@@ -363,7 +363,7 @@ export default function LandingPage() {
                     <div className="flex flex-col items-center gap-6">
                         <Link
                             href="/login"
-                            className="group flex items-center gap-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-7 rounded-[2.5rem] text-3xl font-black transition-all hover:scale-105 active:scale-95 shadow-3xl hover:shadow-blue-500/50"
+                            className="group flex items-center gap-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-10 py-5 rounded-[2.5rem] text-2xl font-black transition-all hover:scale-105 active:scale-95 shadow-3xl hover:shadow-blue-500/50"
                         >
                             DAFTAR & MULAI SEKARANG
                             <Rocket className="w-8 h-8 group-hover:rotate-12 transition-transform" />
@@ -381,6 +381,79 @@ export default function LandingPage() {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* [PRICING] Pricing Section */}
+            <section id="pricing" className="py-32 bg-slate-50 dark:bg-slate-950 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-600/5 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2" />
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="text-center mb-20 space-y-4">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">
+                            💎 PRICING PLANS
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-black tracking-tight">Pilih Paket Penjualanmu</h2>
+                        <p className="text-xl text-slate-500 max-w-2xl mx-auto">Dapatkan akses seumur hidup ke semua fitur canggih Wamaps dengan satu kali pembayaran saja.</p>
+                    </div>
+
+                    <div className="flex justify-center">
+                        <div className="relative w-full max-w-lg p-10 bg-white dark:bg-slate-900 rounded-[3rem] border-2 border-blue-500 transition-all hover:scale-[1.02] hover:shadow-2xl shadow-blue-500/10 flex flex-col items-center text-center">
+                            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-8 py-2.5 rounded-full text-sm font-black uppercase tracking-widest shadow-xl">
+                                PRO VERSION - LIFETIME ACCESS
+                            </div>
+                            
+                            <div className="mb-10 w-full flex flex-col items-center">
+                                <div className="p-5 rounded-3xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6">
+                                    <Crown className="w-12 h-12" />
+                                </div>
+                                <h3 className="text-xl font-black text-slate-400 uppercase tracking-widest mb-2">Wamaps Premium Plan</h3>
+                                <div className="flex flex-col items-center">
+                                    <span className="text-5xl font-black">Rp 149.000</span>
+                                    <span className="text-sm font-bold text-slate-400 mt-2 uppercase tracking-tighter">One-time payment • Bayar Sekali Seumur Hidup</span>
+                                </div>
+                            </div>
+
+                            <div className="mb-10 space-y-5 w-full">
+                                <p className="text-lg text-slate-500 leading-relaxed font-bold">Dapatkan semua fitur tanpa batasan apapun.</p>
+                                <div className="grid grid-cols-1 gap-4 text-left">
+                                    {[
+                                        "Akses Google Maps Scraper Tanpa Batas", 
+                                        "WhatsApp Broadcast Massal Otomatis", 
+                                        "Scraping Nama, No WA, Alamat, Website", 
+                                        "Export Data ke CSV / Excel", 
+                                        "Tanpa Biaya Berlangganan (Lifetime)",
+                                        "Gratis Update Fitur Selamanya",
+                                        "Support Prioritas 24/7"
+                                    ].map((feature, j) => (
+                                        <div key={j} className="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                                            <CheckCircle2 className="w-5 h-5 text-green-500" /> {feature}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <Link
+                                href={`/checkout?plan=premium&amount=149000`}
+                                className="w-full group flex items-center justify-center gap-4 py-5 rounded-2xl text-xl font-black transition-all active:scale-95 shadow-xl bg-blue-600 text-white shadow-blue-500/30"
+                            >
+                                BELI SEKARANG (AKSES PENUH)
+                                <ArrowRight className="w-7 h-7 group-hover:translate-x-2 transition-transform" />
+                            </Link>
+
+                            <p className="mt-6 text-xs text-slate-400 font-bold uppercase tracking-tight">
+                                🔥 Limited Offer: Harga normal Rp 499.000
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div className="mt-20 text-center">
+                        <p className="text-slate-400 text-sm font-bold flex items-center justify-center gap-4">
+                            <ShieldCheck className="w-5 h-5 text-blue-500" /> Pembayaran Aman & Aktivasi Instant via QRIS/Bank Transfer
+                        </p>
                     </div>
                 </div>
             </section>
@@ -413,7 +486,7 @@ export default function LandingPage() {
                             <p className="flex justify-center items-center gap-2"><CheckCircle2 className="w-6 h-6 text-green-500" /> Naikkan closing penjualan</p>
                         </div>
                         <p className="text-blue-400 font-bold italic text-2xl">👉 Ini tools yang kamu butuhkan.</p>
-                        <Link href="/login" className="inline-block text-white font-black underline text-xl hover:text-blue-300 transition-colors">
+                        <Link href="/login" className="inline-block text-white font-black underline text-lg hover:text-blue-300 transition-colors">
                             Klik sekarang sebelum terlambat!
                         </Link>
                     </div>
