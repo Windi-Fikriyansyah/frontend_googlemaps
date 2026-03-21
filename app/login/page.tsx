@@ -42,37 +42,7 @@ export default function LoginPage() {
         }
     };
 
-    const handleGoogleLogin = async (response: any) => {
-        setLoading(true);
-
-        try {
-            const res = await api.post("/auth/google", {
-                credential: response.credential,
-            });
-            if (res.data.access_token) {
-                localStorage.setItem("token", res.data.access_token);
-            }
-            router.push("/leads");
-        } catch (err: any) {
-            toast.error("Google Login failed. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        /* global google */
-        if (typeof window !== "undefined" && (window as any).google) {
-            (window as any).google.accounts.id.initialize({
-                client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-                callback: handleGoogleLogin,
-            });
-            (window as any).google.accounts.id.renderButton(
-                document.getElementById("googleBtn"),
-                { theme: "outline", size: "large", width: "100%" }
-            );
-        }
-    }, []);
+    // Google login logic removed as requested
 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col justify-center items-center p-4">
@@ -103,7 +73,7 @@ export default function LoginPage() {
                     <div>
                         <div className="flex justify-between items-center mb-2 ml-1">
                             <label className="text-sm font-semibold">Password</label>
-                            <Link href="#" className="text-xs text-blue-600 font-medium hover:underline">Forgot password?</Link>
+
                         </div>
                         <div className="relative">
                             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -128,18 +98,7 @@ export default function LoginPage() {
                     </button>
                 </form>
 
-                <div className="mt-8 mb-6 flex items-center gap-4 text-slate-300 dark:text-slate-700">
-                    <div className="h-px w-full bg-current" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap">OR</span>
-                    <div className="h-px w-full bg-current" />
-                </div>
-
-                <div id="googleBtn" className="w-full"></div>
-
-                <p className="mt-10 text-center text-sm text-slate-500">
-                    Don't have an account?{" "}
-                    <Link href="/register" className="text-blue-600 font-bold hover:underline">Create Account</Link>
-                </p>
+                {/* Registration link removed */}
             </div>
         </main>
     );

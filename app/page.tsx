@@ -93,8 +93,8 @@ export default function LandingPage() {
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest border border-blue-100 dark:border-blue-800 mb-8 animate-fade-in">
-                        <Gift className="w-3.5 h-3.5" />
-                        Dapatkan 50 Kredit Gratis Untuk Pendaftaran Pertama
+                        <Zap className="w-3.5 h-3.5" />
+                        Platform Pencarian Lead Maps & Auto WhatsApp
                     </div>
 
                     <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-8 leading-[1.1]">
@@ -111,10 +111,10 @@ export default function LandingPage() {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
                         <Link
-                            href="/register"
+                            href="/login"
                             className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-blue-600 dark:bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 active:scale-95 hover:shadow-2xl hover:shadow-blue-500/30"
                         >
-                            Daftar & Klaim 50 Kredit
+                            Mulai Sekarang
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link
@@ -237,140 +237,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* How Credits Work Section */}
-            <section className="py-24 bg-slate-50 dark:bg-slate-950">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <div className="relative">
-                            <div className="absolute -inset-4 bg-blue-500/10 blur-2xl rounded-full" />
-                            <div className="relative bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-xl">
-                                <div className="flex items-center gap-4 mb-8">
-                                    <div className="p-3 rounded-2xl bg-blue-600">
-                                        <HelpCircle className="w-8 h-8 text-white" />
-                                    </div>
-                                    <h2 className="text-3xl font-black">Bagaimana Kredit Bekerja?</h2>
-                                </div>
-
-                                <div className="space-y-6">
-                                    {[
-                                        { title: "Sistem Pay-as-you-go", desc: "Anda hanya membayar untuk apa yang Anda gunakan. Tidak ada biaya bulanan yang mengikat." },
-                                        { title: "Penggunaan Kredit", desc: "Kredit digunakan saat melakukan scraping lead atau mengirim broadcast WhatsApp." },
-                                        { title: "Tanpa Kadaluarsa", desc: "Kredit yang Anda beli akan tetap ada selamanya di akun Anda sampai habis digunakan." },
-                                        { title: "Pengisian Mudah", desc: "Top-up kapan saja melalui berbagai metode pembayaran otomatis (QRIS, VA, E-Wallet)." }
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex gap-4">
-                                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center font-bold">
-                                                {i + 1}
-                                            </div>
-                                            <div>
-                                                <h4 className="font-bold mb-1">{item.title}</h4>
-                                                <p className="text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4 block">Ekosistem Wamaps</span>
-                            <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">Transparansi Kredit untuk Keefektifan Bisnis</h2>
-                            <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-                                Kami merancang Wamaps agar fleksibel bagi semua skala bisnis. Baik Anda freelancer
-                                maupun agensi besar, sistem kredit kami memastikan investasi Anda tepat sasaran.
-                            </p>
-                            <div className="p-6 bg-blue-600 rounded-3xl text-white">
-                                <p className="text-2xl font-bold mb-2">Bonus Pendaftaran!</p>
-                                <p className="opacity-90 leading-relaxed mb-6">
-                                    Daftar hari ini dan dapatkan <strong>50 Kredit GRATIS</strong> untuk mencoba semua fitur kami tanpa biaya sepeser pun.
-                                </p>
-                                <Link
-                                    href="/login"
-                                    className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors"
-                                >
-                                    Dapatkan Sekarang <ArrowRight className="w-4 h-4" />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Pricing Section */}
-            <section id="pricing" className="py-24 bg-white dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-20">
-                        <h2 className="text-3xl md:text-5xl font-black mb-6">Pilih Paket Kredit Anda</h2>
-                        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                            Dapatkan harga terbaik dengan membeli paket kredit yang lebih besar.
-                            Semua paket mendapatkan akses ke semua fitur premium.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {pricingPlans.map((plan, i) => (
-                            <div
-                                key={i}
-                                className={`relative rounded-[2.5rem] border-2 p-8 transition-all hover:scale-[1.03] flex flex-col ${plan.popular
-                                    ? "border-purple-500 bg-purple-50/50 dark:bg-purple-950/20 shadow-2xl shadow-purple-500/10"
-                                    : plan.bestValue
-                                        ? "border-amber-500 bg-amber-50/50 dark:bg-amber-950/20"
-                                        : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
-                                    }`}
-                            >
-                                {plan.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                                        Paling Populer
-                                    </div>
-                                )}
-                                {plan.bestValue && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                                        Value Terbaik
-                                    </div>
-                                )}
-
-                                <div className="mb-8">
-                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-br ${plan.color} text-white mb-4`}>
-                                        <plan.icon className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-1">{plan.name}</h3>
-                                    <p className="text-xs text-slate-500 uppercase font-bold tracking-widest">{plan.label}</p>
-                                </div>
-
-                                <div className="mb-8">
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-sm font-bold text-slate-500">Rp</span>
-                                        <span className="text-4xl font-black">{plan.price}</span>
-                                    </div>
-                                    <p className="text-sm font-medium text-blue-600 mt-2">{plan.credits} Kredit</p>
-                                    <p className="text-xs text-slate-500 mt-1">Rp {plan.pricePerCredit} / kredit</p>
-                                </div>
-
-                                <ul className="space-y-4 mb-10 flex-1">
-                                    {plan.features.map((feature, j) => (
-                                        <li key={j} className="flex items-center gap-3 text-sm font-medium">
-                                            <Check className="w-4 h-4 text-green-500" />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <Link
-                                    href="/pricing"
-                                    className={`w-full py-4 rounded-2xl text-center font-bold transition-all ${plan.popular
-                                        ? "bg-purple-500 text-white hover:bg-purple-600 shadow-lg shadow-purple-500/30"
-                                        : plan.bestValue
-                                            ? "bg-amber-500 text-white hover:bg-amber-600 shadow-lg shadow-amber-500/30"
-                                            : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90"
-                                        }`}
-                                >
-                                    Pilih Paket
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* Pricing and Credit info removed */}
 
             {/* Workflow Section */}
             <section className="py-24 overflow-hidden">
@@ -447,7 +314,7 @@ export default function LandingPage() {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Link
-                                    href="/register"
+                                    href="/login"
                                     className="inline-flex items-center justify-center gap-3 bg-blue-600 text-white px-12 py-6 rounded-full text-2xl font-black transition-all hover:scale-105 active:scale-95 shadow-2xl hover:shadow-blue-500/50"
                                 >
                                     Mulai Sekarang <ArrowRight className="w-7 h-7" />

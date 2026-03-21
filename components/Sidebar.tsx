@@ -39,7 +39,7 @@ const menuItems = [
     { icon: Send, label: "Broadcast", href: "/whatsapp/broadcast" },
     { icon: Smartphone, label: "Devices", href: "/whatsapp/devices" },
     { icon: History, label: "History Pesan", href: "/whatsapp/history" },
-    { icon: CreditCard, label: "Harga", href: "/pricing" },
+    { icon: Settings, label: "Pengaturan", href: "/settings" },
 ];
 
 
@@ -118,19 +118,7 @@ export default function Sidebar() {
                 </nav>
 
                 <div className="p-4 border-t border-slate-200 dark:border-slate-800">
-                    <div className="bg-slate-50 dark:bg-slate-950/50 rounded-2xl p-4 mb-4">
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Credits</p>
-                        <div className="flex items-center justify-between mb-3">
-                            <span className="text-sm font-bold text-slate-900 dark:text-white">{user?.credits?.toLocaleString() || 0}</span>
-                            <Link href="/pricing" className="text-[10px] text-blue-600 hover:underline">TOP UP</Link>
-                        </div>
-
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Plan</p>
-                        <div className="flex items-center justify-between">
-                            <span className="text-sm font-bold text-blue-600 dark:text-blue-400 capitalize">{user?.plan_type || "Free"}</span>
-                            <span className="text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 px-2 py-0.5 rounded-full">ACTIVE</span>
-                        </div>
-                    </div>
+                    {/* Credits and Plan section removed */}
 
                     <button
                         onClick={async () => {

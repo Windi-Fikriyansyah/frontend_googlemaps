@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import api from "@/lib/api";
 import { Lead, MessageTemplate } from "@/types";
 import {
@@ -12,7 +12,8 @@ import {
     Loader2,
     Search as SearchIcon,
     Smartphone,
-    RefreshCw
+    RefreshCw,
+    Layers
 } from "lucide-react";
 import { Button, Input } from "@/components/ui/primitives";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -29,6 +30,7 @@ export default function BroadcastPage() {
     const [sending, setSending] = useState(false);
     const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -111,10 +113,17 @@ export default function BroadcastPage() {
         }
     };
 
-    const filteredLeads = leads.filter(l =>
-        l.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        l.address.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredLeads = leads.filter(l => {
+        const matchesSearch = l.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            l.address.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory = selectedCategory === "All" || (l.category || "General") === selectedCategory;
+        return matchesSearch && matchesCategory;
+    });
+
+    const categories = useMemo(() => {
+        const cats = leads.map(l => l.category || "General");
+        return ["All", ...Array.from(new Set(cats))];
+    }, [leads]);
 
     return (
         <div className="space-y-8 px-4 pb-12 pt-6">
@@ -138,14 +147,30 @@ export default function BroadcastPage() {
                                     <Users className="w-5 h-5 text-slate-400" />
                                     Select Leads ({selectedLeads.length})
                                 </h2>
-                                <div className="relative w-full md:w-64">
-                                    <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                                    <Input
-                                        placeholder="Filter leads..."
-                                        className="pl-9 h-10"
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                    />
+                                <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                                    <div className="relative w-full md:w-48">
+                                        <select
+                                            className="w-full h-10 pl-3 pr-8 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm appearance-none"
+                                            value={selectedCategory}
+                                            onChange={(e) => setSelectedCategory(e.target.value)}
+                                        >
+                                            {categories.map(cat => (
+                                                <option key={cat} value={cat}>{cat === "All" ? "Semua Kategori" : cat}</option>
+                                            ))}
+                                        </select>
+                                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                            <Layers className="w-4 h-4" />
+                                        </div>
+                                    </div>
+                                    <div className="relative w-full md:w-64">
+                                        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                                        <Input
+                                            placeholder="Cari leads..."
+                                            className="pl-9 h-10"
+                                            value={searchTerm}
+                                            onChange={(e) => setSearchTerm(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -162,6 +187,7 @@ export default function BroadcastPage() {
                                                 />
                                             </th>
                                             <th className="px-4 py-4">Name</th>
+                                            <th className="px-4 py-4">Category</th>
                                             <th className="px-4 py-4">Phone</th>
                                             <th className="px-4 py-4">Status</th>
                                         </tr>
@@ -185,6 +211,11 @@ export default function BroadcastPage() {
                                                     <td className="px-4 py-4">
                                                         <div className="font-bold text-sm text-slate-900 dark:text-slate-100">{lead.name}</div>
                                                         <div className="text-[10px] text-slate-400 truncate max-w-[200px]">{lead.address}</div>
+                                                    </td>
+                                                    <td className="px-4 py-4">
+                                                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50">
+                                                            {lead.category || "General"}
+                                                        </span>
                                                     </td>
                                                     <td className="px-4 py-4 text-xs font-mono text-slate-500">
                                                         {lead.phone || <span className="text-red-400 italic">No number</span>}

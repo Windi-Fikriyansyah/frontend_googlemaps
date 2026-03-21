@@ -82,11 +82,20 @@ export default function SavedLeadsPage() {
             cell: (row: Lead) => (
                 <div className="py-2">
                     <div className="font-bold text-slate-900 dark:text-slate-100">{row.name}</div>
-                    {row.category && (
-                        <span className="text-[10px] uppercase tracking-wider bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-slate-500">
-                            {row.category}
-                        </span>
-                    )}
+                </div>
+            ),
+        },
+        {
+            name: 'Kategori',
+            selector: (row: Lead) => row.category || "General",
+            sortable: true,
+            width: '150px',
+            omit: isMobile,
+            cell: (row: Lead) => (
+                <div className="py-2">
+                    <span className="text-[10px] uppercase font-black tracking-widest bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-lg border border-blue-100 dark:border-blue-800/50">
+                        {row.category || "General"}
+                    </span>
                 </div>
             ),
         },

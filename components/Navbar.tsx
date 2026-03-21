@@ -46,27 +46,15 @@ export default function Navbar() {
                         <Link href="#features" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                             Features
                         </Link>
-                        <Link href="#pricing" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                            Pricing
-                        </Link>
-                        <div className="h-4 w-px bg-slate-200 dark:bg-slate-800" />
-
-                        {!isLoggedIn ? (
-                            <>
-                                <Link href="/login" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                                    Sign In
-                                </Link>
-                                <Link
-                                    href="/register"
-                                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95"
-                                >
-                                    Get Started <ArrowRight className="w-4 h-4" />
-                                </Link>
-                            </>
-                        ) : (
+                        {!isLoggedIn && (
+                            <Link href="/login" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95">
+                                Login <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        )}
+                        {isLoggedIn && (
                             <Link
                                 href="/leads"
-                                className="inline-flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-lg active:scale-95"
+                                className="inline-flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-lg active:scale-95"
                             >
                                 Dashboard <LayoutDashboard className="w-4 h-4" />
                             </Link>
@@ -91,20 +79,23 @@ export default function Navbar() {
                     <Link href="#features" className="block text-base font-medium text-slate-600 dark:text-slate-400 px-2" onClick={() => setIsOpen(false)}>
                         Features
                     </Link>
-                    <Link href="#pricing" className="block text-base font-medium text-slate-600 dark:text-slate-400 px-2" onClick={() => setIsOpen(false)}>
-                        Pricing
-                    </Link>
-                    <hr className="border-slate-100 dark:border-slate-800" />
-                    <Link href="/login" className="block text-base font-medium text-slate-600 dark:text-slate-400 px-2" onClick={() => setIsOpen(false)}>
-                        Sign In
-                    </Link>
-                    <Link
-                        href="/register"
-                        className="block w-full bg-blue-600 text-white px-4 py-3 rounded-xl text-center font-semibold"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        Get Started
-                    </Link>
+                    {!isLoggedIn ? (
+                        <Link
+                            href="/login"
+                            className="block w-full bg-blue-600 text-white px-4 py-3 rounded-xl text-center font-semibold"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            Login
+                        </Link>
+                    ) : (
+                        <Link
+                            href="/leads"
+                            className="block w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-xl text-center font-semibold"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            Dashboard
+                        </Link>
+                    )}
                 </div>
             )}
         </nav>
