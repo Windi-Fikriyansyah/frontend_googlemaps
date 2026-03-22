@@ -155,7 +155,8 @@ export default function LandingPage() {
                         </div>
                     </div>
 
-                    {/* How it Works Visua                    <div className="mt-16 md:mt-24 max-w-5xl mx-auto">
+                    {/* How it Works Visual */}
+                    <div className="mt-16 md:mt-24 max-w-5xl mx-auto">
                         <div className="bg-slate-900 rounded-3xl md:rounded-[3rem] p-6 sm:p-8 md:p-12 text-white overflow-hidden border border-slate-800 shadow-2xl relative">
                             <div className="absolute top-0 right-0 w-full md:w-[500px] h-full md:h-[500px] bg-blue-500/10 blur-[100px] rounded-full" />
 
@@ -189,7 +190,7 @@ export default function LandingPage() {
                                 </div>
                             </div>
                         </div>
-                    </div>   </div>
+                    </div>
                 </div>
             </section>
 
