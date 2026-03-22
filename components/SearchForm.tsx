@@ -63,7 +63,7 @@ export default function SearchForm({ onSearch, isLoading }: SearchFormProps) {
 
                     <div className="space-y-2">
                         <label className="text-sm font-medium">
-                            Max Results: <span className="font-bold text-blue-500">{maxResults}</span>
+                            Results: <span className="font-bold text-blue-500">{maxResults}</span>
                         </label>
                         <select
                             value={maxResults}

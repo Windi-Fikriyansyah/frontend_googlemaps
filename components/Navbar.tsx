@@ -47,8 +47,8 @@ export default function Navbar() {
                             Features
                         </Link>
                         {!isLoggedIn && (
-                            <Link href="/login" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95">
-                                Login <ArrowRight className="w-4 h-4" />
+                            <Link href="/checkout?plan=premium&amount=149000" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95">
+                                Ambil Akses Sekarang <ArrowRight className="w-4 h-4" />
                             </Link>
                         )}
                         {isLoggedIn && (
@@ -81,11 +81,11 @@ export default function Navbar() {
                     </Link>
                     {!isLoggedIn ? (
                         <Link
-                            href="/login"
+                            href="/checkout?plan=premium&amount=149000"
                             className="block w-full bg-blue-600 text-white px-4 py-3 rounded-xl text-center font-semibold"
                             onClick={() => setIsOpen(false)}
                         >
-                            Login
+                            Ambil Akses Sekarang
                         </Link>
                     ) : (
                         <Link

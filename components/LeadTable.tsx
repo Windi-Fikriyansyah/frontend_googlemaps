@@ -40,23 +40,23 @@ export default function LeadTable({ leads }: LeadTableProps) {
 
     const confirmSave = async () => {
         if (!leadToSave) return;
-        
+
         setSaving(leadToSave);
         setShowModal(false);
 
         try {
             if (leadToSave === "all") {
                 const leadIds = leads.map(l => l.id);
-                await api.post("/leads/save-batch", { 
+                await api.post("/leads/save-batch", {
                     lead_ids: leadIds,
-                    category: currentCategory 
+                    category: currentCategory
                 });
                 setSavedIds(new Set([...Array.from(savedIds), ...leadIds]));
                 toast.success(`Success! ${leadIds.length} leads saved to ${currentCategory}.`);
             } else {
-                await api.post("/leads/save", { 
-                    lead_id: leadToSave, 
-                    category: currentCategory 
+                await api.post("/leads/save", {
+                    lead_id: leadToSave,
+                    category: currentCategory
                 });
                 setSavedIds(prev => {
                     const updated = new Set(prev);
@@ -250,10 +250,10 @@ export default function LeadTable({ leads }: LeadTableProps) {
                             Simpan Semua
                         </Button>
                     )}
-                    <Button onClick={exportToCSV} variant="outline" className="flex items-center gap-2 border-green-500/50 hover:bg-green-50 dark:hover:bg-green-950/20 text-green-600 dark:text-green-400 w-full sm:w-auto">
+                    {/* <Button onClick={exportToCSV} variant="outline" className="flex items-center gap-2 border-green-500/50 hover:bg-green-50 dark:hover:bg-green-950/20 text-green-600 dark:text-green-400 w-full sm:w-auto">
                         <Download className="w-4 h-4" />
                         Export to CSV
-                    </Button>
+                    </Button> */}
                 </div>
             </div>
 
@@ -278,29 +278,28 @@ export default function LeadTable({ leads }: LeadTableProps) {
                             </div>
                             <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Simpan ke Kategori</h3>
                             <p className="text-slate-500 mb-8">Pilih atau buat kategori baru untuk menyimpan data ini agar lebih rapi.</p>
-                            
+
                             <div className="space-y-4 text-left">
                                 <label className="block text-sm font-bold text-slate-700 dark:text-slate-300">Nama Kategori</label>
-                                <input 
-                                    type="text" 
-                                    value={currentCategory} 
+                                <input
+                                    type="text"
+                                    value={currentCategory}
                                     onChange={(e) => setCurrentCategory(e.target.value)}
                                     className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all font-medium"
                                     placeholder="Contoh: Restoran Jakarta, Prospek Hot..."
                                     autoFocus
                                 />
-                                
+
                                 <div className="flex flex-wrap gap-2 pt-2">
                                     {["General", "Hot Leads", "Follow Up", "Closed"].map(cat => (
-                                        <button 
+                                        <button
                                             key={cat}
                                             type="button"
                                             onClick={() => setCurrentCategory(cat)}
-                                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
-                                                currentCategory === cat 
-                                                ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20 scale-105" 
+                                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${currentCategory === cat
+                                                ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20 scale-105"
                                                 : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-blue-300"
-                                            }`}
+                                                }`}
                                         >
                                             {cat}
                                         </button>
@@ -308,18 +307,18 @@ export default function LeadTable({ leads }: LeadTableProps) {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="flex gap-3 p-6 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
-                            <Button 
-                                variant="outline" 
-                                className="flex-1 rounded-xl h-12 font-bold" 
+                            <Button
+                                variant="outline"
+                                className="flex-1 rounded-xl h-12 font-bold"
                                 onClick={() => setShowModal(false)}
                             >
                                 Batal
                             </Button>
-                            <Button 
-                                variant="default" 
-                                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-xl h-12 font-bold shadow-lg shadow-blue-500/25" 
+                            <Button
+                                variant="default"
+                                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-xl h-12 font-bold shadow-lg shadow-blue-500/25"
                                 onClick={confirmSave}
                             >
                                 Simpan Data
