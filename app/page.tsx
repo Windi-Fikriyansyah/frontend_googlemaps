@@ -113,11 +113,11 @@ export default function LandingPage() {
                         <h2 className="text-2xl md:text-4xl font-black mb-6">Kenapa Tools Ini Powerful?</h2>
                     </div>
 
-                    <div className="grid lg:grid-cols-2 gap-12">
+                    <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
                         {/* The Pain */}
-                        <div className="p-8 md:p-12 rounded-[2.5rem] bg-red-50/50 dark:bg-red-950/10 border border-red-100 dark:border-red-900/30">
-                            <h3 className="text-xl font-bold mb-8 flex items-center gap-2 text-red-600 uppercase tracking-tighter">
-                                <XCircle className="w-6 h-6" /> Risiko jika kamu tidak pakai tools ini:
+                        <div className="p-6 md:p-12 rounded-3xl md:rounded-[2.5rem] bg-red-50/50 dark:bg-red-950/10 border border-red-100 dark:border-red-900/30">
+                            <h3 className="text-lg md:text-xl font-bold mb-6 md:mb-8 flex items-center gap-2 text-red-600 uppercase tracking-tighter">
+                                <XCircle className="w-5 h-5 md:w-6 md:h-6" /> Risiko jika kamu tidak pakai tools ini:
                             </h3>
                             <ul className="space-y-4">
                                 {[
@@ -127,17 +127,17 @@ export default function LandingPage() {
                                     "Market kamu habis diserbu kompetitor yang lebih cepat",
                                     "Kamu boncos waktu & tenaga tanpa hasil pasti"
                                 ].map((item, i) => (
-                                    <li key={i} className="flex items-center gap-3 text-slate-700 dark:text-slate-300 font-bold">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-red-500" /> {item}
+                                    <li key={i} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 font-bold text-sm md:text-base">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 shrink-0" /> {item}
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
                         {/* The Gain */}
-                        <div className="p-8 md:p-12 rounded-[2.5rem] bg-green-50/50 dark:bg-green-950/10 border border-green-100 dark:border-green-900/30">
-                            <h3 className="text-xl font-bold mb-8 flex items-center gap-2 text-green-600">
-                                <CheckCircle2 className="w-6 h-6" /> Sekarang kamu bisa otomatis:
+                        <div className="p-6 md:p-12 rounded-3xl md:rounded-[2.5rem] bg-green-50/50 dark:bg-green-950/10 border border-green-100 dark:border-green-900/30">
+                            <h3 className="text-lg md:text-xl font-bold mb-6 md:mb-8 flex items-center gap-2 text-green-600">
+                                <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" /> Sekarang kamu bisa otomatis:
                             </h3>
                             <ul className="space-y-4">
                                 {[
@@ -147,50 +147,49 @@ export default function LandingPage() {
                                     "Kirim WhatsApp massal langsung dari sistem",
                                     "Hemat waktu hingga 90%"
                                 ].map((item, i) => (
-                                    <li key={i} className="flex items-center gap-3 text-slate-600 dark:text-slate-400 font-bold">
-                                        <Check className="w-5 h-5 text-green-500" /> {item}
+                                    <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 font-bold text-sm md:text-base">
+                                        <Check className="w-5 h-5 text-green-500 shrink-0" /> {item}
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     </div>
 
-                    {/* How it Works Visual */}
-                    <div className="mt-24 max-w-5xl mx-auto">
-                        <div className="bg-slate-900 rounded-[3rem] p-8 md:p-12 text-white overflow-hidden border border-slate-800 shadow-2xl relative">
-                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 blur-[100px] rounded-full" />
+                    {/* How it Works Visua                    <div className="mt-16 md:mt-24 max-w-5xl mx-auto">
+                        <div className="bg-slate-900 rounded-3xl md:rounded-[3rem] p-6 sm:p-8 md:p-12 text-white overflow-hidden border border-slate-800 shadow-2xl relative">
+                            <div className="absolute top-0 right-0 w-full md:w-[500px] h-full md:h-[500px] bg-blue-500/10 blur-[100px] rounded-full" />
 
-                            <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
-                                <div className="md:w-1/2 space-y-6 text-left">
-                                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest border border-blue-500/30">
+                            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12 text-center md:text-left">
+                                <div className="w-full md:w-1/2 space-y-4 md:space-y-6">
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest border border-blue-500/30 mx-auto md:mx-0">
                                         🎥 LIHAT CARA KERJANYA
                                     </div>
-                                    <h3 className="text-3xl font-black leading-tight mt-4">Ambil 1.000+ Leads dalam <span className="text-blue-500">Hitungan Menit.</span></h3>
-                                    <p className="text-slate-400 font-medium leading-relaxed">
+                                    <h3 className="text-2xl md:text-3xl font-black leading-tight mt-4">Ambil 1.000+ Leads dalam <span className="text-blue-500">Hitungan Menit.</span></h3>
+                                    <p className="text-sm md:text-base text-slate-400 font-medium leading-relaxed">
                                         Cukup masukkan kata kunci (misal: "Cafe Jakarta") dan biarkan sistem bekerja. Kamu akan mendapatkan nama bisnis, alamat lengkap, dan yang terpenting: <span className="text-white font-bold italic">Nomor WhatsApp Valid!</span>
                                     </p>
-                                    <div className="flex gap-4">
-                                        <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-                                            <div className="text-2xl font-black text-blue-500">30s</div>
-                                            <div className="text-[10px] font-bold uppercase text-slate-500">Waktu Scrape</div>
+                                    <div className="flex justify-center md:justify-start gap-4">
+                                        <div className="p-3 md:p-4 bg-white/5 rounded-2xl border border-white/10">
+                                            <div className="text-xl md:text-2xl font-black text-blue-500">30s</div>
+                                            <div className="text-[8px] md:text-[10px] font-bold uppercase text-slate-500">Waktu Scrape</div>
                                         </div>
-                                        <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-                                            <div className="text-2xl font-black text-green-500">100%</div>
-                                            <div className="text-[10px] font-bold uppercase text-slate-500">Real Data</div>
+                                        <div className="p-3 md:p-4 bg-white/5 rounded-2xl border border-white/10">
+                                            <div className="text-xl md:text-2xl font-black text-green-500">100%</div>
+                                            <div className="text-[8px] md:text-[10px] font-bold uppercase text-slate-500">Real Data</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="md:w-1/2 relative group">
+                                <div className="w-full md:w-1/2 relative group">
                                     <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                                     <img
                                         src="/scraping_leads.webp"
                                         alt="Demo Scraping"
-                                        className="relative rounded-2xl shadow-2xl border border-white/10 w-full"
+                                        className="relative rounded-2xl shadow-2xl border border-white/10 w-full h-auto"
                                     />
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>   </div>
                 </div>
             </section>
 
@@ -244,19 +243,19 @@ export default function LandingPage() {
                                     avatar: "R"
                                 }
                             ].map((testimonial, i) => (
-                                <div key={i} className="p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl relative overflow-hidden group hover:scale-[1.02] transition-transform">
-                                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <div key={i} className="p-6 md:p-8 bg-white dark:bg-slate-900 rounded-3xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl relative overflow-hidden group hover:scale-[1.02] transition-transform">
+                                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity hidden sm:block">
                                         <MessageSquare className="w-24 h-24" />
                                     </div>
                                     <div className="flex gap-1 mb-4">
                                         {[1, 2, 3, 4, 5].map(s => <Sparkles key={s} className="w-4 h-4 text-amber-500" />)}
                                     </div>
-                                    <p className="text-lg font-bold mb-6 italic">"{testimonial.text}"</p>
+                                    <p className="text-base md:text-lg font-bold mb-6 italic">"{testimonial.text}"</p>
                                     <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-black">{testimonial.avatar}</div>
+                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-sm md:text-base">{testimonial.avatar}</div>
                                         <div>
-                                            <div className="font-black text-slate-900 dark:text-white">{testimonial.name}</div>
-                                            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">{testimonial.role}</div>
+                                            <div className="font-black text-sm md:text-base text-slate-900 dark:text-white">{testimonial.name}</div>
+                                            <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">{testimonial.role}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -346,24 +345,24 @@ export default function LandingPage() {
 
                         <div className="grid lg:grid-cols-2 gap-8">
                             {/* FB Bot Highlight */}
-                            <div className="p-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+                            <div className="p-6 md:p-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl md:rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
                                 <div className="relative z-10">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-widest mb-6 border border-white/30">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-widest mb-4 md:mb-6 border border-white/30">
                                         MOST WANTED BONUS
                                     </div>
-                                    <h4 className="text-2xl font-black mb-4 flex items-center gap-2">
-                                        <Zap className="w-6 h-6 text-amber-300" /> 🤖 Auto Post Facebook Group Bot
+                                    <h4 className="text-xl md:text-2xl font-black mb-4 flex items-center gap-2 leading-tight">
+                                        <Zap className="w-5 h-5 text-amber-300 shrink-0" /> 🤖 Auto Post Facebook Group Bot
                                     </h4>
-                                    <p className="text-blue-100 font-medium mb-8">
+                                    <p className="text-blue-100 font-medium mb-6 md:mb-8 text-sm md:text-base">
                                         Otomatis posting promosi ke grup Facebook tertarget. Generate leads tambahan tanpa effort manual!
                                     </p>
-                                    <ul className="space-y-3 mb-8">
-                                        <li className="flex items-center gap-2 text-sm font-bold"><CheckCircle2 className="w-4 h-4" /> Auto Posting ke Ribuan Grup</li>
-                                        <li className="flex items-center gap-2 text-sm font-bold"><CheckCircle2 className="w-4 h-4" /> Schedule Post Teratur</li>
-                                        <li className="flex items-center gap-2 text-sm font-bold"><CheckCircle2 className="w-4 h-4" /> Anti-Spam Protection</li>
+                                    <ul className="space-y-3 mb-6 md:mb-8 text-xs md:text-sm font-bold">
+                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Auto Posting ke Ribuan Grup</li>
+                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Schedule Post Teratur</li>
+                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Anti-Spam Protection</li>
                                     </ul>
                                     <div className="rounded-2xl border border-white/20 overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-500">
-                                        <img src="/facebook_bot.png" alt="FB Bot UI" className="w-full" />
+                                        <img src="/facebook_bot.png" alt="FB Bot UI" className="w-full h-auto" />
                                     </div>
                                 </div>
                             </div>
@@ -390,14 +389,14 @@ export default function LandingPage() {
                                         color: "bg-amber-100 text-amber-600"
                                     }
                                 ].map((bonus, i) => (
-                                    <div key={i} className="p-6 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-xl flex items-start gap-5 hover:border-blue-500 transition-colors">
-                                        <div className={`p-4 rounded-2xl ${bonus.color}`}>
-                                            <bonus.icon className="w-6 h-6" />
+                                    <div key={i} className="p-5 md:p-6 bg-white dark:bg-slate-900 rounded-3xl md:rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-xl flex items-start gap-4 md:gap-5 hover:border-blue-500 transition-colors">
+                                        <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl shrink-0 ${bonus.color}`}>
+                                            <bonus.icon className="w-5 h-5 md:w-6 md:h-6" />
                                         </div>
                                         <div>
-                                            <h5 className="font-black text-lg mb-1">{bonus.title}</h5>
-                                            <p className="text-sm text-slate-500 font-medium">{bonus.desc}</p>
-                                            <div className="mt-3 inline-flex items-center gap-1 text-[10px] font-black text-green-500 uppercase tracking-widest">
+                                            <h5 className="font-black text-base md:text-lg mb-1">{bonus.title}</h5>
+                                            <p className="text-xs md:text-sm text-slate-500 font-medium">{bonus.desc}</p>
+                                            <div className="mt-3 inline-flex items-center gap-1 text-[9px] md:text-[10px] font-black text-green-500 uppercase tracking-widest">
                                                 <Check className="w-3 h-3" /> Included Free
                                             </div>
                                         </div>
@@ -408,34 +407,36 @@ export default function LandingPage() {
                     </div>
 
                     {/* Comparison Table */}
-                    <div className="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl overflow-hidden mt-24">
-                        <div className="p-8 bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-between">
-                            <h3 className="text-xl font-bold">📊 Perbandingan</h3>
-                            <div className="text-xs font-bold uppercase tracking-widest opacity-50">Market Analysis</div>
+                    <div className="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-3xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl overflow-hidden mt-24">
+                        <div className="p-6 md:p-8 bg-slate-900 dark:bg-slate-800 text-white flex items-center justify-between">
+                            <h3 className="text-lg md:text-xl font-bold">📊 Perbandingan</h3>
+                            <div className="text-[10px] font-bold uppercase tracking-widest opacity-50">Market Analysis</div>
                         </div>
-                        <table className="w-full text-left">
-                            <thead>
-                                <tr className="border-b border-slate-50 dark:border-slate-800">
-                                    <th className="px-8 py-6 font-bold text-slate-400 uppercase text-xs tracking-widest w-1/2">Cara Manual</th>
-                                    <th className="px-8 py-6 font-black text-blue-600 uppercase text-xs tracking-widest">Wamaps Tools</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
-                                {[
-                                    { manual: "Cari 1-1 satu per satu", auto: "Auto scraping ribuan data" },
-                                    { manual: "Proses Sangat Lama", auto: "Super Cepat (Detik/Menit)" },
-                                    { manual: "Capek & Menghabiskan Tenaga", auto: "Tinggal Klik & Santai" },
-                                    { manual: "Sulit Skala Bisnis", auto: "Sangat Scalable (Tanpa Batas)" }
-                                ].map((row, i) => (
-                                    <tr key={i}>
-                                        <td className="px-8 py-6 text-slate-500 font-medium">{row.manual}</td>
-                                        <td className="px-8 py-6 font-bold flex items-center gap-2">
-                                            <Zap className="w-4 h-4 text-amber-500" /> {row.auto}
-                                        </td>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left min-w-[500px]">
+                                <thead>
+                                    <tr className="border-b border-slate-50 dark:border-slate-800">
+                                        <th className="px-6 md:px-8 py-4 md:py-6 font-bold text-slate-400 uppercase text-[10px] md:text-xs tracking-widest w-1/2">Cara Manual</th>
+                                        <th className="px-6 md:px-8 py-4 md:py-6 font-black text-blue-600 uppercase text-[10px] md:text-xs tracking-widest">Wamaps Tools</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+                                    {[
+                                        { manual: "Cari 1-1 satu per satu", auto: "Auto scraping ribuan data" },
+                                        { manual: "Proses Sangat Lama", auto: "Super Cepat (Detik/Menit)" },
+                                        { manual: "Capek & Menghabiskan Tenaga", auto: "Tinggal Klik & Santai" },
+                                        { manual: "Sulit Skala Bisnis", auto: "Sangat Scalable (Tanpa Batas)" }
+                                    ].map((row, i) => (
+                                        <tr key={i}>
+                                            <td className="px-6 md:px-8 py-4 md:py-6 text-slate-500 font-medium text-xs md:text-sm">{row.manual}</td>
+                                            <td className="px-6 md:px-8 py-4 md:py-6 font-bold flex items-center gap-2 text-xs md:text-sm">
+                                                <Zap className="w-4 h-4 text-amber-500 shrink-0" /> {row.auto}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -455,42 +456,42 @@ export default function LandingPage() {
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="relative w-full max-w-lg p-10 bg-white dark:bg-slate-900 rounded-[3rem] border-2 border-blue-500 transition-all hover:scale-[1.02] hover:shadow-2xl shadow-blue-500/10 flex flex-col items-center text-center">
-                            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-8 py-2.5 rounded-full text-sm font-black uppercase tracking-widest shadow-xl">
+                        <div className="relative w-full max-w-lg p-6 sm:p-8 md:p-10 bg-white dark:bg-slate-900 rounded-3xl md:rounded-[3rem] border-2 border-blue-500 transition-all hover:scale-[1.02] hover:shadow-2xl shadow-blue-500/10 flex flex-col items-center text-center">
+                            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 md:px-8 py-2 md:py-2.5 rounded-full text-[10px] md:text-sm font-black uppercase tracking-widest shadow-xl whitespace-nowrap">
                                 PRO VERSION - LIFETIME ACCESS
                             </div>
 
-                            <div className="mb-10 w-full flex flex-col items-center">
-                                <div className="p-5 rounded-3xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6">
-                                    <Crown className="w-12 h-12" />
+                            <div className="mb-6 md:mb-10 w-full flex flex-col items-center mt-4 md:mt-0">
+                                <div className="p-4 md:p-5 rounded-2xl md:rounded-3xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-4 md:mb-6">
+                                    <Crown className="w-10 h-10 md:w-12 md:h-12" />
                                 </div>
-                                <h3 className="text-xl font-black text-slate-400 uppercase tracking-widest mb-2">💎 SEKALI BAYAR = AKSES SEUMUR HIDUP</h3>
+                                <h3 className="text-base md:text-xl font-black text-slate-400 uppercase tracking-widest mb-2">💎 SEKALI BAYAR = AKSES SEUMUR HIDUP</h3>
                                 <div className="flex flex-col items-center mb-6">
-                                    <span className="text-5xl font-black text-blue-600">Rp 149.000</span>
-                                    <span className="text-sm font-bold text-slate-400 mt-2 uppercase tracking-tighter">Selamanya. Tanpa biaya tambahan.</span>
+                                    <span className="text-4xl md:text-5xl font-black text-blue-600">Rp 149.000</span>
+                                    <span className="text-xs md:text-sm font-bold text-slate-400 mt-2 uppercase tracking-tighter">Selamanya. Tanpa biaya tambahan.</span>
                                 </div>
 
                                 {/* Comparison Logic */}
-                                <div className="w-full bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 text-left space-y-3 mb-8">
-                                    <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Bayangkan Perbandingannya:</p>
-                                    <div className="flex justify-between items-center text-sm font-bold">
+                                <div className="w-full bg-slate-50 dark:bg-slate-800/50 p-4 md:p-6 rounded-2xl border border-slate-100 dark:border-slate-800 text-left space-y-3 mb-6 md:mb-8">
+                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Bayangkan Perbandingannya:</p>
+                                    <div className="flex justify-between items-center text-xs md:text-sm font-bold">
                                         <span className="text-slate-500">Tools Lain (Langganan)</span>
                                         <span className="text-red-500">Rp 99rb / bln</span>
                                     </div>
-                                    <div className="flex justify-between items-center text-sm font-black border-b border-slate-200 dark:border-slate-700 pb-2">
+                                    <div className="flex justify-between items-center text-xs md:text-sm font-black border-b border-slate-200 dark:border-slate-700 pb-2">
                                         <span className="text-slate-500">Total 1 Tahun</span>
                                         <span className="text-red-500">Rp 1.188.000</span>
                                     </div>
-                                    <div className="flex justify-between items-center text-md font-black pt-2">
+                                    <div className="flex justify-between items-center text-sm md:text-md font-black pt-2">
                                         <span className="text-blue-600">Di Wamaps?</span>
-                                        <span className="text-blue-600">Cuma Rp 149.000 (Hemat 90%!)</span>
+                                        <span className="text-blue-600">Cuma Rp 149rb</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="mb-10 space-y-5 w-full">
-                                <p className="text-lg text-slate-500 leading-relaxed font-bold">Dapatkan semua fitur tanpa batasan apapun.</p>
-                                <div className="grid grid-cols-1 gap-4 text-left">
+                            <div className="mb-6 md:mb-10 space-y-4 md:space-y-5 w-full">
+                                <p className="text-base md:text-lg text-slate-500 leading-relaxed font-bold">Dapatkan semua fitur tanpa batasan apapun.</p>
+                                <div className="grid grid-cols-1 gap-3 md:gap-4 text-left">
                                     {[
                                         "Akses Google Maps Scraper Tanpa Batas",
                                         "WhatsApp Broadcast Massal Otomatis",
@@ -500,8 +501,8 @@ export default function LandingPage() {
                                         "Gratis Update Fitur Selamanya",
                                         "Support Prioritas 24/7"
                                     ].map((feature, j) => (
-                                        <div key={j} className="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
-                                            <CheckCircle2 className="w-5 h-5 text-green-500" /> {feature}
+                                        <div key={j} className="flex items-start gap-3 text-xs md:text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                                            <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" /> {feature}
                                         </div>
                                     ))}
                                 </div>
@@ -509,13 +510,13 @@ export default function LandingPage() {
 
                             <Link
                                 href={`/checkout?plan=premium&amount=149000`}
-                                className="w-full group flex items-center justify-center gap-4 py-5 rounded-2xl text-xl font-black transition-all active:scale-95 shadow-xl bg-blue-600 text-white shadow-blue-500/30 hover:scale-[1.05]"
+                                className="w-full group flex items-center justify-center gap-4 py-4 md:py-5 rounded-2xl text-lg md:text-xl font-black transition-all active:scale-95 shadow-xl bg-blue-600 text-white shadow-blue-500/30 hover:scale-[1.05]"
                             >
-                                BELI SEKARANG (AKSES PENUH)
-                                <ArrowRight className="w-7 h-7 group-hover:translate-x-2 transition-transform" />
+                                BELI SEKARANG
+                                <ArrowRight className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-2 transition-transform" />
                             </Link>
 
-                            <p className="mt-6 text-xs text-slate-400 font-bold uppercase tracking-tight">
+                            <p className="mt-6 text-[10px] md:text-xs text-slate-400 font-bold uppercase tracking-tight">
                                 🔥 Limited Offer: Harga normal Rp 499.000
                             </p>
                         </div>
@@ -533,30 +534,30 @@ export default function LandingPage() {
             {/* Who is NOT for Section */}
             <section className="py-24 bg-slate-50 dark:bg-slate-950">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-12 border border-slate-100 dark:border-slate-800 shadow-xl overflow-hidden relative">
-                        <div className="absolute top-0 right-0 p-12 opacity-5">
+                    <div className="bg-white dark:bg-slate-900 rounded-3xl md:rounded-[3rem] p-8 md:p-12 border border-slate-100 dark:border-slate-800 shadow-xl overflow-hidden relative">
+                        <div className="absolute top-0 right-0 p-12 opacity-5 hidden md:block">
                             <Users className="w-32 h-32" />
                         </div>
-                        <div className="flex flex-col md:flex-row gap-12">
+                        <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative z-10">
                             <div className="flex-1 space-y-6">
-                                <h3 className="text-xl font-black text-red-500 uppercase tracking-widest flex items-center gap-2">
+                                <h3 className="text-lg md:text-xl font-black text-red-500 uppercase tracking-widest flex items-center gap-2">
                                     <XCircle className="w-6 h-6" /> TIDAK Cocok Untuk:
                                 </h3>
-                                <ul className="space-y-4 font-bold text-slate-600 dark:text-slate-400">
-                                    <li className="flex items-center gap-3"><Minus className="w-4 h-4 text-red-500" /> Yang malas action</li>
-                                    <li className="flex items-center gap-3"><Minus className="w-4 h-4 text-red-500" /> Yang tidak mau belajar sama sekali</li>
-                                    <li className="flex items-center gap-3"><Minus className="w-4 h-4 text-red-500" /> Yang cari hasil instan tanpa usaha</li>
+                                <ul className="space-y-4 font-bold text-sm md:text-base text-slate-600 dark:text-slate-400">
+                                    <li className="flex items-center gap-3"><Minus className="w-4 h-4 text-red-500 shrink-0" /> Yang malas action</li>
+                                    <li className="flex items-center gap-3"><Minus className="w-4 h-4 text-red-500 shrink-0" /> Yang tidak mau belajar sama sekali</li>
+                                    <li className="flex items-center gap-3"><Minus className="w-4 h-4 text-red-500 shrink-0" /> Yang cari hasil instan tanpa usaha</li>
                                 </ul>
                             </div>
-                            <div className="w-px bg-slate-100 dark:bg-slate-800 hidden md:block" />
+                            <div className="w-full h-px md:w-px md:h-auto bg-slate-100 dark:bg-slate-800" />
                             <div className="flex-1 space-y-6">
-                                <h3 className="text-xl font-black text-green-500 uppercase tracking-widest flex items-center gap-2">
+                                <h3 className="text-lg md:text-xl font-black text-green-500 uppercase tracking-widest flex items-center gap-2">
                                     <CheckCircle2 className="w-6 h-6" /> SANGAT Cocok Untuk:
                                 </h3>
-                                <ul className="space-y-4 font-bold text-slate-600 dark:text-slate-400">
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-green-500" /> Yang serius cari leads bisnis</li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-green-500" /> Yang mau scale up penjualan</li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-green-500" /> Digital Marketer & Agency Owner</li>
+                                <ul className="space-y-4 font-bold text-sm md:text-base text-slate-600 dark:text-slate-400">
+                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-green-500 shrink-0" /> Yang serius cari leads bisnis</li>
+                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-green-500 shrink-0" /> Yang mau scale up penjualan</li>
+                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-green-500 shrink-0" /> Marketer & Agency Owner</li>
                                 </ul>
                             </div>
                         </div>
@@ -589,13 +590,13 @@ export default function LandingPage() {
                                 a: "TIDAK ADA. Cukup sekali bayar dan kamu mendapatkan akses penuh seumur hidup beserta semua update di masa depan."
                             }
                         ].map((faq, i) => (
-                            <div key={i} className="p-8 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-blue-500 transition-colors">
-                                <h4 className="font-black text-lg mb-3 flex items-start gap-3">
-                                    <HelpCircle className="w-6 h-6 text-blue-500 shrink-0" />
+                            <div key={i} className="p-6 md:p-8 bg-slate-50 dark:bg-slate-950 rounded-2xl md:rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-500 transition-colors">
+                                <h4 className="font-black text-base md:text-lg mb-3 flex items-start gap-3">
+                                    <HelpCircle className="w-5 h-5 md:w-6 md:h-6 text-blue-500 shrink-0 mt-0.5" />
                                     <span>Q: {faq.q}</span>
                                 </h4>
-                                <div className="pl-9">
-                                    <p className="text-slate-600 dark:text-slate-400 font-medium italic">A: {faq.a}</p>
+                                <div className="pl-8 md:pl-9">
+                                    <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium italic">A: {faq.a}</p>
                                 </div>
                             </div>
                         ))}
@@ -625,27 +626,27 @@ export default function LandingPage() {
                     <div className="flex flex-col items-center gap-8">
                         <Link
                             href="/checkout?plan=premium&amount=149000"
-                            className="group flex flex-col items-center gap-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-6 rounded-[3rem] transition-all hover:scale-105 active:scale-95 shadow-3xl hover:shadow-blue-500/50"
+                            className="group flex flex-col items-center gap-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-8 md:px-12 py-5 md:py-6 rounded-3xl md:rounded-[3rem] transition-all hover:scale-105 active:scale-95 shadow-3xl hover:shadow-blue-500/50 w-full sm:w-auto"
                         >
-                            <div className="flex items-center gap-4 text-2xl font-black">
+                            <div className="flex items-center gap-4 text-xl md:text-2xl font-black">
                                 AKSES SEKARANG
-                                <Rocket className="w-8 h-8 group-hover:rotate-12 transition-transform" />
+                                <Rocket className="w-6 h-6 md:w-8 md:h-8 group-hover:rotate-12 transition-transform" />
                             </div>
                             <span className="text-[10px] font-bold uppercase tracking-widest opacity-60">Sekali Bayar • Akses Selamanya</span>
                         </Link>
 
                         {/* Urgency */}
-                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 p-6 rounded-3xl space-y-3">
+                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 p-6 md:p-8 rounded-3xl space-y-3 w-full max-w-2xl">
                             <p className="text-red-600 font-black text-sm uppercase tracking-widest flex items-center justify-center gap-2">
                                 <Clock className="w-5 h-5" /> PENTING:
                             </p>
                             {[
                                 "Harga promo Rp 149.000 bisa ditutup kapan saja",
-                                "Bonus FB Group Bot terbatas untuk 50 orang pertama hari ini",
+                                "Bonus FB Group Bot terbatas untuk 50 orang pertama",
                                 "Jangan biarkan kompetitor mengambil market kamu"
                             ].map((u, i) => (
-                                <div key={i} className="flex items-center justify-center gap-2 text-slate-700 dark:text-slate-300 text-xs font-bold italic">
-                                    <Check className="w-3 h-3 text-red-500" /> {u}
+                                <div key={i} className="flex items-center justify-center gap-2 text-slate-700 dark:text-slate-300 text-[10px] md:text-xs font-bold italic text-center">
+                                    <Check className="w-3 h-3 text-red-500 shrink-0" /> {u}
                                 </div>
                             ))}
                         </div>
@@ -656,13 +657,13 @@ export default function LandingPage() {
             {/* Closing Emosional */}
             <section className="py-24 bg-slate-900 text-center text-white">
                 <div className="max-w-4xl mx-auto px-4">
-                    <h3 className="text-3xl md:text-5xl font-black mb-8 italic">🔥 Ini tools yang kamu butuhkan.</h3>
-                    <div className="space-y-4 text-xl mb-12">
-                        <p className="flex justify-center items-center gap-2"><CheckCircle2 className="w-6 h-6 text-green-500" /> Dapat leads tiap hari</p>
-                        <p className="flex justify-center items-center gap-2"><CheckCircle2 className="w-6 h-6 text-green-500" /> Hemat waktu 90%</p>
-                        <p className="flex justify-center items-center gap-2"><CheckCircle2 className="w-6 h-6 text-green-500" /> Naikkan closing penjualan</p>
+                    <h3 className="text-2xl md:text-5xl font-black mb-8 italic">🔥 Ini tools yang kamu butuhkan.</h3>
+                    <div className="space-y-4 text-lg md:text-xl mb-12">
+                        <p className="flex justify-center items-center gap-2"><CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-green-500 shrink-0" /> Dapat leads tiap hari</p>
+                        <p className="flex justify-center items-center gap-2"><CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-green-500 shrink-0" /> Hemat waktu 90%</p>
+                        <p className="flex justify-center items-center gap-2"><CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-green-500 shrink-0" /> Naikkan closing penjualan</p>
                     </div>
-                    <Link href="/checkout?plan=premium&amount=149000" className="inline-block bg-blue-600 text-white font-black px-12 py-6 rounded-full text-2xl hover:bg-blue-700 transition-colors shadow-2xl shadow-blue-500/20">
+                    <Link href="/checkout?plan=premium&amount=149000" className="inline-block bg-blue-600 text-white font-black px-8 md:px-12 py-4 md:py-6 rounded-full text-lg md:text-2xl hover:bg-blue-700 transition-colors shadow-2xl shadow-blue-500/20 w-full sm:w-auto">
                         Klik Sekarang Sebelum Terlambat!
                     </Link>
                     <p className="mt-8 text-blue-400 font-bold uppercase tracking-widest text-sm">Kesempatan Terbatas Untuk Akses Lifetime</p>
