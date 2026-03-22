@@ -5,7 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
 import api from "@/lib/api";
 import { toast } from "sonner";
-import { Save, Key, Smartphone, User, Mail, Lock, Search } from "lucide-react";
+import { Save, Key, Smartphone, User, Mail, Lock, Search, Eye, EyeOff } from "lucide-react";
 import { SidebarProvider } from "@/context/SidebarContext";
 import { useRouter } from "next/navigation";
 
@@ -20,7 +20,9 @@ export default function SettingsPage() {
         fonnte_token: "",
         search_api_key: ""
     });
-
+    const [showSearchKey, setShowSearchKey] = useState(false);
+    const [showFonnteToken, setShowFonnteToken] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -137,13 +139,25 @@ export default function SettingsPage() {
                                         <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
                                             Password Baru (Kosongkan jika tidak ingin mengubah)
                                         </label>
-                                        <input
-                                            type="password"
-                                            value={formData.password}
-                                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                            className="w-full pl-4 pr-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                                            placeholder="••••••••"
-                                        />
+                                        <div className="relative group">
+                                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-500 transition-colors">
+                                                <Lock className="w-4 h-4" />
+                                            </div>
+                                            <input
+                                                type={showPassword ? "text" : "password"}
+                                                value={formData.password}
+                                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                                                className="w-full pl-11 pr-12 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                                                placeholder="••••••••"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-blue-500 transition-colors"
+                                            >
+                                                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -167,12 +181,19 @@ export default function SettingsPage() {
                                                 <Search className="w-4 h-4" />
                                             </div>
                                             <input
-                                                type="password"
+                                                type={showSearchKey ? "text" : "password"}
                                                 value={formData.search_api_key}
                                                 onChange={(e) => setFormData({ ...formData, search_api_key: e.target.value })}
-                                                className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
+                                                className="w-full pl-11 pr-12 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
                                                 placeholder="Masukkan SearchAPI Key Anda"
                                             />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowSearchKey(!showSearchKey)}
+                                                className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-purple-500 transition-colors"
+                                            >
+                                                {showSearchKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                            </button>
                                         </div>
                                         <p className="mt-2 text-xs text-slate-500">Dapatkan API Key di <a href="https://www.searchapi.io" target="_blank" className="text-blue-600 hover:underline">SearchAPI.io</a></p>
                                     </div>
@@ -186,12 +207,19 @@ export default function SettingsPage() {
                                                 <Smartphone className="w-4 h-4" />
                                             </div>
                                             <input
-                                                type="password"
+                                                type={showFonnteToken ? "text" : "password"}
                                                 value={formData.fonnte_token}
                                                 onChange={(e) => setFormData({ ...formData, fonnte_token: e.target.value })}
-                                                className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
+                                                className="w-full pl-11 pr-12 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
                                                 placeholder="Masukkan Fonnte Token Anda"
                                             />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowFonnteToken(!showFonnteToken)}
+                                                className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-purple-500 transition-colors"
+                                            >
+                                                {showFonnteToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                            </button>
                                         </div>
                                         <p className="mt-2 text-xs text-slate-500">Dapatkan Account Token di <a href="https://fonnte.com" target="_blank" className="text-blue-600 hover:underline">Fonnte.com</a></p>
                                     </div>

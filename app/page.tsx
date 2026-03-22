@@ -183,7 +183,7 @@ export default function LandingPage() {
                                 <div className="md:w-1/2 relative group">
                                     <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                                     <img
-                                        src="/scraping_leads.png"
+                                        src="/scraping_leads.webp"
                                         alt="Demo Scraping"
                                         className="relative rounded-2xl shadow-2xl border border-white/10 w-full"
                                     />
@@ -267,12 +267,12 @@ export default function LandingPage() {
                         <div className="grid md:grid-cols-2 gap-8">
                             <div className="space-y-4">
                                 <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                    <img src="/scraping_leads.png" alt="Hasil Scraping" className="w-full" />
+                                    <img src="/scraping_leads.webp" alt="Hasil Scraping" className="w-full" />
                                 </div>
                             </div>
                             <div className="space-y-4">
                                 <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                    <img src="/whatsapp_success.png" alt="Hasil WA Broadcast" className="w-full" />
+                                    <img src="/whatsapp_success.webp" alt="Hasil WA Broadcast" className="w-full" />
                                 </div>
                             </div>
                         </div>
