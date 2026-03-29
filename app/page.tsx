@@ -344,65 +344,29 @@ export default function LandingPage() {
                             <p className="text-slate-500 font-bold uppercase tracking-widest text-sm">Hanya untuk pembeliaan hari ini!</p>
                         </div>
 
-                        <div className="grid lg:grid-cols-2 gap-8">
+                        <div className="max-w-3xl mx-auto">
                             {/* FB Bot Highlight */}
                             <div className="p-6 md:p-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl md:rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
-                                <div className="relative z-10">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-500 -mr-20 -mt-20"></div>
+                                <div className="relative z-10 text-center">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-widest mb-4 md:mb-6 border border-white/30">
                                         MOST WANTED BONUS
                                     </div>
-                                    <h4 className="text-xl md:text-2xl font-black mb-4 flex items-center gap-2 leading-tight">
+                                    <h4 className="text-xl md:text-2xl font-black mb-4 flex items-center justify-center gap-2 leading-tight">
                                         <Zap className="w-5 h-5 text-amber-300 shrink-0" /> 🤖 Auto Post Facebook Group Bot
                                     </h4>
-                                    <p className="text-blue-100 font-medium mb-6 md:mb-8 text-sm md:text-base">
+                                    <p className="text-blue-100 font-medium mb-6 md:mb-8 text-sm md:text-base max-w-xl mx-auto">
                                         Otomatis posting promosi ke grup Facebook tertarget. Generate leads tambahan tanpa effort manual!
                                     </p>
-                                    <ul className="space-y-3 mb-6 md:mb-8 text-xs md:text-sm font-bold">
-                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Auto Posting ke Ribuan Grup</li>
-                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Schedule Post Teratur</li>
-                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Anti-Spam Protection</li>
+                                    <ul className="space-y-3 mb-6 md:mb-8 text-xs md:text-sm font-bold flex flex-col items-center">
+                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Auto Posting ke Ribuan Grup</li>
+                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Schedule Post Teratur</li>
+                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Anti-Spam Protection</li>
                                     </ul>
-                                    <div className="rounded-2xl border border-white/20 overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-500">
+                                    <div className="rounded-2xl border border-white/20 overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-500 max-w-xl mx-auto bg-slate-900/50">
                                         <img src="/facebook_bot.png" alt="FB Bot UI" className="w-full h-auto" />
                                     </div>
                                 </div>
-                            </div>
-
-                            {/* Other Bonuses */}
-                            <div className="grid gap-6">
-                                {[
-                                    {
-                                        title: "Template Copywriting High Converting",
-                                        desc: "Kumpulan script chat WA yang sudah terbukti menghasilkan closing tinggi.",
-                                        icon: MessageSquare,
-                                        color: "bg-pink-100 text-pink-600"
-                                    },
-                                    {
-                                        title: "Database Niche Siap Pakai",
-                                        desc: "Dapatkan akses ke ribuan data bisnis yang sudah kami filter untuk langsung jualan.",
-                                        icon: Layers,
-                                        color: "bg-indigo-100 text-indigo-600"
-                                    },
-                                    {
-                                        title: "Video Tutorial + Strategi Scale Leads",
-                                        desc: "Panduan lengkap dari nol sampai cara scale leads jadi profit jutaan.",
-                                        icon: Rocket,
-                                        color: "bg-amber-100 text-amber-600"
-                                    }
-                                ].map((bonus, i) => (
-                                    <div key={i} className="p-5 md:p-6 bg-white dark:bg-slate-900 rounded-3xl md:rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-xl flex items-start gap-4 md:gap-5 hover:border-blue-500 transition-colors">
-                                        <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl shrink-0 ${bonus.color}`}>
-                                            <bonus.icon className="w-5 h-5 md:w-6 md:h-6" />
-                                        </div>
-                                        <div>
-                                            <h5 className="font-black text-base md:text-lg mb-1">{bonus.title}</h5>
-                                            <p className="text-xs md:text-sm text-slate-500 font-medium">{bonus.desc}</p>
-                                            <div className="mt-3 inline-flex items-center gap-1 text-[9px] md:text-[10px] font-black text-green-500 uppercase tracking-widest">
-                                                <Check className="w-3 h-3" /> Included Free
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
                             </div>
                         </div>
                     </div>
