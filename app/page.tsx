@@ -60,7 +60,7 @@ export default function LandingPage() {
                         <ul className="flex flex-wrap justify-center gap-4">
                             {[
                                 "Mengambil ribuan leads bisnis",
-                                "Simpan data otomatis (Nama, No, Alamat)",
+                                "Simpan data otomatis",
                                 "Kirim broadcast WhatsApp massal"
                             ].map((item, i) => (
                                 <li key={i} className="flex items-center gap-2 bg-white dark:bg-slate-900 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm border border-slate-100 dark:border-slate-800">
