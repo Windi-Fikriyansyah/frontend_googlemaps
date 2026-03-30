@@ -86,10 +86,10 @@ export default function SettingsPage() {
         <SidebarProvider>
             <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
                 <Sidebar />
-                
+
                 <div className="flex-1 lg:ml-64 flex flex-col">
                     <TopBar />
-                    
+
                     <main className="p-4 md:p-8 max-w-4xl">
                         <div className="mb-8">
                             <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-2">Pengaturan</h1>
@@ -195,7 +195,20 @@ export default function SettingsPage() {
                                                 {showSearchKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                             </button>
                                         </div>
-                                        <p className="mt-2 text-xs text-slate-500">Dapatkan API Key di <a href="https://www.searchapi.io" target="_blank" className="text-blue-600 hover:underline">SearchAPI.io</a></p>
+                                        <p className="mt-2 text-xs text-slate-500">Dapatkan API Key di <a href="https://www.searchapi.io" target="_blank" className="text-blue-600 hover:underline font-medium">SearchAPI.io</a></p>
+
+                                        <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-slate-200 dark:border-slate-800">
+                                            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                                Cara Mendapatkan API Key:
+                                            </h3>
+                                            <ol className="text-xs text-slate-600 dark:text-slate-400 space-y-2 list-decimal ml-4">
+                                                <li>Kunjungi <a href="https://www.searchapi.io" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">SearchAPI.io</a> dan buat akun (Gratis 100 Search/bulan).</li>
+                                                <li>Masuk ke Dashboard akun Anda.</li>
+                                                <li>Cari bagian <span className="font-semibold text-slate-700 dark:text-slate-300">API Key</span> dan klik tombol Copy.</li>
+                                                <li>Tempel (Paste) kodenya ke kolom input di atas.</li>
+                                            </ol>
+                                        </div>
                                     </div>
 
                                     <div>
@@ -221,7 +234,20 @@ export default function SettingsPage() {
                                                 {showFonnteToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                             </button>
                                         </div>
-                                        <p className="mt-2 text-xs text-slate-500">Dapatkan Account Token di <a href="https://fonnte.com" target="_blank" className="text-blue-600 hover:underline">Fonnte.com</a></p>
+                                        <p className="mt-2 text-xs text-slate-500">Dapatkan Account Token di <a href="https://fonnte.com" target="_blank" className="text-blue-600 hover:underline font-medium">Fonnte.com</a></p>
+
+                                        <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-slate-200 dark:border-slate-800">
+                                            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                                Cara Mendapatkan API Token:
+                                            </h3>
+                                            <ol className="text-xs text-slate-600 dark:text-slate-400 space-y-2 list-decimal ml-4">
+                                                <li>Masuk ke akun <a href="https://fonnte.com" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">Fonnte.com</a> Anda.</li>
+                                                <li>Lihat bagian <span className="font-semibold text-slate-700 dark:text-slate-300">Account Token</span> yang ada di halaman Setting.</li>
+                                                <li>Salin token tersebut.</li>
+                                                <li>Tempel (Paste) kodenya ke kolom input di atas.</li>
+                                            </ol>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

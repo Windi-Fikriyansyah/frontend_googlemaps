@@ -6,21 +6,37 @@ import LeadTable from "@/components/LeadTable";
 import { Skeleton } from "@/components/ui/skeleton";
 import api from "@/lib/api";
 import { Lead } from "@/types";
-import { MapPin, Target, Layers } from "lucide-react";
+import { MapPin, Target, Layers, AlertCircle, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function Home() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [configMissing, setConfigMissing] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       router.push("/login");
+      return;
     }
+
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get("/auth/me");
+        const user = response.data;
+        if (!user.search_api_key || !user.fonnte_token) {
+          setConfigMissing(true);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+    fetchUserData();
   }, [router]);
 
   const handleSearch = async (keyword: string, location_name: string, radius: number, max_results: number) => {
@@ -64,6 +80,30 @@ export default function Home() {
 
 
       <div className="px-4 space-y-8">
+        {/* Config Missing Warning */}
+        {configMissing && (
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-3xl p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 shadow-sm animate-in fade-in slide-in-from-top-4 duration-500">
+              <div className="p-3 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 rounded-2xl">
+                <AlertCircle className="w-8 h-8" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-red-900 dark:text-red-200 font-black text-xl mb-1">Konfigurasi Belum Lengkap!</h3>
+                <p className="text-red-700 dark:text-red-400 text-sm">
+                  Mohon isi <b>SearchAPI Key</b> dan <b>Fonnte Token</b> terlebih dahulu di menu pengaturan untuk dapat melakukan pencarian.
+                </p>
+              </div>
+              <Link 
+                href="/settings" 
+                className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl font-bold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-500/25"
+              >
+                Ke Pengaturan
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        )}
+
         {/* Search Component */}
         <SearchForm onSearch={handleSearch} isLoading={loading} />
 
