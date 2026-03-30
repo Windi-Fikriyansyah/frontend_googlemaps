@@ -3,7 +3,8 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import { ArrowRight, CheckCircle2, ShieldCheck, Mail, User, Wallet, RefreshCw, CheckCircle, Lock, CreditCard } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck, Mail, User, Wallet, RefreshCw, CheckCircle, Lock, CreditCard, Copy } from "lucide-react";
+import { toast } from "sonner";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -28,6 +29,7 @@ function CheckoutContent() {
     const [email, setEmail] = useState("");
     const [paymentResult, setPaymentResult] = useState<{
         order_id: string,
+        method: string,
         payment_number: string,
         total_payment: number,
         fee: number,
@@ -185,13 +187,36 @@ function CheckoutContent() {
                         <p className="text-4xl font-black text-blue-600 mt-2">Rp {paymentResult.total_payment.toLocaleString("id-ID")}</p>
                     </div>
 
-                    {paymentResult.payment_number ? (
+                    {paymentResult.method === "qris" ? (
                         <div className="relative mx-auto w-64 h-64 bg-white rounded-3xl p-4 flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-inner">
-                             <img 
+                            <img 
                                 src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(paymentResult.payment_number)}`} 
                                 alt="QRIS" 
                                 className="w-full h-full"
-                             />
+                            />
+                        </div>
+                    ) : paymentResult.payment_number ? (
+                        <div className="p-8 bg-slate-50 dark:bg-slate-800/50 rounded-[2rem] border border-slate-100 dark:border-slate-800 space-y-6 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-3">
+                                <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600">
+                                    <CreditCard className="w-4 h-4" />
+                                </div>
+                            </div>
+                            <div className="text-left space-y-1">
+                                <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">Nomor Pembayaran / VA</p>
+                                <p className="text-3xl font-black text-blue-600 font-mono tracking-wider">
+                                    {paymentResult.payment_number}
+                                </p>
+                            </div>
+                            <button 
+                                onClick={() => {
+                                    navigator.clipboard.writeText(paymentResult.payment_number);
+                                    toast.success("Nomor pembayaran berhasil disalin!");
+                                }}
+                                className="flex w-full items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-blue-500/25"
+                            >
+                                <Copy className="w-4 h-4" /> SALIN NOMOR
+                            </button>
                         </div>
                     ) : paymentResult.payment_url ? (
                         <div className="p-10 bg-slate-50 dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-800 space-y-6">
