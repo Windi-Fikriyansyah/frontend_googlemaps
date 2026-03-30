@@ -107,9 +107,7 @@ export default function LandingPage() {
             <section className="py-24 bg-white dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                            🎯 INTEREST
-                        </div>
+
                         <h2 className="text-2xl md:text-4xl font-black mb-6">Kenapa Tools Ini Powerful?</h2>
                     </div>
 
@@ -167,7 +165,7 @@ export default function LandingPage() {
                                     </div>
                                     <h3 className="text-2xl md:text-3xl font-black leading-tight mt-4">Ambil 1.000+ Leads dalam <span className="text-blue-500">Hitungan Menit.</span></h3>
                                     <p className="text-sm md:text-base text-slate-400 font-medium leading-relaxed">
-                                        Cukup masukkan kata kunci (misal: "Cafe Jakarta") dan biarkan sistem bekerja. Kamu akan mendapatkan nama bisnis, alamat lengkap, dan yang terpenting: <span className="text-white font-bold italic">Nomor WhatsApp Valid!</span>
+                                        Cukup masukkan kata kunci dan lokasi (misal: "Klinik Jakarta") dan biarkan sistem bekerja. Kamu akan mendapatkan nama bisnis, alamat lengkap, dan yang terpenting: <span className="text-white font-bold italic">Nomor WhatsApp Valid!</span>
                                     </p>
                                     <div className="flex justify-center md:justify-start gap-4">
                                         <div className="p-3 md:p-4 bg-white/5 rounded-2xl border border-white/10">
@@ -198,9 +196,7 @@ export default function LandingPage() {
             <section className="py-24 overflow-hidden bg-slate-50 dark:bg-slate-950">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                            💰 DESIRE
-                        </div>
+
                         <h2 className="text-2xl md:text-4xl font-black mb-6">Bayangkan Jika Kamu Punya Ini…</h2>
                     </div>
 
@@ -312,9 +308,7 @@ export default function LandingPage() {
             <section className="py-24 bg-slate-50 dark:bg-slate-950">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                            🧠 CONVICTION
-                        </div>
+
                         <h2 className="text-2xl md:text-3xl font-black mb-6">Kenapa Harus Pakai Tools Ini?</h2>
                     </div>
 
@@ -360,7 +354,6 @@ export default function LandingPage() {
                                     </p>
                                     <ul className="space-y-3 mb-6 md:mb-8 text-xs md:text-sm font-bold flex flex-col items-center">
                                         <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Auto Posting ke Ribuan Grup</li>
-                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Schedule Post Teratur</li>
                                         <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Anti-Spam Protection</li>
                                     </ul>
                                     <div className="rounded-2xl border border-white/20 overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-500 max-w-xl mx-auto bg-slate-900/50">
@@ -387,7 +380,7 @@ export default function LandingPage() {
                                 </thead>
                                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
                                     {[
-                                        { manual: "Cari 1-1 satu per satu", auto: "Auto scraping ribuan data" },
+                                        { manual: "Cari satu per satu", auto: "Auto scraping ribuan data" },
                                         { manual: "Proses Sangat Lama", auto: "Super Cepat (Detik/Menit)" },
                                         { manual: "Capek & Menghabiskan Tenaga", auto: "Tinggal Klik & Santai" },
                                         { manual: "Sulit Skala Bisnis", auto: "Sangat Scalable (Tanpa Batas)" }
@@ -413,10 +406,8 @@ export default function LandingPage() {
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center mb-20 space-y-4">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                            💎 PRICING PLANS
-                        </div>
-                        <h2 className="text-3xl md:text-4xl font-black tracking-tight">Pilih Paket Penjualanmu</h2>
+
+                        <h2 className="text-3xl md:text-4xl font-black tracking-tight">Ambil Paket Penjualanmu</h2>
                         <p className="text-xl text-slate-500 max-w-2xl mx-auto">Dapatkan akses seumur hidup ke semua fitur canggih Wamaps dengan satu kali pembayaran saja.</p>
                     </div>
 
@@ -460,9 +451,8 @@ export default function LandingPage() {
                                     {[
                                         "Akses Google Maps Scraper Tanpa Batas",
                                         "WhatsApp Broadcast Massal Otomatis",
-                                        "Scraping Nama, No WA, Alamat, Website",
-                                        "LIFETIME Update Fitur Selamanya",
-                                        "BONUS Group FB Bot + Copywriting",
+                                        "Scraping Nama, No WA, Alamat, Website, Dll",
+                                        "BONUS Auto Post Facebook Group Bot",
                                         "Gratis Update Fitur Selamanya",
                                         "Support Prioritas 24/7"
                                     ].map((feature, j) => (
