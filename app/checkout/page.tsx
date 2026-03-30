@@ -84,6 +84,17 @@ function CheckoutContent() {
 
     const handleCheckout = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (!name.trim()) {
+            alert("Silakan isi nama lengkap Anda");
+            return;
+        }
+        
+        if (!email.trim() || !email.includes("@")) {
+            alert("Silakan isi alamat email yang valid");
+            return;
+        }
+
         if (!selectedMethod) {
             alert("Silakan pilih metode pembayaran");
             return;
