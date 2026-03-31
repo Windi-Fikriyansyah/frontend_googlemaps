@@ -24,7 +24,7 @@ function CheckoutContent() {
     const [fetchingMethods, setFetchingMethods] = useState(true);
     const [methods, setMethods] = useState<PaymentMethod[]>([]);
     const [selectedMethod, setSelectedMethod] = useState<string>("");
-    
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [paymentResult, setPaymentResult] = useState<{
@@ -38,7 +38,7 @@ function CheckoutContent() {
     } | null>(null);
     const [paymentStatus, setPaymentStatus] = useState<string>("UNPAID");
 
-    const PLANS: Record<string, {name: string, price: number, credits: number}> = {
+    const PLANS: Record<string, { name: string, price: number, credits: number }> = {
         "premium": { name: "Wamaps Premium", price: 149000, credits: 999999 },
     };
 
@@ -86,12 +86,12 @@ function CheckoutContent() {
 
     const handleCheckout = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!name.trim()) {
             alert("Silakan isi nama lengkap Anda");
             return;
         }
-        
+
         if (!email.trim() || !email.includes("@")) {
             alert("Silakan isi alamat email yang valid");
             return;
@@ -134,8 +134,8 @@ function CheckoutContent() {
 
     const currentMethodObj = methods.find(m => m.payment_method === selectedMethod);
     // LinkBayar Fee: fee_flat + (price * fee_percent)
-    const methodFee = currentMethodObj 
-        ? (currentMethodObj.fee_flat + (selectedPlan.price * currentMethodObj.fee_percent)) 
+    const methodFee = currentMethodObj
+        ? (currentMethodObj.fee_flat + (selectedPlan.price * currentMethodObj.fee_percent))
         : 0;
     const totalWithFee = selectedPlan.price + methodFee;
 
@@ -150,7 +150,7 @@ function CheckoutContent() {
                         <h1 className="text-4xl font-black">Pembayaran Berhasil!</h1>
                         <p className="text-slate-500 font-medium text-lg">Paket {paymentResult?.plan_name} Anda telah aktif.</p>
                     </div>
-                    
+
                     <div className="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-3xl border border-blue-100 dark:border-blue-900/30">
                         <h3 className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-4 flex items-center justify-center gap-2">
                             <Lock className="w-4 h-4" /> Akses Login Anda
@@ -164,8 +164,8 @@ function CheckoutContent() {
                         </div>
                     </div>
 
-                    <a 
-                        href="/login" 
+                    <a
+                        href="/login"
                         className="inline-flex items-center gap-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-10 py-5 rounded-2xl text-xl font-black transition-all hover:scale-105 active:scale-95 shadow-2xl"
                     >
                         Login ke Dashboard <ArrowRight className="w-6 h-6" />
@@ -189,9 +189,9 @@ function CheckoutContent() {
 
                     {paymentResult.method === "qris" ? (
                         <div className="relative mx-auto w-64 h-64 bg-white rounded-3xl p-4 flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-inner">
-                            <img 
-                                src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(paymentResult.payment_number)}`} 
-                                alt="QRIS" 
+                            <img
+                                src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(paymentResult.payment_number)}`}
+                                alt="QRIS"
                                 className="w-full h-full"
                             />
                         </div>
@@ -208,7 +208,7 @@ function CheckoutContent() {
                                     {paymentResult.payment_number}
                                 </p>
                             </div>
-                            <button 
+                            <button
                                 onClick={() => {
                                     navigator.clipboard.writeText(paymentResult.payment_number);
                                     toast.success("Nomor pembayaran berhasil disalin!");
@@ -224,8 +224,8 @@ function CheckoutContent() {
                                 <CreditCard className="w-10 h-10" />
                             </div>
                             <p className="text-sm font-bold text-slate-500">Klik tombol di bawah untuk membayar melalui portal pembayaran.</p>
-                            <a 
-                                href={paymentResult.payment_url} 
+                            <a
+                                href={paymentResult.payment_url}
                                 target="_blank"
                                 className="inline-flex w-full items-center justify-center gap-3 bg-blue-600 text-white px-8 py-5 rounded-2xl text-lg font-black"
                             >
@@ -236,11 +236,11 @@ function CheckoutContent() {
 
                     <div className="space-y-6">
                         <p className="text-sm text-slate-500 font-medium">
-                            {paymentResult.payment_number 
+                            {paymentResult.payment_number
                                 ? "Scan QRIS di atas menggunakan aplikasi e-wallet (GOPAY, OVO, DANA, dll) atau M-Banking Anda."
                                 : "Ikuti instruksi pada halaman pembayaran untuk menyelesaikan transaksi."}
                         </p>
-                        
+
                         <div className="space-y-2">
                             <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-2xl border border-amber-100 dark:border-amber-900/30 text-amber-600 text-xs font-black flex items-center gap-3 justify-center">
                                 <RefreshCw className="w-4 h-4 animate-spin" /> MENUNGGU PEMBAYARAN...
@@ -250,7 +250,7 @@ function CheckoutContent() {
                     </div>
 
                     <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
-                        <button 
+                        <button
                             onClick={() => window.location.reload()}
                             className="text-slate-400 hover:text-blue-600 text-sm font-bold transition-colors"
                         >
@@ -265,7 +265,6 @@ function CheckoutContent() {
     return (
         <div className="max-w-6xl mx-auto px-4 py-32">
             <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tight">Finalisasi Pembelian</h1>
                 <p className="text-slate-500 font-medium text-lg">Lengkapi data Anda & pilih metode pembayaran untuk memproses akses.</p>
             </div>
 
@@ -315,7 +314,7 @@ function CheckoutContent() {
                             <div className="w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm">2</div>
                             Pilih Metode Pembayaran
                         </h3>
-                        
+
                         {fetchingMethods ? (
                             <div className="flex flex-col items-center py-10 text-slate-400 font-bold italic">
                                 <RefreshCw className="w-8 h-8 animate-spin mb-4" />
@@ -329,11 +328,10 @@ function CheckoutContent() {
                                         <button
                                             key={m.payment_method}
                                             onClick={() => setSelectedMethod(m.payment_method)}
-                                            className={`p-6 rounded-3xl border-2 transition-all flex items-center justify-between group ${
-                                                selectedMethod === m.payment_method 
-                                                ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' 
+                                            className={`p-6 rounded-3xl border-2 transition-all flex items-center justify-between group ${selectedMethod === m.payment_method
+                                                ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20'
                                                 : 'border-slate-100 dark:border-slate-800 hover:border-slate-300'
-                                            }`}
+                                                }`}
                                         >
                                             <div className="flex items-center gap-4 text-left">
                                                 <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl p-2 flex items-center justify-center overflow-hidden border border-slate-100 dark:border-slate-700">
@@ -344,9 +342,8 @@ function CheckoutContent() {
                                                     <p className="text-[10px] font-bold text-slate-400">+ Fee Rp {feeVal.toLocaleString("id-ID")}</p>
                                                 </div>
                                             </div>
-                                            <div className={`w-5 h-5 rounded-full border-4 transition-all ${
-                                                selectedMethod === m.payment_method ? 'border-blue-500 bg-white' : 'border-slate-200'
-                                            }`} />
+                                            <div className={`w-5 h-5 rounded-full border-4 transition-all ${selectedMethod === m.payment_method ? 'border-blue-500 bg-white' : 'border-slate-200'
+                                                }`} />
                                         </button>
                                     );
                                 })}
@@ -359,7 +356,7 @@ function CheckoutContent() {
                 <div className="lg:col-span-4 space-y-8">
                     <div className="bg-slate-900 text-white p-10 rounded-[3rem] shadow-3xl relative overflow-hidden flex flex-col h-fit sticky top-32">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/20 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2" />
-                        
+
                         <h3 className="text-xs font-black uppercase tracking-widest text-blue-400 mb-8 flex items-center gap-3">
                             <Wallet className="w-4 h-4" /> RINGKASAN PESANAN
                         </h3>
@@ -372,7 +369,7 @@ function CheckoutContent() {
                                 </div>
                                 <p className="text-xl font-black text-blue-400">Rp {selectedPlan.price.toLocaleString("id-ID")}</p>
                             </div>
-                            
+
                             <div className="pt-8 border-t border-white/10 space-y-4">
                                 <div className="flex justify-between text-sm font-bold">
                                     <span className="text-slate-500 uppercase tracking-widest text-[10px]">Subtotal</span>
@@ -403,8 +400,8 @@ function CheckoutContent() {
 
                     <div className="bg-white dark:bg-slate-900/40 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 space-y-4 shadow-xl text-center">
                         <div className="flex items-center justify-center gap-4 text-xs font-black">
-                             <ShieldCheck className="w-5 h-5 text-blue-500" />
-                             <span>Aktivasi Instant & Aman via QRIS/Bank</span>
+                            <ShieldCheck className="w-5 h-5 text-blue-500" />
+                            <span>Aktivasi Instant & Aman via QRIS/Bank</span>
                         </div>
                     </div>
                 </div>
