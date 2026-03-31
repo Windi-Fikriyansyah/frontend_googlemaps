@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { ArrowRight, CheckCircle2, ShieldCheck, Mail, User, Wallet, RefreshCw, CheckCircle, Lock, CreditCard, Copy } from "lucide-react";
 import { toast } from "sonner";
+import { event } from "@/components/FacebookPixel";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -44,6 +45,20 @@ function CheckoutContent() {
 
     const selectedPlan = PLANS[plan] || PLANS["premium"];
 
+    // FB Pixel - InitiateCheckout
+    useEffect(() => {
+        if (!paymentResult) {
+            event("InitiateCheckout", {
+                content_category: "Subscription",
+                content_ids: [plan],
+                contents: [{ id: plan, quantity: 1 }],
+                currency: "IDR",
+                value: selectedPlan.price,
+                content_name: selectedPlan.name
+            });
+        }
+    }, []);
+
     // Fetch methods
     useEffect(() => {
         async function loadMethods() {
@@ -72,8 +87,17 @@ function CheckoutContent() {
                 try {
                     const res = await fetch(`${API_URL}/payments/linkbayar/status/${paymentResult.order_id}`);
                     const data = await res.json();
-                    if (data.status === "PAID") {
+                    if (data.status === "PAID" && paymentStatus !== "PAID") {
                         setPaymentStatus("PAID");
+                        // FB Pixel - Purchase
+                        event("Purchase", {
+                            content_name: paymentResult.plan_name,
+                            content_ids: [plan],
+                            content_type: "product",
+                            value: paymentResult.total_payment,
+                            currency: "IDR",
+                            order_id: paymentResult.order_id
+                        });
                         clearInterval(interval);
                     }
                 } catch (e) {
@@ -121,6 +145,14 @@ function CheckoutContent() {
 
             if (response.ok && (result.payment_number || result.payment_url)) {
                 setPaymentResult(result);
+                // FB Pixel - AddPaymentInfo
+                event("AddPaymentInfo", {
+                    content_category: "Subscription",
+                    content_ids: [plan],
+                    currency: "IDR",
+                    value: result.total_payment,
+                    payment_method: selectedMethod
+                });
             } else {
                 alert(result.detail || "Terjadi kesalahan saat membuat pembayaran");
             }

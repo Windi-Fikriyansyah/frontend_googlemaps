@@ -23,6 +23,8 @@ export const metadata: Metadata = {
 };
 
 import { Toaster } from "sonner";
+import FacebookPixel from "@/components/FacebookPixel";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -37,6 +39,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Suspense fallback={null}>
+          <FacebookPixel />
+        </Suspense>
         <Toaster position="top-right" richColors closeButton />
         {children}
       </body>
