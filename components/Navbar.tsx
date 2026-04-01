@@ -66,6 +66,7 @@ export default function Navbar() {
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className="p-2 text-slate-600 dark:text-slate-400"
+                            aria-label="Toggle Menu"
                         >
                             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>

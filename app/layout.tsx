@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 
 import { Toaster } from "sonner";
 import FacebookPixel from "@/components/FacebookPixel";
+import Script from "next/script";
 import { Suspense } from "react";
 
 export default function RootLayout({
@@ -34,11 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://www.facebook.com" />
+        <link rel="preconnect" href="https://accounts.google.com" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script src="https://accounts.google.com/gsi/client" strategy="lazyOnload" />
         <Suspense fallback={null}>
           <FacebookPixel />
         </Suspense>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import {
     Target,
@@ -94,8 +95,8 @@ export default function LandingPage() {
                                 { icon: UserCircle2, label: "Freelancer" },
                                 { icon: Store, label: "Owner Bisnis" }
                             ].map((item, i) => (
-                                <div key={i} className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-xs font-bold">
-                                    <item.icon className="w-4 h-4" /> {item.label}
+                                <div key={i} className="flex items-center gap-2 text-slate-700 dark:text-slate-200 text-xs font-bold bg-slate-200/30 dark:bg-slate-800/50 px-3 py-1.5 rounded-full">
+                                    <item.icon className="w-4 h-4 text-blue-600 dark:text-blue-400" /> {item.label}
                                 </div>
                             ))}
                         </div>
@@ -145,7 +146,7 @@ export default function LandingPage() {
                                     "Kirim WhatsApp massal langsung dari sistem",
                                     "Hemat waktu hingga 90%"
                                 ].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 font-bold text-sm md:text-base">
+                                    <li key={i} className="flex items-start gap-3 text-slate-700 dark:text-slate-200 font-bold text-sm md:text-base">
                                         <Check className="w-5 h-5 text-green-500 shrink-0" /> {item}
                                     </li>
                                 ))}
@@ -180,9 +181,11 @@ export default function LandingPage() {
                                 </div>
                                 <div className="w-full md:w-1/2 relative group">
                                     <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                                    <img
+                                    <Image
                                         src="/scraping_leads.webp"
                                         alt="Demo Scraping"
+                                        width={651}
+                                        height={713}
                                         className="relative rounded-2xl shadow-2xl border border-white/10 w-full h-auto"
                                     />
                                 </div>
@@ -263,12 +266,12 @@ export default function LandingPage() {
                         <div className="grid md:grid-cols-2 gap-8">
                             <div className="space-y-4">
                                 <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                    <img src="/scraping_leads.webp" alt="Hasil Scraping" className="w-full" />
+                                    <Image src="/scraping_leads.webp" alt="Hasil Scraping" width={651} height={713} className="w-full" />
                                 </div>
                             </div>
                             <div className="space-y-4">
                                 <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                    <img src="/whatsapp_success.webp" alt="Hasil WA Broadcast" className="w-full" />
+                                    <Image src="/whatsapp_success.webp" alt="Hasil WA Broadcast" width={651} height={570} className="w-full" />
                                 </div>
                             </div>
                         </div>
@@ -293,10 +296,10 @@ export default function LandingPage() {
                         ].map((feature, i) => (
                             <div key={i} className="p-6 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-blue-500 transition-colors group">
                                 <feature.icon className="w-6 h-6 text-blue-500 mb-4 group-hover:scale-110 transition-transform" />
-                                <h4 className="font-bold">{feature.title}</h4>
+                                <h3 className="font-bold text-slate-900 dark:text-white">{feature.title}</h3>
                                 <div className="flex items-center gap-1 mt-2">
                                     <Check className="w-4 h-4 text-green-500" />
-                                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Verified</span>
+                                    <span className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-bold tracking-tighter">Verified</span>
                                 </div>
                             </div>
                         ))}
@@ -320,11 +323,11 @@ export default function LandingPage() {
                             { title: "Sangat Aman", desc: "Privasi data terjaga aman & sistem stabil." }
                         ].map((item, i) => (
                             <div key={i} className="space-y-4">
-                                <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 flex items-center justify-center mx-auto">
+                                <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 flex items-center justify-center mx-auto">
                                     <ShieldCheck className="w-6 h-6" />
                                 </div>
-                                <h4 className="font-black text-lg">{item.title}</h4>
-                                <p className="text-sm text-slate-500">{item.desc}</p>
+                                <h3 className="font-black text-lg text-slate-900 dark:text-white">{item.title}</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 font-medium">{item.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -346,10 +349,10 @@ export default function LandingPage() {
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-widest mb-4 md:mb-6 border border-white/30">
                                         MOST WANTED BONUS
                                     </div>
-                                    <h4 className="text-xl md:text-2xl font-black mb-4 flex items-center justify-center gap-2 leading-tight">
+                                    <h3 className="text-xl md:text-2xl font-black mb-4 flex items-center justify-center gap-2 leading-tight">
                                         <Zap className="w-5 h-5 text-amber-300 shrink-0" /> 🤖 Auto Post Facebook Group Bot
-                                    </h4>
-                                    <p className="text-blue-100 font-medium mb-6 md:mb-8 text-sm md:text-base max-w-xl mx-auto">
+                                    </h3>
+                                    <p className="text-blue-50 font-semibold mb-6 md:mb-8 text-sm md:text-base max-w-xl mx-auto opacity-90">
                                         Otomatis posting promosi ke grup Facebook tertarget. Generate leads tambahan tanpa effort manual!
                                     </p>
                                     <ul className="space-y-3 mb-6 md:mb-8 text-xs md:text-sm font-bold flex flex-col items-center">
@@ -357,7 +360,7 @@ export default function LandingPage() {
                                         <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Anti-Spam Protection</li>
                                     </ul>
                                     <div className="rounded-2xl border border-white/20 overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-500 max-w-xl mx-auto bg-slate-900/50">
-                                        <img src="/facebook_bot.png" alt="FB Bot UI" className="w-full h-auto" />
+                                        <Image src="/facebook_bot.png" alt="FB Bot UI" width={600} height={400} className="w-full h-auto" />
                                     </div>
                                 </div>
                             </div>
@@ -421,21 +424,21 @@ export default function LandingPage() {
                                 <div className="p-4 md:p-5 rounded-2xl md:rounded-3xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-4 md:mb-6">
                                     <Crown className="w-10 h-10 md:w-12 md:h-12" />
                                 </div>
-                                <h3 className="text-base md:text-xl font-black text-slate-400 uppercase tracking-widest mb-2">💎 SEKALI BAYAR = AKSES SEUMUR HIDUP</h3>
+                                <h3 className="text-base md:text-xl font-black text-slate-500 dark:text-slate-300 uppercase tracking-widest mb-2">💎 SEKALI BAYAR = AKSES SEUMUR HIDUP</h3>
                                 <div className="flex flex-col items-center mb-6">
                                     <span className="text-4xl md:text-5xl font-black text-blue-600">Rp 149.000</span>
-                                    <span className="text-xs md:text-sm font-bold text-slate-400 mt-2 uppercase tracking-tighter">Selamanya. Tanpa biaya tambahan.</span>
+                                    <span className="text-xs md:text-sm font-bold text-slate-500 dark:text-slate-400 mt-2 uppercase tracking-tighter">Selamanya. Tanpa biaya tambahan.</span>
                                 </div>
 
                                 {/* Comparison Logic */}
-                                <div className="w-full bg-slate-50 dark:bg-slate-800/50 p-4 md:p-6 rounded-2xl border border-slate-100 dark:border-slate-800 text-left space-y-3 mb-6 md:mb-8">
-                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Bayangkan Perbandingannya:</p>
+                                <div className="w-full bg-slate-50 dark:bg-slate-800/50 p-4 md:p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-left space-y-3 mb-6 md:mb-8">
+                                    <p className="text-[10px] font-black text-slate-500 dark:text-slate-300 uppercase tracking-widest">Bayangkan Perbandingannya:</p>
                                     <div className="flex justify-between items-center text-xs md:text-sm font-bold">
-                                        <span className="text-slate-500">Tools Lain (Langganan)</span>
+                                        <span className="text-slate-600 dark:text-slate-200">Tools Lain (Langganan)</span>
                                         <span className="text-red-500">Rp 99rb / bln</span>
                                     </div>
                                     <div className="flex justify-between items-center text-xs md:text-sm font-black border-b border-slate-200 dark:border-slate-700 pb-2">
-                                        <span className="text-slate-500">Total 1 Tahun</span>
+                                        <span className="text-slate-600 dark:text-slate-200">Total 1 Tahun</span>
                                         <span className="text-red-500">Rp 1.188.000</span>
                                     </div>
                                     <div className="flex justify-between items-center text-sm md:text-md font-black pt-2">
@@ -471,7 +474,7 @@ export default function LandingPage() {
                                 <ArrowRight className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-2 transition-transform" />
                             </Link>
 
-                            <p className="mt-6 text-[10px] md:text-xs text-slate-400 font-bold uppercase tracking-tight">
+                            <p className="mt-6 text-[10px] md:text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-tight">
                                 🔥 Limited Offer: Harga normal Rp 499.000
                             </p>
                         </div>
@@ -546,12 +549,12 @@ export default function LandingPage() {
                             }
                         ].map((faq, i) => (
                             <div key={i} className="p-6 md:p-8 bg-slate-50 dark:bg-slate-950 rounded-2xl md:rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-500 transition-colors">
-                                <h4 className="font-black text-base md:text-lg mb-3 flex items-start gap-3">
+                                <h3 className="font-black text-base md:text-lg mb-3 flex items-start gap-3 text-slate-900 dark:text-white">
                                     <HelpCircle className="w-5 h-5 md:w-6 md:h-6 text-blue-500 shrink-0 mt-0.5" />
                                     <span>Q: {faq.q}</span>
-                                </h4>
+                                </h3>
                                 <div className="pl-8 md:pl-9">
-                                    <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium italic">A: {faq.a}</p>
+                                    <p className="text-xs md:text-sm text-slate-700 dark:text-slate-200 font-bold italic">A: {faq.a}</p>
                                 </div>
                             </div>
                         ))}
@@ -600,7 +603,7 @@ export default function LandingPage() {
                                 "Bonus FB Group Bot terbatas untuk 50 orang pertama",
                                 "Jangan biarkan kompetitor mengambil market kamu"
                             ].map((u, i) => (
-                                <div key={i} className="flex items-center justify-center gap-2 text-slate-700 dark:text-slate-300 text-[10px] md:text-xs font-bold italic text-center">
+                                <div key={i} className="flex items-center justify-center gap-2 text-slate-800 dark:text-slate-200 text-[10px] md:text-xs font-bold italic text-center">
                                     <Check className="w-3 h-3 text-red-500 shrink-0" /> {u}
                                 </div>
                             ))}
@@ -634,11 +637,11 @@ export default function LandingPage() {
                         </div>
                         <span className="text-2xl font-bold tracking-tighter">Wamaps</span>
                     </Link>
-                    <p className="text-slate-400 text-sm font-medium">© 2026 Wamaps. Platform Scraper & Outreach B2B No. 1</p>
-                    <div className="flex justify-center gap-8 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        <Link href="#" className="hover:text-blue-600">Privacy</Link>
-                        <Link href="#" className="hover:text-blue-600">Terms</Link>
-                        <Link href="#" className="hover:text-blue-600">Contact</Link>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">© 2026 Wamaps. Platform Scraper & Outreach B2B No. 1</p>
+                    <div className="flex justify-center gap-8 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                        <Link href="#" className="hover:text-blue-600 transition-colors">Privacy</Link>
+                        <Link href="#" className="hover:text-blue-600 transition-colors">Terms</Link>
+                        <Link href="#" className="hover:text-blue-600 transition-colors">Contact</Link>
                     </div>
                 </div>
             </footer>
@@ -649,6 +652,7 @@ export default function LandingPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-8 right-8 z-[100] group"
+                aria-label="Contact support on WhatsApp"
             >
                 <div className="absolute -inset-4 bg-green-500/20 rounded-full blur-2xl group-hover:bg-green-500/40 transition-colors duration-500 animate-pulse" />
                 <div className="relative flex items-center gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2 pr-6 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300">
@@ -658,7 +662,7 @@ export default function LandingPage() {
                         </svg>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Butuh Bantuan?</span>
+                        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-none mb-1">Butuh Bantuan?</span>
                         <span className="text-sm font-black text-slate-900 dark:text-white leading-none">WhatsApp Kami</span>
                     </div>
                 </div>
