@@ -31,7 +31,8 @@ import {
     Store,
     UserCircle2,
     BarChart3,
-    Minus
+    Minus,
+    Play
 } from "lucide-react";
 
 const SocialProof = dynamic(() => import("@/components/NonCriticalSections").then(mod => mod.SocialProof), {
@@ -108,6 +109,50 @@ export default function LandingPage() {
                                     <item.icon className="w-4 h-4 text-blue-600 dark:text-blue-400" /> {item.label}
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Video Demo Section */}
+            <section className="py-24 relative overflow-hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full -z-10 pointer-events-none">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 dark:bg-blue-500/5 blur-[120px] rounded-full" />
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16 space-y-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest border border-blue-100 dark:border-blue-800 mb-2">
+                            <Play className="w-3 h-3 fill-current" />
+                            DEMO APLIKASI
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+                            Lihat Langsung <span className="text-blue-600">Cara Kerjanya</span>
+                        </h2>
+                        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-medium">
+                            Saksikan bagaimana Wamaps mengotomatisasi pencarian leads dan pengiriman WhatsApp dalam hitungan detik.
+                        </p>
+                    </div>
+
+                    <div className="max-w-5xl mx-auto relative group">
+                        {/* Premium Glow Effect */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-500"></div>
+
+                        <div className="relative bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 transition-all duration-500 group-hover:scale-[1.01] hover:shadow-blue-500/10">
+                            <div className="aspect-video relative">
+                                <video
+                                    className="w-full h-full object-cover"
+                                    controls
+                                    playsInline
+                                    poster="/scraping_leads.webp"
+                                >
+                                    <source src="https://ik.imagekit.io/bzq0b2kjq/0401.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+
+                            {/* Video Info Bar */}
+
                         </div>
                     </div>
                 </div>
