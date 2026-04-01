@@ -186,6 +186,7 @@ export default function LandingPage() {
                                         alt="Demo Scraping"
                                         width={651}
                                         height={713}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                         className="relative rounded-2xl shadow-2xl border border-white/10 w-full h-auto"
                                     />
                                 </div>
@@ -266,12 +267,12 @@ export default function LandingPage() {
                         <div className="grid md:grid-cols-2 gap-8">
                             <div className="space-y-4">
                                 <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                    <Image src="/scraping_leads.webp" alt="Hasil Scraping" width={651} height={713} className="w-full" />
+                                    <Image src="/scraping_leads.webp" alt="Hasil Scraping" width={651} height={713} sizes="(max-width: 768px) 100vw, 50vw" className="w-full" />
                                 </div>
                             </div>
                             <div className="space-y-4">
                                 <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                    <Image src="/whatsapp_success.webp" alt="Hasil WA Broadcast" width={651} height={570} className="w-full" />
+                                    <Image src="/whatsapp_success.webp" alt="Hasil WA Broadcast" width={651} height={570} sizes="(max-width: 768px) 100vw, 50vw" className="w-full" />
                                 </div>
                             </div>
                         </div>
@@ -360,7 +361,7 @@ export default function LandingPage() {
                                         <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Anti-Spam Protection</li>
                                     </ul>
                                     <div className="rounded-2xl border border-white/20 overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-500 max-w-xl mx-auto bg-slate-900/50">
-                                        <Image src="/facebook_bot.png" alt="FB Bot UI" width={600} height={400} className="w-full h-auto" />
+                                        <Image src="/facebook_bot.png" alt="FB Bot UI" width={600} height={400} sizes="(max-width: 768px) 100vw, 600px" className="w-full h-auto" />
                                     </div>
                                 </div>
                             </div>
