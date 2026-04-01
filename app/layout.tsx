@@ -23,36 +23,13 @@ export const metadata: Metadata = {
 };
 
 import { Toaster } from "sonner";
-import FacebookPixel from "@/components/FacebookPixel";
-import Script from "next/script";
-import { Suspense, useEffect, useState } from "react";
+import ScriptLoader from "@/components/ScriptLoader";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [loadScripts, setLoadScripts] = useState(false);
-
-  useEffect(() => {
-    const handleInteraction = () => {
-      setLoadScripts(true);
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('mousemove', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-    };
-
-    window.addEventListener('scroll', handleInteraction);
-    window.addEventListener('mousemove', handleInteraction);
-    window.addEventListener('touchstart', handleInteraction);
-
-    return () => {
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('mousemove', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-    };
-  }, []);
-
   return (
     <html lang="en">
       <head>
@@ -63,14 +40,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {loadScripts && (
-          <>
-            <Script src="https://accounts.google.com/gsi/client" strategy="lazyOnload" />
-            <Suspense fallback={null}>
-              <FacebookPixel />
-            </Suspense>
-          </>
-        )}
+        <ScriptLoader />
         <Toaster position="top-right" richColors closeButton />
         {children}
       </body>
