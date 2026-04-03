@@ -17,7 +17,8 @@ import {
     Send,
     Smartphone,
     X,
-    Gift
+    Gift,
+    Puzzle
 } from "lucide-react";
 
 import api from "@/lib/api";
@@ -41,6 +42,7 @@ const menuItems = [
     { icon: Smartphone, label: "Devices", href: "/whatsapp/devices" },
     { icon: History, label: "History Pesan", href: "/whatsapp/history" },
     { icon: Gift, label: "Bonus", href: "/bonus" },
+    { icon: Puzzle, label: "Versi Extension", href: "/extension" },
     { icon: Settings, label: "Pengaturan", href: "/settings" },
 ];
 
