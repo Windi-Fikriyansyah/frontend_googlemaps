@@ -8,6 +8,7 @@ import api from "@/lib/api";
 import { toast } from "sonner";
 import DataTable, { TableStyles } from "react-data-table-component";
 import Papa from "papaparse";
+import * as XLSX from 'xlsx';
 
 interface LeadTableProps {
     leads: Lead[];
@@ -74,26 +75,30 @@ export default function LeadTable({ leads }: LeadTableProps) {
         }
     };
 
-    const exportToCSV = () => {
+    const exportToExcel = () => {
         const data = leads.map((lead) => ({
-            Name: lead.name,
-            Address: lead.address,
-            Phone: lead.phone || "N/A",
-            Website: lead.website || "N/A",
-            Rating: lead.rating || "N/A",
-            Category: lead.category || "N/A",
+            "Name": lead.name,
+            "Address": lead.address,
+            "Google Maps Link": `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lead.name + ' ' + (lead.address || ''))}`,
+            "Phone": lead.phone || "-",
+            "Website": lead.website || "-",
+            "Rating": lead.rating || "-",
+            "Category": lead.category || "General",
         }));
 
-        const csv = Papa.unparse(data);
-        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-        const link = document.createElement("a");
-        const url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
-        link.setAttribute("download", `leads_export_${new Date().toISOString().split('T')[0]}.csv`);
-        link.style.visibility = "hidden";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Create worksheet
+        const worksheet = XLSX.utils.json_to_sheet(data);
+
+        // Create workbook
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Leads");
+
+        // Generate filename
+        const filename = `leads_export_${new Date().toISOString().split('T')[0]}.xlsx`;
+
+        // Export file
+        XLSX.writeFile(workbook, filename);
+        toast.success(`Success! Data exported to ${filename}.`);
     };
 
     const columns = [
@@ -250,10 +255,16 @@ export default function LeadTable({ leads }: LeadTableProps) {
                             Simpan Semua
                         </Button>
                     )}
-                    {/* <Button onClick={exportToCSV} variant="outline" className="flex items-center gap-2 border-green-500/50 hover:bg-green-50 dark:hover:bg-green-950/20 text-green-600 dark:text-green-400 w-full sm:w-auto">
-                        <Download className="w-4 h-4" />
-                        Export to CSV
-                    </Button> */}
+                    {leads.length > 0 && (
+                        <Button
+                            onClick={exportToExcel}
+                            variant="outline"
+                            className="flex items-center gap-2 border-green-500/50 hover:bg-green-50 dark:hover:bg-green-950/20 text-green-600 dark:text-green-400 w-full sm:w-auto font-bold"
+                        >
+                            <Download className="w-4 h-4" />
+                            Export Excel
+                        </Button>
+                    )}
                 </div>
             </div>
 

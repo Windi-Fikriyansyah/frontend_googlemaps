@@ -13,8 +13,11 @@ import {
     Phone,
     Globe,
     Star,
-    Trash2
+    Trash2,
+    Download
 } from "lucide-react";
+import * as XLSX from 'xlsx';
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Button, Input } from "@/components/ui/primitives";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -72,6 +75,31 @@ export default function SavedLeadsPage() {
                 (item.category && item.category.toLowerCase().includes(filterText.toLowerCase()))
         );
     }, [leads, filterText]);
+
+    const exportToExcel = () => {
+        if (filteredItems.length === 0) {
+            toast.error("Tidak ada data untuk diekspor.");
+            return;
+        }
+
+        const data = filteredItems.map((lead) => ({
+            "Name": lead.name,
+            "Address": lead.address,
+            "Google Maps Link": `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lead.name + ' ' + (lead.address || ''))}`,
+            "Phone": lead.phone || "-",
+            "Website": lead.website || "-",
+            "Rating": lead.rating || "-",
+            "Category": lead.category || "General",
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Saved Leads");
+
+        const filename = `saved_leads_export_${new Date().toISOString().split('T')[0]}.xlsx`;
+        XLSX.writeFile(workbook, filename);
+        toast.success(`Berhasil mengekspor ${filteredItems.length} data ke Excel.`);
+    };
 
     const columns = [
         {
@@ -227,6 +255,16 @@ export default function SavedLeadsPage() {
                             onChange={e => setFilterText(e.target.value)}
                         />
                     </div>
+                    {leads.length > 0 && (
+                        <Button 
+                            onClick={exportToExcel}
+                            variant="outline" 
+                            className="flex items-center gap-2 border-green-500/50 hover:bg-green-50 dark:hover:bg-green-950/20 text-green-600 dark:text-green-400 h-11 px-4 font-bold"
+                        >
+                            <Download className="w-4 h-4" />
+                            <span className="hidden sm:inline">Export Excel</span>
+                        </Button>
+                    )}
                 </div>
             </div>
 
