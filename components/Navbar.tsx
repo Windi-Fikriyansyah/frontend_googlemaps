@@ -46,6 +46,14 @@ export default function Navbar() {
                         <Link href="#features" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                             Features
                         </Link>
+                        <a 
+                            href="https://wa.me/6289678386070" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-400 transition-colors flex items-center gap-2"
+                        >
+                            WhatsApp Kami
+                        </a>
                         {!isLoggedIn && (
                             <Link href="/checkout?plan=premium&amount=149000" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95">
                                 Ambil Akses Sekarang <ArrowRight className="w-4 h-4" />
@@ -80,6 +88,15 @@ export default function Navbar() {
                     <Link href="#features" className="block text-base font-medium text-slate-600 dark:text-slate-400 px-2" onClick={() => setIsOpen(false)}>
                         Features
                     </Link>
+                    <a 
+                        href="https://wa.me/6289678386070" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="block text-base font-medium text-slate-600 dark:text-slate-400 px-2 border-b border-slate-100 dark:border-slate-800 pb-4" 
+                        onClick={() => setIsOpen(false)}
+                    >
+                        WhatsApp Kami
+                    </a>
                     {!isLoggedIn ? (
                         <Link
                             href="/checkout?plan=premium&amount=149000"

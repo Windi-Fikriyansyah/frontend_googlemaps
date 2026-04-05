@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -44,6 +45,51 @@ const FAQ = dynamic(() => import("@/components/NonCriticalSections").then(mod =>
     ssr: false
 });
 
+const CountdownTimer = () => {
+    const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number } | null>(null);
+
+    useEffect(() => {
+        // Start from a fixed point in time (e.g. 4 hours from now) or persistence
+        const duration = 1 * 3600; // 1h 00m 00s
+        setTimeLeft({ hours: 1, minutes: 0, seconds: 0 });
+
+        const timer = setInterval(() => {
+            setTimeLeft(prev => {
+                if (!prev) return null;
+                const totalSeconds = prev.hours * 3600 + prev.minutes * 60 + prev.seconds - 1;
+                if (totalSeconds <= 0) return { hours: 0, minutes: 0, seconds: 0 };
+                return {
+                    hours: Math.floor(totalSeconds / 3600),
+                    minutes: Math.floor((totalSeconds % 3600) / 60),
+                    seconds: totalSeconds % 60
+                };
+            });
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    if (!timeLeft) return null;
+
+    const format = (n: number) => n.toString().padStart(2, '0');
+
+    return (
+        <div className="flex gap-3 items-center justify-center font-black">
+            {[
+                { label: 'Jam', val: timeLeft.hours },
+                { label: 'Menit', val: timeLeft.minutes },
+                { label: 'Detik', val: timeLeft.seconds }
+            ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center">
+                    <div className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-2xl w-14 h-14 flex items-center justify-center text-2xl shadow-xl border border-slate-700 dark:border-slate-200">
+                        {format(item.val)}
+                    </div>
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mt-3 text-slate-500">{item.label}</span>
+                </div>
+            ))}
+        </div>
+    );
+};
+
 export default function LandingPage() {
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-blue-100 dark:selection:bg-blue-900/40">
@@ -63,7 +109,7 @@ export default function LandingPage() {
                     </div>
 
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-8 leading-[1.1] max-w-5xl mx-auto">
-                        🔥 Ambil Leads dari Google Maps + Kirim WhatsApp Otomatis dalam <span className="text-blue-600 dark:text-blue-400">1 Klik!</span>
+                        🔥 Capek Cari Data Calon Pembeli Satu-Satu? Ambil 1.000+ Kontak Bisnis Dari Google Maps & Kirim WA Otomatis <span className="text-blue-600 dark:text-blue-400">Sekarang!</span>
                     </h1>
 
                     <div className="max-w-3xl mx-auto space-y-4 mb-12">
@@ -307,40 +353,120 @@ export default function LandingPage() {
                         ))}
                     </div>
 
-                    {/* Bonus Section (UPGRADED) */}
-                    <div className="mt-24 max-w-6xl mx-auto">
-                        <div className="text-center mb-12">
-                            <h3 className="text-3xl md:text-4xl font-black mb-4 flex items-center justify-center gap-3">
-                                <Gift className="w-10 h-10 text-pink-500" /> 🎁 BONUS EKSKLUSIF (GRATIS)
-                            </h3>
-                            <p className="text-slate-500 font-bold uppercase tracking-widest text-sm">Hanya untuk pembeliaan hari ini!</p>
+                    {/* [CONVICTION] Special Offer / Bonus (UPGRADED) */}
+                    <section className="py-32 bg-blue-600 dark:bg-blue-700 relative overflow-hidden">
+                        {/* Background Decorations */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full -z-10 pointer-events-none opacity-30">
+                            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/20 blur-[150px] rounded-full" />
+                            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/30 blur-[120px] rounded-full" />
                         </div>
 
-                        <div className="max-w-3xl mx-auto">
-                            {/* FB Bot Highlight */}
-                            <div className="p-6 md:p-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl md:rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-500 -mr-20 -mt-20"></div>
-                                <div className="relative z-10 text-center">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-widest mb-4 md:mb-6 border border-white/30">
-                                        MOST WANTED BONUS
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center text-white mb-20 space-y-4">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-white text-[10px] md:text-xs font-black uppercase tracking-[0.2em] border border-white/20 mb-4">
+                                <Gift className="w-4 h-4 fill-current" /> PENAWARAN KHUSUS HARI INI
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.9]">
+                                Ambil Seluruh Bundle <br />
+                                <span className="text-amber-300 drop-shadow-lg italic">Paling Hemat!</span>
+                            </h2>
+                            <p className="text-lg md:text-xl text-blue-50 font-bold max-w-2xl mx-auto opacity-80">
+                                Kami tidak ingin Anda keluar uang banyak. Cukup sekali bayar untuk semua alat perang marketing Anda.
+                            </p>
+                        </div>
+
+                        <div className="max-w-5xl mx-auto px-4 relative z-10">
+                            <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-8 md:p-14 shadow-[0_32px_120px_-20px_rgba(30,58,138,0.4)] overflow-hidden relative group">
+                                {/* Glow effect */}
+                                <div className="absolute -top-10 -right-10 w-48 h-48 bg-amber-400 rounded-full blur-[80px] opacity-10 group-hover:opacity-30 transition-opacity"></div>
+
+                                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                                    <div className="space-y-8">
+                                        <div className="space-y-4">
+                                            <div className="flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-xl shadow-blue-500/30">
+                                                        <Target className="w-7 h-7" />
+                                                    </div>
+                                                    <div className="text-left">
+                                                        <div className="font-black text-slate-900 dark:text-white text-lg">Wamaps Lifetime</div>
+                                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Main Tool Access</div>
+                                                    </div>
+                                                </div>
+                                                <span className="font-black text-slate-400 line-through text-sm md:text-base">Rp 499.000</span>
+                                            </div>
+
+                                            <div className="flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden">
+                                                <div className="absolute top-0 right-0 px-3 py-1 bg-amber-400 text-slate-900 text-[8px] font-black uppercase tracking-widest rounded-bl-xl">FREE</div>
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-12 h-12 rounded-2xl bg-amber-500 flex items-center justify-center text-white shadow-xl shadow-amber-500/30">
+                                                        <Zap className="w-7 h-7 fill-current" />
+                                                    </div>
+                                                    <div className="text-left">
+                                                        <div className="font-black text-slate-900 dark:text-white text-lg">FB Auto Post Grup Bot</div>
+                                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest text-wrap">Bonus Exclussive</div>
+                                                    </div>
+                                                </div>
+                                                <span className="font-black text-slate-400 line-through text-sm md:text-base">Rp 299.000</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="pt-8 border-t border-slate-100 dark:border-slate-800 space-y-6">
+                                            <div className="flex justify-between items-center px-4">
+                                                <span className="text-slate-500 font-black uppercase tracking-[0.2em] text-[10px] md:text-xs">TOTAL NILAI SEBENARNYA:</span>
+                                                <span className="text-2xl font-black text-slate-400 line-through">Rp 798.000</span>
+                                            </div>
+
+                                            <div className="p-8 bg-blue-600 rounded-[2.5rem] text-white flex flex-col md:flex-row justify-between items-center gap-6 shadow-2xl relative overflow-hidden group/price">
+                                                {/* Animated beam */}
+                                                <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-transparent to-amber-400 opacity-20 blur-xl group-hover/price:animate-pulse"></div>
+
+                                                <div className="relative text-center md:text-left">
+                                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] block mb-2 opacity-80">BAYAR HANYA:</span>
+                                                    <span className="text-5xl md:text-6xl font-black tracking-tighter drop-shadow-md">Rp 149.000</span>
+                                                </div>
+
+                                                <div className="relative flex flex-col items-center">
+                                                    <div className="bg-amber-400 text-slate-900 px-6 py-3 rounded-2xl font-black text-xl shadow-xl shadow-amber-500/40 animate-bounce">
+                                                        HEMAT 80%
+                                                    </div>
+                                                    <span className="text-[8px] font-black uppercase tracking-widest mt-3 opacity-80">🔥 SEUMUR HIDUP</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h3 className="text-xl md:text-2xl font-black mb-4 flex items-center justify-center gap-2 leading-tight">
-                                        <Zap className="w-5 h-5 text-amber-300 shrink-0" /> 🤖 Auto Post Facebook Group Bot
-                                    </h3>
-                                    <p className="text-blue-50 font-semibold mb-6 md:mb-8 text-sm md:text-base max-w-xl mx-auto opacity-90">
-                                        Otomatis posting promosi ke grup Facebook tertarget. Generate leads tambahan tanpa effort manual!
-                                    </p>
-                                    <ul className="space-y-3 mb-6 md:mb-8 text-xs md:text-sm font-bold flex flex-col items-center">
-                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Auto Posting ke Ribuan Grup</li>
-                                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-300" /> Anti-Spam Protection</li>
-                                    </ul>
-                                    <div className="rounded-2xl border border-white/20 overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-500 max-w-xl mx-auto bg-slate-900/50">
-                                        <Image src="/facebook_bot.png" alt="FB Bot UI" width={600} height={400} sizes="(max-width: 768px) 100vw, 600px" className="w-full h-auto" />
+
+                                    <div className="relative lg:block">
+                                        <div className="absolute -inset-8 bg-blue-600/5 rounded-full blur-[100px]"></div>
+                                        <div className="relative rounded-[2.5rem] border-8 border-slate-50 dark:border-slate-800/50 overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.3)] transition-all duration-700 group-hover:scale-[1.03] group-hover:rotate-2">
+                                            <Image
+                                                src="/facebook_bot.png"
+                                                alt="FB Bot UI Demo"
+                                                width={600}
+                                                height={450}
+                                                className="w-full h-auto object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
+                                            />
+                                            {/* Overlay info */}
+                                            <div className="absolute bottom-6 left-6 right-6 p-4 md:p-6 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-3xl border border-white/20 shadow-xl flex items-center gap-4">
+                                                <div className="w-12 h-12 rounded-2xl bg-amber-500 flex items-center justify-center text-white shrink-0 shadow-lg">
+                                                    <Gift className="w-7 h-7" />
+                                                </div>
+                                                <div className="text-left">
+                                                    <div className="font-black text-slate-900 dark:text-white text-sm">BONUS GRATIS</div>
+                                                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Hanya untuk pembeli hari ini</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Floating Badge */}
+                                        <div className="absolute -top-6 -left-6 bg-amber-400 text-slate-900 p-6 rounded-full shadow-2xl flex flex-col items-center justify-center transform -rotate-12 border-4 border-white dark:border-slate-900 group-hover:rotate-0 transition-all duration-500">
+                                            <span className="text-xl font-black">Rp 0</span>
+                                            <span className="text-[8px] font-black uppercase leading-tight">KHUSUS <br /> SEKARANG</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
                     {/* Comparison Table */}
                     <div className="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-3xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl overflow-hidden mt-24">
@@ -383,10 +509,32 @@ export default function LandingPage() {
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-600/5 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2" />
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="text-center mb-20 space-y-4">
+                    <div className="text-center mb-16 space-y-8">
+                        <div className="space-y-4">
+                            <h2 className="text-4xl md:text-6xl font-black tracking-tight">Ambil Paket Penjualanmu</h2>
+                            <p className="text-xl text-slate-500 max-w-2xl mx-auto font-medium">Dapatkan akses seumur hidup ke semua fitur canggih Wamaps dengan satu kali pembayaran saja.</p>
+                        </div>
 
-                        <h2 className="text-3xl md:text-4xl font-black tracking-tight">Ambil Paket Penjualanmu</h2>
-                        <p className="text-xl text-slate-500 max-w-2xl mx-auto">Dapatkan akses seumur hidup ke semua fitur canggih Wamaps dengan satu kali pembayaran saja.</p>
+                        <div className="flex flex-col items-center gap-6 bg-amber-50 dark:bg-amber-900/10 p-8 rounded-[3rem] border border-amber-100 dark:border-amber-900/30 max-w-2xl mx-auto shadow-sm">
+                            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                                <div className="space-y-2 text-center md:text-left">
+                                    <div className="flex items-center justify-center md:justify-start gap-2 text-amber-600 dark:text-amber-400 font-black uppercase tracking-widest text-[10px] md:text-xs">
+                                        <Clock className="w-4 h-4" /> HARGA NAIK DALAM:
+                                    </div>
+                                    <CountdownTimer />
+                                </div>
+                                <div className="hidden md:block w-px h-16 bg-amber-200 dark:bg-amber-800" />
+                                <div className="space-y-2 text-center md:text-left">
+                                    <div className="flex items-center justify-center md:justify-start gap-2 text-red-600 dark:text-red-400 font-black uppercase tracking-widest text-[10px] md:text-xs">
+                                        <Zap className="w-4 h-4 fill-current" /> SLOT TERSEDIA:
+                                    </div>
+                                    <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white flex items-baseline gap-2">
+                                        12 <span className="text-lg text-slate-400 font-bold uppercase tracking-tight">/ 100</span>
+                                    </div>
+                                    <p className="text-[10px] font-bold text-red-500 uppercase tracking-tighter">Hanya tersisa 12 slot akses Lifetime!</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="flex justify-center">
@@ -449,9 +597,14 @@ export default function LandingPage() {
                                 <ArrowRight className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-2 transition-transform" />
                             </Link>
 
-                            <p className="mt-6 text-[10px] md:text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-tight">
-                                🔥 Limited Offer: Harga normal Rp 499.000
-                            </p>
+                            <div className="mt-8 p-4 bg-red-50 dark:bg-red-950/20 rounded-2xl border border-red-100 dark:border-red-900/30 flex flex-col items-center gap-2">
+                                <p className="text-xs md:text-sm text-red-600 dark:text-red-400 font-black uppercase tracking-tight text-center">
+                                    ⚠️ PERINGATAN: HARGA NAIK MENJADI Rp 199.000
+                                </p>
+                                <p className="text-[10px] md:text-xs text-slate-600 dark:text-slate-400 font-bold uppercase tracking-widest opacity-80 text-center">
+                                    Berlaku otomatis setelah 100 pembeli pertama. Sisa 12 Slot!
+                                </p>
+                            </div>
                         </div>
                     </div>
 
@@ -533,19 +686,36 @@ export default function LandingPage() {
                         </Link>
 
                         {/* Urgency */}
-                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 p-6 md:p-8 rounded-3xl space-y-3 w-full max-w-2xl">
-                            <p className="text-red-600 font-black text-sm uppercase tracking-widest flex items-center justify-center gap-2">
-                                <Clock className="w-5 h-5" /> PENTING:
-                            </p>
-                            {[
-                                "Harga promo Rp 149.000 bisa ditutup kapan saja",
-                                "Bonus FB Group Bot terbatas untuk 50 orang pertama",
-                                "Jangan biarkan kompetitor mengambil market kamu"
-                            ].map((u, i) => (
-                                <div key={i} className="flex items-center justify-center gap-2 text-slate-800 dark:text-slate-200 text-[10px] md:text-xs font-bold italic text-center">
-                                    <Check className="w-3 h-3 text-red-500 shrink-0" /> {u}
+                        <div className="bg-red-50 dark:bg-red-900/30 border-2 border-red-200 dark:border-red-900/50 p-8 md:p-10 rounded-[3rem] space-y-6 w-full max-w-3xl shadow-2xl shadow-red-500/10">
+                            <div className="flex flex-col items-center gap-6">
+                                <p className="text-red-600 font-black text-lg md:text-xl uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+                                    <Clock className="w-8 h-8" /> SISA WAKTU HARGA PROMO:
+                                </p>
+                                <CountdownTimer />
+                            </div>
+
+                            <div className="h-px bg-red-200 dark:bg-red-800 opacity-50" />
+
+                            <div className="space-y-4">
+                                {[
+                                    "Hanya tersisa 12 slot akses Lifetime dari 100 slot tersedia hari ini!",
+                                    "Harga akan naik menjadi Rp 199.000 setelah 100 pembeli pertama.",
+                                    "Bonus FB Group Bot terbatas hanya untuk pembeli promo ini."
+                                ].map((u, i) => (
+                                    <div key={i} className="flex items-center justify-center gap-3 text-slate-900 dark:text-white text-xs md:text-base font-black italic text-center">
+                                        <div className="w-5 h-5 rounded-full bg-red-600 text-white flex items-center justify-center shrink-0">
+                                            <Check className="w-3 h-3" />
+                                        </div>
+                                        {u}
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="pt-4 flex flex-col items-center">
+                                <div className="px-6 py-2 bg-red-600 text-white rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest animate-pulse">
+                                    HAMPIR HABIS
                                 </div>
-                            ))}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -585,27 +755,22 @@ export default function LandingPage() {
                 </div>
             </footer>
 
-            {/* Floating WhatsApp Button */}
-            <a
-                href="https://wa.me/6289678386070"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fixed bottom-8 right-8 z-[100] group"
-                aria-label="Contact support on WhatsApp"
-            >
-                <div className="absolute -inset-4 bg-green-500/20 rounded-full blur-2xl group-hover:bg-green-500/40 transition-colors duration-500 animate-pulse" />
-                <div className="relative flex items-center gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2 pr-6 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-green-500/30 group-hover:rotate-12 transition-transform">
-                        <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.653a11.883 11.883 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                        </svg>
+            {/* Mobile Sticky CTA (FAB) */}
+            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-md z-[90] md:hidden animate-fade-in" style={{ animationDelay: '1s' }}>
+                <Link
+                    href="/checkout?plan=premium&amount=149000"
+                    className="flex items-center justify-between bg-slate-900 dark:bg-white text-white dark:text-slate-900 p-2 pl-6 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/10 dark:border-slate-200"
+                >
+                    <div className="flex flex-col text-left">
+                        <span className="text-[8px] font-black uppercase tracking-[0.2em] opacity-60">Akses Lifetime</span>
+                        <span className="text-lg font-black leading-none mt-1">Rp 149.000</span>
                     </div>
-                    <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-none mb-1">Butuh Bantuan?</span>
-                        <span className="text-sm font-black text-slate-900 dark:text-white leading-none">WhatsApp Kami</span>
+                    <div className="bg-blue-600 text-white px-6 py-4 rounded-full font-black text-xs flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                        AMBIL SEKARANG
+                        <ArrowRight className="w-4 h-4" />
                     </div>
-                </div>
-            </a>
+                </Link>
+            </div>
 
             <style jsx global>{`
                 @keyframes fade-in {

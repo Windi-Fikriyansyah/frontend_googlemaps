@@ -30,55 +30,30 @@ export function SocialProof() {
 
                 <div className="mt-32">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-black mb-4">🔥 Sudah Dipakai 1.000+ User <br /> di Indonesia</h2>
+                        <h2 className="text-3xl md:text-5xl font-black mb-4">🔥 Mereka Sudah Membuktikan, Kini Giliran Anda Merasakan Hasilnya.</h2>
                         <p className="text-slate-500 font-medium">Bukan cuma janji, ini bukti nyata dari mereka yang sudah action.</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8 mb-16">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                         {[
-                            {
-                                name: "Andi",
-                                role: "Agency Owner",
-                                text: "Baru 2 hari pakai, sudah dapat 230 leads & closing 5 deal! Tools ini gila banget buat cari klien baru.",
-                                avatar: "A"
-                            },
-                            {
-                                name: "Rudi",
-                                role: "Freelancer",
-                                text: "Dulu cari leads manual berjam-jam, sekarang tinggal klik langsung muncul semua. Hemat banget waktu dan tenaga.",
-                                avatar: "R"
-                            }
-                        ].map((testimonial, i) => (
-                            <div key={i} className="p-6 md:p-8 bg-white dark:bg-slate-900 rounded-3xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl relative overflow-hidden group hover:scale-[1.02] transition-transform">
-                                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity hidden sm:block">
-                                    <MessageSquare className="w-24 h-24" />
-                                </div>
-                                <div className="flex gap-1 mb-4">
-                                    {[1, 2, 3, 4, 5].map(s => <Sparkles key={s} className="w-4 h-4 text-amber-500" />)}
-                                </div>
-                                <p className="text-lg font-bold mb-6 italic text-slate-800 dark:text-slate-100">"{testimonial.text}"</p>
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-sm md:text-base">{testimonial.avatar}</div>
-                                    <div>
-                                        <div className="font-black text-sm md:text-base text-slate-900 dark:text-white">{testimonial.name}</div>
-                                        <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">{testimonial.role}</div>
-                                    </div>
+                            "https://ik.imagekit.io/bzq0b2kjq/WhatsApp%20Image%202026-04-05%20at%2010.39.32%20(1).jpeg",
+                            "https://ik.imagekit.io/bzq0b2kjq/WhatsApp%20Image%202026-04-05%20at%2010.39.32%20(2).jpeg",
+                            "https://ik.imagekit.io/bzq0b2kjq/WhatsApp%20Image%202026-04-05%20at%2010.39.32.jpeg"
+                        ].map((url, i) => (
+                            <div key={i} className="group relative">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                                <div className="relative rounded-[2rem] overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl transition-all duration-500 group-hover:scale-[1.02]">
+                                    <Image
+                                        src={url}
+                                        alt={`Testimoni ${i + 1}`}
+                                        width={400}
+                                        height={800}
+                                        className="w-full h-auto object-cover"
+                                        unoptimized
+                                    />
                                 </div>
                             </div>
                         ))}
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="space-y-4">
-                            <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                <Image src="/scraping_leads.webp" alt="Hasil Scraping" width={651} height={713} sizes="(max-width: 768px) 100vw, 50vw" className="w-full" />
-                            </div>
-                        </div>
-                        <div className="space-y-4">
-                            <div className="rounded-3xl border-4 border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xl">
-                                <Image src="/whatsapp_success.webp" alt="Hasil WA Broadcast" width={651} height={570} sizes="(max-width: 768px) 100vw, 50vw" className="w-full" />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -101,15 +76,15 @@ export function FAQ() {
                         },
                         {
                             q: "Apakah aman untuk akun WhatsApp?",
-                            a: "Sangat aman. Kami menggunakan metode pengiriman yang sudah teruji digunakan oleh ribuan user kami tanpa kendala banned selama mengikuti panduan."
+                            a: "Sangat aman. Wamaps dirancang dengan teknologi 'Human-Like Sending' yang dilengkapi fitur delay (jeda waktu antar pesan) dan simulasi mengetik, sehingga aktivitas pengiriman kamu terlihat natural dan meminimalisir risiko banned."
                         },
                         {
                             q: "Apakah cocok untuk pemula?",
                             a: "Sangat cocok! Kamu tidak butuh pengalaman digital marketing atau coding. Cukup masukkan keyword, klik, dan dapat data."
                         },
                         {
-                            q: "Ada biaya bulanan?",
-                            a: "TIDAK ADA. Cukup sekali bayar dan kamu mendapatkan akses penuh seumur hidup beserta semua update di masa depan."
+                            q: "Apakah ada biaya langganan/bulanan?",
+                            a: "TIDAK ADA. Sekali lagi kami tekankan: Cukup SEKALI BAYAR, Anda mendapatkan akses LIFETIME (Seumur Hidup) selamanya tanpa biaya tambahan apapun lagi di kemudian hari."
                         }
                     ].map((faq, i) => (
                         <div key={i} className="p-6 md:p-8 bg-slate-50 dark:bg-slate-950 rounded-2xl md:rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-500 transition-colors">
