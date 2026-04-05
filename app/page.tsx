@@ -109,7 +109,7 @@ export default function LandingPage() {
                     </div>
 
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-8 leading-[1.1] max-w-5xl mx-auto">
-                        🔥 Capek Cari Data Calon Pembeli Satu-Satu? Ambil 1.000+ Kontak Bisnis Dari Google Maps & Kirim WA Otomatis <span className="text-blue-600 dark:text-blue-400">Sekarang!</span>
+                        🔥 Ambil Leads dari Google Maps + Kirim WhatsApp Otomatis dalam <span className="text-blue-600 dark:text-blue-400">1 Klik!</span>
                     </h1>
 
                     <div className="max-w-3xl mx-auto space-y-4 mb-12">
