@@ -273,6 +273,25 @@ function CheckoutContent() {
                                 : "Ikuti instruksi pada halaman pembayaran untuk menyelesaikan transaksi."}
                         </p>
 
+                        <div className="py-6 border-t border-slate-100 dark:border-slate-800 space-y-3 text-left">
+                            {[
+                                "Ambil data bisnis dari google maps secara otomatis",
+                                "Kirim WhatsApp ke target",
+                                "Auto posting grup facebook"
+                            ].map((text, i) => (
+                                <div key={i} className="flex items-start gap-3">
+                                    <div className="text-green-500 flex-shrink-0 mt-0.5">
+                                        <CheckCircle2 className="w-4 h-4" />
+                                    </div>
+                                    <p className="text-xs font-bold text-slate-600 dark:text-slate-300">{text}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-100 dark:border-blue-900/30 text-blue-600 text-[10px] font-black flex items-center gap-3 justify-center">
+                            <Mail className="w-4 h-4" /> LINK LOGIN DIKIRIM KE EMAIL SETELAH PEMBAYARAN
+                        </div>
+
                         <div className="space-y-2">
                             <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-2xl border border-amber-100 dark:border-amber-900/30 text-amber-600 text-xs font-black flex items-center gap-3 justify-center">
                                 <RefreshCw className="w-4 h-4 animate-spin" /> MENUNGGU PEMBAYARAN...
@@ -338,6 +357,25 @@ function CheckoutContent() {
                                 />
                             </div>
                         </form>
+
+                        <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                            <div className="flex items-start gap-3">
+                                <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                                </div>
+                                <p className="text-sm font-bold text-slate-600 dark:text-slate-300">
+                                    Akses langsung aktif setelah pembayaran
+                                </p>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                                    <Mail className="w-3.5 h-3.5 text-blue-600" />
+                                </div>
+                                <p className="text-sm font-bold text-slate-600 dark:text-slate-300">
+                                    Link login dan akses dikirim ke email yang anda daftarkan
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Payment Methods */}
@@ -371,7 +409,7 @@ function CheckoutContent() {
                                                 </div>
                                                 <div>
                                                     <p className="font-black text-sm">{m.payment_name}</p>
-                                                    <p className="text-[10px] font-bold text-slate-400">+ Fee Rp {feeVal.toLocaleString("id-ID")}</p>
+                                                    <p className="text-[10px] font-bold text-slate-400">+ Biaya Layanan Rp {feeVal.toLocaleString("id-ID")}</p>
                                                 </div>
                                             </div>
                                             <div className={`w-5 h-5 rounded-full border-4 transition-all ${selectedMethod === m.payment_method ? 'border-blue-500 bg-white' : 'border-slate-200'
@@ -393,11 +431,26 @@ function CheckoutContent() {
                             <Wallet className="w-4 h-4" /> RINGKASAN PESANAN
                         </h3>
 
+                        <div className="mb-8 space-y-3 pb-8 border-b border-white/10">
+                            <div className="flex items-start gap-3">
+                                <span className="text-sm mt-0.5">✅</span>
+                                <p className="text-sm font-bold text-slate-300">Ambil data bisnis dari google maps secara otomatis</p>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <span className="text-sm mt-0.5">✅</span>
+                                <p className="text-sm font-bold text-slate-300">Kirim WhatsApp ke target</p>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <span className="text-sm mt-0.5">✅</span>
+                                <p className="text-sm font-bold text-slate-300">Auto posting grup facebook</p>
+                            </div>
+                        </div>
+
                         <div className="space-y-6 relative z-10 flex-1">
                             <div className="flex justify-between items-start">
                                 <div>
                                     <p className="text-2xl font-black">{selectedPlan.name}</p>
-                                    <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">Akses Seumur Hidup</p>
+                                    <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">🔥Promo Hari Ini</p>
                                 </div>
                                 <p className="text-xl font-black text-blue-400">Rp {selectedPlan.price.toLocaleString("id-ID")}</p>
                             </div>
@@ -408,7 +461,7 @@ function CheckoutContent() {
                                     <span>Rp {selectedPlan.price.toLocaleString("id-ID")}</span>
                                 </div>
                                 <div className="flex justify-between text-sm font-bold">
-                                    <span className="text-slate-500 uppercase tracking-widest text-[10px]">Biaya Transaksi</span>
+                                    <span className="text-slate-500 uppercase tracking-widest text-[10px]">Biaya Layanan</span>
                                     <span>Rp {methodFee.toLocaleString("id-ID")}</span>
                                 </div>
                                 <div className="flex justify-between items-center pt-4 mb-8">
@@ -429,6 +482,8 @@ function CheckoutContent() {
                             </div>
                         </div>
                     </div>
+
+
 
                     <div className="bg-white dark:bg-slate-900/40 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 space-y-4 shadow-xl text-center">
                         <div className="flex items-center justify-center gap-4 text-xs font-black">
