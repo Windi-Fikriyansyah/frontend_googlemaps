@@ -108,6 +108,13 @@ function CheckoutContent() {
         return () => clearInterval(interval);
     }, [paymentResult, paymentStatus]);
 
+    // Auto scroll to top when payment result or status changed
+    useEffect(() => {
+        if (paymentResult || paymentStatus === "PAID") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    }, [paymentResult, paymentStatus]);
+
     const handleCheckout = async (e: React.FormEvent) => {
         e.preventDefault();
 
