@@ -7,6 +7,8 @@ import { Target, User, Mail, Lock, CheckCircle2, ArrowRight } from "lucide-react
 import api from "@/lib/api";
 import { useRouter } from "next/navigation";
 
+import { storage } from "@/lib/storage";
+
 export default function RegisterPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -44,7 +46,7 @@ export default function RegisterPage() {
             });
 
             if (response.data.access_token) {
-                localStorage.setItem("token", response.data.access_token);
+                storage.set("token", response.data.access_token);
             }
 
             router.push("/leads");
@@ -64,7 +66,7 @@ export default function RegisterPage() {
                 credential: response.credential,
             });
             if (res.data.access_token) {
-                localStorage.setItem("token", res.data.access_token);
+                storage.set("token", res.data.access_token);
             }
             router.push("/leads");
         } catch (err: any) {

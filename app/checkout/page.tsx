@@ -278,7 +278,7 @@ function CheckoutContent() {
                     <div className="text-center mb-10">
                         <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-3 tracking-tight">Menunggu Pembayaran</h1>
                         <p className="text-slate-500 text-sm md:text-base font-medium max-w-lg mx-auto leading-relaxed">
-                            {paymentResult.method.toUpperCase() === "QRIS"
+                            {paymentResult.method?.toUpperCase() === "QRIS"
                                 ? "Silakan pindai kode QRIS di bawah ini melalui aplikasi e-wallet atau M-Banking Anda untuk aktivasi instan."
                                 : "Silakan selesaikan pembayaran ke nomor Virtual Account atau nomor pembayaran di bawah ini untuk aktivasi instan."}
                         </p>
@@ -304,16 +304,18 @@ function CheckoutContent() {
                         {/* Payment Area - Left */}
                         <div className="lg:col-span-7">
                             <div className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-blue-500/5 text-center flex flex-col items-center justify-center">
-                                {paymentResult.method.toUpperCase() === "QRIS" ? (
+                                {paymentResult.method?.toUpperCase() === "QRIS" ? (
                                     <>
                                         <p className="text-[10px] uppercase font-black text-blue-600 tracking-[0.3em] mb-8">QRIS DIGITAL PAYMENT</p>
                                         <div className="bg-white p-6 rounded-[2.5rem] border-4 border-slate-50 shadow-inner mb-8 relative group">
                                             <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors rounded-[2.5rem]"></div>
-                                            <img
-                                                src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=4&data=${encodeURIComponent(paymentResult.payment_number)}`}
-                                                alt="QRIS"
-                                                className="w-56 h-56 md:w-64 md:h-64 relative z-10"
-                                            />
+                                            {paymentResult.payment_number && (
+                                                <img
+                                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=4&data=${encodeURIComponent(paymentResult.payment_number)}`}
+                                                    alt="QRIS"
+                                                    className="w-56 h-56 md:w-64 md:h-64 relative z-10"
+                                                />
+                                            )}
                                         </div>
                                         <button
                                             onClick={async () => {
@@ -349,7 +351,7 @@ function CheckoutContent() {
                                         <div className="w-20 h-20 md:w-24 md:h-24 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-6 md:mb-8">
                                             <CreditCard className="w-10 h-10 md:w-12 md:h-12 text-blue-600" />
                                         </div>
-                                        <p className="text-[10px] uppercase font-black text-blue-600 tracking-[0.3em] mb-6">{paymentResult.method.toUpperCase().replace('_', ' ')} TRANSFER</p>
+                                        <p className="text-[10px] uppercase font-black text-blue-600 tracking-[0.3em] mb-6">{(paymentResult.method || "").toUpperCase().replace('_', ' ')} TRANSFER</p>
 
                                         {paymentResult.payment_number ? (
                                             <div className="w-full max-w-sm mx-auto bg-slate-50 dark:bg-slate-800/50 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-800 space-y-4 mb-8">
@@ -394,7 +396,7 @@ function CheckoutContent() {
                                         <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Total Tagihan</p>
                                         <div className="text-right">
                                             <p className="text-blue-600 font-black text-4xl tracking-tighter">
-                                                Rp {paymentResult.total_payment.toLocaleString("id-ID")}
+                                                Rp {Number(paymentResult.total_payment || 0).toLocaleString("id-ID")}
                                             </p>
                                             <div className="flex items-center justify-end gap-1.5 mt-2">
                                                 <CheckCircle2 className="text-green-600 w-3.5 h-3.5" />

@@ -9,6 +9,7 @@ import { Lead } from "@/types";
 import { MapPin, Target, Layers, AlertCircle, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { storage } from "@/lib/storage";
 import Link from "next/link";
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = storage.get("token");
     if (!token) {
       router.push("/login");
       return;

@@ -107,6 +107,8 @@ const pricingPlans = [
     },
 ];
 
+import { storage } from "@/lib/storage";
+
 export default function PricingPage() {
     const [selectedPlan, setSelectedPlan] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -119,7 +121,7 @@ export default function PricingPage() {
     const router = useRouter();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = storage.get("token");
         if (!token) {
             router.push("/login");
         }

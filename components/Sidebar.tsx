@@ -24,6 +24,7 @@ import {
 import api from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/context/SidebarContext";
+import { storage } from "@/lib/storage";
 
 interface UserData {
     id: number;
@@ -131,7 +132,7 @@ export default function Sidebar() {
                             } catch (e) {
                                 console.error("Logout error:", e);
                             } finally {
-                                localStorage.removeItem("token");
+                                storage.remove("token");
                                 window.location.href = "/";
                             }
                         }}

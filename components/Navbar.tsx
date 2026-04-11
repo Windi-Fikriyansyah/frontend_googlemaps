@@ -4,15 +4,18 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X, Target, ArrowRight, LayoutDashboard } from "lucide-react";
 import api from "@/lib/api";
+import { storage } from "@/lib/storage";
 
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         const checkLogin = async () => {
-            const token = localStorage.getItem("token");
+            const token = storage.get("token");
             if (!token) {
                 setIsLoggedIn(false);
                 return;
@@ -56,7 +59,9 @@ export default function Navbar() {
                     </div>
 
                     <div className="hidden md:flex items-center gap-4">
-                        {!isLoggedIn ? (
+                        {!mounted ? (
+                             <div className="w-24 h-8 bg-slate-100 animate-pulse rounded-xl"></div>
+                        ) : !isLoggedIn ? (
                             <Link href="/checkout?plan=premium&amount=149000" className="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold transition-all hover:bg-blue-700 active:scale-95 shadow-md shadow-blue-500/20">
                                 Beli Sekarang
                             </Link>
@@ -92,7 +97,7 @@ export default function Navbar() {
                     <Link href="#pricing" className="block text-base font-semibold text-slate-600 dark:text-slate-400 px-2" onClick={() => setIsOpen(false)}>
                         Pricing
                     </Link>
-                    {!isLoggedIn ? (
+                    {!mounted ? null : !isLoggedIn ? (
                         <Link
                             href="/checkout?plan=premium&amount=149000"
                             className="block w-full bg-blue-600 text-white px-4 py-3 rounded-xl text-center font-bold"

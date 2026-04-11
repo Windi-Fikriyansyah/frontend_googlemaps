@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { SidebarProvider } from "@/context/SidebarContext";
 import { useRouter } from "next/navigation";
+import { storage } from "@/lib/storage";
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function SettingsPage() {
   const [showFonnteToken, setShowFonnteToken] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = storage.get("token");
     if (!token) {
       router.push("/login");
       return;

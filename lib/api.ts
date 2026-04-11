@@ -11,13 +11,13 @@ const api = axios.create({
     withCredentials: true,
 });
 
+import { storage } from "./storage";
+
 // Request interceptor: Attach token
 api.interceptors.request.use((config) => {
-    if (typeof window !== "undefined") {
-        const token = localStorage.getItem("token");
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
+    const token = storage.get("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
 });
@@ -33,7 +33,7 @@ api.interceptors.response.use(
             if (typeof window !== "undefined") {
                 if (!isAuthEndpoint) {
                     console.warn("Unauthorized! Redirecting to login...");
-                    localStorage.removeItem("token");
+                    storage.remove("token");
                     // Only redirect if NOT on the landing page or login page
                     if (window.location.pathname !== "/" && window.location.pathname !== "/login") {
                         window.location.href = "/login";

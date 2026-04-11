@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { storage } from "@/lib/storage";
 import { SidebarProvider } from "@/context/SidebarContext";
 
 export default function DashboardLayout({
@@ -14,7 +15,7 @@ export default function DashboardLayout({
     const router = useRouter();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = storage.get("token");
         if (!token) {
             router.push("/login");
         }
