@@ -91,7 +91,7 @@ export default function LandingPage() {
     };
 
     return (
-        <main className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-blue-100 dark:selection:bg-blue-900/40 font-sans">
+        <main className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-blue-100 dark:selection:bg-blue-900/40 font-sans" suppressHydrationWarning>
             <Navbar />
 
             {/* Hero Section */}

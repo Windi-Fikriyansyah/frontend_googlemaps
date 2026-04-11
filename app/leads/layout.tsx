@@ -21,10 +21,9 @@ export default function DashboardLayout({
         }
     }, [router]);
     return (
-        <SidebarProvider>
-            <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
-                {/* Sidebar - Fixed Width */}
-                <Sidebar />
+        <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
+            {/* Sidebar - Fixed Width */}
+            <Sidebar />
 
                 {/* Main Content Area */}
                 <div className="flex-1 flex flex-col lg:ml-64 transition-all duration-300">
@@ -44,7 +43,6 @@ export default function DashboardLayout({
                         </p>
                     </footer>
                 </div>
-            </div>
-        </SidebarProvider>
+        </div>
     );
 }

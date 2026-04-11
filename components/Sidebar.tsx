@@ -51,9 +51,11 @@ const menuItems = [
 export default function Sidebar() {
     const pathname = usePathname();
     const [user, setUser] = useState<UserData | null>(null);
+    const [mounted, setMounted] = useState(false);
     const { isOpen, closeSidebar } = useSidebar();
 
     useEffect(() => {
+        setMounted(true);
         const fetchUser = async () => {
             try {
                 const response = await api.get("/auth/me");

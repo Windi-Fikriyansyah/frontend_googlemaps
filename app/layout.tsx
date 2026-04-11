@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 
 import { Toaster } from "sonner";
 import ScriptLoader from "@/components/ScriptLoader";
+import { SidebarProvider } from "@/context/SidebarContext";
 
 export default function RootLayout({
   children,
@@ -31,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://connect.facebook.net" />
         <link rel="preconnect" href="https://www.facebook.com" />
@@ -39,10 +40,13 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
-        <ScriptLoader />
-        <Toaster position="top-right" richColors closeButton />
-        {children}
+        <SidebarProvider>
+          <ScriptLoader />
+          <Toaster position="top-right" richColors closeButton />
+          {children}
+        </SidebarProvider>
       </body>
     </html>
   );

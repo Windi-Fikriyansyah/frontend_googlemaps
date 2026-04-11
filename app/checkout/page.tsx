@@ -600,7 +600,7 @@ function CheckoutContent() {
 
 export default function CheckoutPage() {
     return (
-        <main className="min-h-screen bg-[#f5faff] dark:bg-slate-950 selection:bg-blue-100 dark:selection:bg-blue-900/40">
+        <main className="min-h-screen bg-[#f5faff] dark:bg-slate-950 selection:bg-blue-100 dark:selection:bg-blue-900/40" suppressHydrationWarning>
             <Navbar />
             <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><RefreshCw className="animate-spin text-blue-600" /></div>}>
                 <CheckoutContent />

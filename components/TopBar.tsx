@@ -14,9 +14,11 @@ interface UserData {
 
 export default function TopBar() {
     const [user, setUser] = useState<UserData | null>(null);
+    const [mounted, setMounted] = useState(false);
     const { toggleSidebar } = useSidebar();
 
     useEffect(() => {
+        setMounted(true);
         const fetchUser = async () => {
             try {
                 const response = await api.get("/auth/me");
@@ -29,7 +31,7 @@ export default function TopBar() {
     }, []);
 
     // Get display name - fallback to email prefix if no name
-    const displayName = user?.name || user?.email?.split("@")[0] || "User";
+    const displayName = mounted ? (user?.name || user?.email?.split("@")[0] || "User") : "User";
     const initials = displayName.slice(0, 2).toUpperCase();
 
     return (
