@@ -8,7 +8,7 @@ import { ArrowRight, CheckCircle2, ShieldCheck, Mail, User, Wallet, RefreshCw, C
 import { toast } from "sonner";
 import { event } from "@/components/FacebookPixel";
 
-import api from "@/lib/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 interface PaymentMethod {
     payment_method: string;
@@ -26,7 +26,6 @@ function CheckoutContent() {
     const [fetchingMethods, setFetchingMethods] = useState(true);
     const [methods, setMethods] = useState<PaymentMethod[]>([]);
     const [selectedMethod, setSelectedMethod] = useState<string>("");
-    const [fetchingError, setFetchingError] = useState(false);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -40,7 +39,6 @@ function CheckoutContent() {
         plan_name: string
     } | null>(null);
     const [paymentStatus, setPaymentStatus] = useState<string>("UNPAID");
-    const [isInitialLoadDone, setIsInitialLoadDone] = useState(false);
 
     const PLANS: Record<string, { name: string, price: number, credits: number }> = {
         "premium": { name: "Wamaps Lifetime Deal", price: 149000, credits: 999999 },
@@ -53,32 +51,18 @@ function CheckoutContent() {
         const orderId = searchParams.get("order");
         if (orderId && !paymentResult) {
             setLoading(true);
-            api.get(`/payments/linkbayar/status/${orderId}`)
-                .then(response => {
-                    const data = response.data;
+            fetch(`${API_URL}/payments/linkbayar/status/${orderId}`)
+                .then(res => res.json())
+                .then(data => {
                     if (data && data.order_id) {
                         setPaymentResult(data);
                         setPaymentStatus(data.status);
                         setName(data.customer_name || "");
                         setEmail(data.customer_email || "");
-                    } else {
-                        // Data malformed or not found
-                        console.warn("Invalid order data received:", data);
-                        toast.error("Data pesanan tidak ditemukan atau tidak valid.");
-                        // Force stop loading by adding a flag or just letting it continue to form
-                        setPaymentResult(null); 
                     }
                 })
-                .catch(err => {
-                    console.error("Failed to load order:", err);
-                    toast.error("Gagal memuat status pesanan.");
-                })
-                .finally(() => {
-                    setLoading(false);
-                    setIsInitialLoadDone(true);
-                });
-        } else {
-            setIsInitialLoadDone(true);
+                .catch(err => console.error("Failed to load order:", err))
+                .finally(() => setLoading(false));
         }
     }, [searchParams, paymentResult]);
 
@@ -96,27 +80,22 @@ function CheckoutContent() {
         }
     }, [plan, selectedPlan.name, selectedPlan.price, paymentResult]);
 
-    const loadMethods = async () => {
-        setFetchingMethods(true);
-        setFetchingError(false);
-        try {
-            const response = await api.get("/payments/linkbayar/methods", { timeout: 15000 });
-            const data = response.data;
-            if (data && Array.isArray(data.methods)) {
-                setMethods(data.methods);
-                if (data.methods.length > 0) setSelectedMethod(data.methods[0].payment_method);
-            } else {
-                setFetchingError(true);
-            }
-        } catch (e) {
-            console.error("Failed to load methods", e);
-            setFetchingError(true);
-        } finally {
-            setFetchingMethods(false);
-        }
-    }
-
+    // Fetch methods
     useEffect(() => {
+        async function loadMethods() {
+            try {
+                const res = await fetch(`${API_URL}/payments/linkbayar/methods`);
+                const data = await res.json();
+                if (data && Array.isArray(data.methods)) {
+                    setMethods(data.methods);
+                    if (data.methods.length > 0) setSelectedMethod(data.methods[0].payment_method);
+                }
+            } catch (e) {
+                console.error("Failed to load methods", e);
+            } finally {
+                setFetchingMethods(false);
+            }
+        }
         loadMethods();
     }, []);
 
@@ -126,8 +105,8 @@ function CheckoutContent() {
         if (paymentResult && paymentStatus !== "PAID") {
             interval = setInterval(async () => {
                 try {
-                    const response = await api.get(`/payments/linkbayar/status/${paymentResult.order_id}`);
-                    const data = response.data;
+                    const res = await fetch(`${API_URL}/payments/linkbayar/status/${paymentResult.order_id}`);
+                    const data = await res.json();
                     if (data.status === "PAID" && paymentStatus !== "PAID") {
                         setPaymentStatus("PAID");
                         // FB Pixel - Purchase
@@ -176,16 +155,22 @@ function CheckoutContent() {
         setLoading(true);
 
         try {
-            const response = await api.post("/payments/linkbayar/create", {
-                plan_key: plan,
-                customer_name: name,
-                customer_email: email,
-                payment_method: selectedMethod
+            const response = await fetch(`${API_URL}/payments/linkbayar/create`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    plan_key: plan,
+                    customer_name: name,
+                    customer_email: email,
+                    payment_method: selectedMethod
+                }),
             });
 
-            const result = response.data;
+            const result = await response.json();
 
-            if (result.payment_number || result.payment_url) {
+            if (response.ok && (result.payment_number || result.payment_url)) {
                 setPaymentResult(result);
                 // FB Pixel - AddPaymentInfo
                 event("AddPaymentInfo", {
@@ -212,7 +197,7 @@ function CheckoutContent() {
         : 0;
     const totalWithFee = selectedPlan.price + methodFee;
 
-    const isOrderLoading = searchParams.get("order") && !paymentResult && !isInitialLoadDone;
+    const isOrderLoading = searchParams.get("order") && !paymentResult;
 
     // Timer for Batas Pembayaran (5 minutes)
     const [timeLeft, setTimeLeft] = useState(300);
@@ -498,19 +483,8 @@ function CheckoutContent() {
 
                         {fetchingMethods ? (
                             <div className="flex flex-col items-center py-10 text-slate-400 font-bold italic">
-                                <RefreshCw className="w-8 h-8 animate-spin mb-4 text-blue-600" />
+                                <RefreshCw className="w-8 h-8 animate-spin mb-4" />
                                 Memuat metode pembayaran...
-                            </div>
-                        ) : fetchingError ? (
-                            <div className="flex flex-col items-center py-10 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
-                                <p className="text-slate-500 text-sm font-bold mb-4">Gagal memuat metode pembayaran</p>
-                                <button 
-                                    onClick={loadMethods}
-                                    className="px-6 py-2 bg-blue-600 text-white rounded-xl font-bold text-xs hover:bg-blue-700 transition-all flex items-center gap-2"
-                                >
-                                    <RefreshCw className="w-4 h-4" />
-                                    Coba Lagi
-                                </button>
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 gap-3">
