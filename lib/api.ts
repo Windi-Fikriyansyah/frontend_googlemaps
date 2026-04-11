@@ -5,10 +5,10 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 const api = axios.create({
     baseURL: API_URL,
+    timeout: 30000,
     headers: {
         "Content-Type": "application/json",
     },
-    withCredentials: true,
 });
 
 import { storage } from "./storage";

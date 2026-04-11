@@ -486,6 +486,17 @@ function CheckoutContent() {
                                 <RefreshCw className="w-8 h-8 animate-spin mb-4" />
                                 Memuat metode pembayaran...
                             </div>
+                        ) : methods.length === 0 ? (
+                            <div className="flex flex-col items-center py-10 text-center bg-slate-50 dark:bg-slate-900/50 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800">
+                                <p className="text-slate-500 mb-4 font-medium px-6">Gagal memuat metode pembayaran dari server. Silakan coba lagi.</p>
+                                <button 
+                                    onClick={() => window.location.reload()}
+                                    className="px-6 py-2 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all flex items-center gap-2"
+                                >
+                                    <RefreshCw className="w-4 h-4" />
+                                    Muat Ulang
+                                </button>
+                            </div>
                         ) : (
                             <div className="grid grid-cols-1 gap-3">
                                 {methods.map((m) => {
