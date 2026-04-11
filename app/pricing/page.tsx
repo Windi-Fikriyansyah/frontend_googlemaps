@@ -133,20 +133,22 @@ export default function PricingPage() {
         setSelectedChannel(null); // Reset
     };
 
+    const fetchChannels = async () => {
+        setLoading(true);
+        try {
+            const response = await api.get("/payments/channels", { timeout: 15000 });
+            setChannels(response.data);
+        } catch (error) {
+            console.error("Failed to fetch channels:", error);
+            toast.error("Gagal memuat metode pembayaran.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     // Fetch channels when modal opens
     useEffect(() => {
         if (isModalOpen) {
-            const fetchChannels = async () => {
-                setLoading(true);
-                try {
-                    const response = await api.get("/payments/channels");
-                    setChannels(response.data);
-                } catch (error) {
-                    console.error("Failed to fetch channels:", error);
-                } finally {
-                    setLoading(false);
-                }
-            };
             fetchChannels();
         }
     }, [isModalOpen]);
@@ -342,6 +344,22 @@ export default function PricingPage() {
                                     <div className="flex flex-col items-center justify-center h-full gap-3">
                                         <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
                                         <p className="text-sm text-slate-500 font-medium tracking-tight">Memuat metode pembayaran...</p>
+                                    </div>
+                                ) : channels.length === 0 ? (
+                                    <div className="flex flex-col items-center justify-center h-full gap-4 text-center p-6">
+                                        <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center">
+                                            <CreditCard className="w-8 h-8 text-slate-300" />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-bold text-slate-700 mb-1">Metode Tidak Tersedia</p>
+                                            <p className="text-xs text-slate-400">Gagal mengambil daftar metode pembayaran dari server.</p>
+                                        </div>
+                                        <button 
+                                            onClick={fetchChannels}
+                                            className="px-6 py-2 bg-blue-600 text-white rounded-xl font-bold text-xs hover:bg-blue-700 transition-all"
+                                        >
+                                            Cari Lagi
+                                        </button>
                                     </div>
                                 ) : (
                                     <div className="space-y-6">
