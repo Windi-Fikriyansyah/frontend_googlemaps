@@ -8,7 +8,7 @@ import { ArrowRight, CheckCircle2, ShieldCheck, Mail, User, Wallet, RefreshCw, C
 import { toast } from "sonner";
 import { event } from "@/components/FacebookPixel";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+import api from "@/lib/api";
 
 interface PaymentMethod {
     payment_method: string;
@@ -51,9 +51,9 @@ function CheckoutContent() {
         const orderId = searchParams.get("order");
         if (orderId && !paymentResult) {
             setLoading(true);
-            fetch(`${API_URL}/payments/linkbayar/status/${orderId}`)
-                .then(res => res.json())
-                .then(data => {
+            api.get(`/payments/linkbayar/status/${orderId}`)
+                .then(response => {
+                    const data = response.data;
                     if (data && data.order_id) {
                         setPaymentResult(data);
                         setPaymentStatus(data.status);
@@ -84,8 +84,8 @@ function CheckoutContent() {
     useEffect(() => {
         async function loadMethods() {
             try {
-                const res = await fetch(`${API_URL}/payments/linkbayar/methods`);
-                const data = await res.json();
+                const response = await api.get("/payments/linkbayar/methods");
+                const data = response.data;
                 if (data && Array.isArray(data.methods)) {
                     setMethods(data.methods);
                     if (data.methods.length > 0) setSelectedMethod(data.methods[0].payment_method);
@@ -105,8 +105,8 @@ function CheckoutContent() {
         if (paymentResult && paymentStatus !== "PAID") {
             interval = setInterval(async () => {
                 try {
-                    const res = await fetch(`${API_URL}/payments/linkbayar/status/${paymentResult.order_id}`);
-                    const data = await res.json();
+                    const response = await api.get(`/payments/linkbayar/status/${paymentResult.order_id}`);
+                    const data = response.data;
                     if (data.status === "PAID" && paymentStatus !== "PAID") {
                         setPaymentStatus("PAID");
                         // FB Pixel - Purchase
@@ -155,22 +155,16 @@ function CheckoutContent() {
         setLoading(true);
 
         try {
-            const response = await fetch(`${API_URL}/payments/linkbayar/create`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    plan_key: plan,
-                    customer_name: name,
-                    customer_email: email,
-                    payment_method: selectedMethod
-                }),
+            const response = await api.post("/payments/linkbayar/create", {
+                plan_key: plan,
+                customer_name: name,
+                customer_email: email,
+                payment_method: selectedMethod
             });
 
-            const result = await response.json();
+            const result = response.data;
 
-            if (response.ok && (result.payment_number || result.payment_url)) {
+            if (result.payment_number || result.payment_url) {
                 setPaymentResult(result);
                 // FB Pixel - AddPaymentInfo
                 event("AddPaymentInfo", {
