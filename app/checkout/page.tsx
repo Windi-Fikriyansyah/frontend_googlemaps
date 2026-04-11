@@ -46,6 +46,26 @@ function CheckoutContent() {
 
     const selectedPlan = PLANS[plan] || PLANS["premium"];
 
+    // Load existing order if present in URL
+    useEffect(() => {
+        const orderId = searchParams.get("order");
+        if (orderId && !paymentResult) {
+            setLoading(true);
+            fetch(`${API_URL}/payments/linkbayar/status/${orderId}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.order_id) {
+                        setPaymentResult(data);
+                        setPaymentStatus(data.status);
+                        setName(data.customer_name || "");
+                        setEmail(data.customer_email || "");
+                    }
+                })
+                .catch(err => console.error("Failed to load order:", err))
+                .finally(() => setLoading(false));
+        }
+    }, [searchParams, paymentResult]);
+
     // FB Pixel - InitiateCheckout
     useEffect(() => {
         if (!paymentResult) {
@@ -176,6 +196,8 @@ function CheckoutContent() {
         ? (currentMethodObj.fee_flat + (selectedPlan.price * currentMethodObj.fee_percent))
         : 0;
     const totalWithFee = selectedPlan.price + methodFee;
+
+    const isOrderLoading = searchParams.get("order") && !paymentResult;
 
     if (paymentStatus === "PAID") {
         return (
@@ -316,6 +338,15 @@ function CheckoutContent() {
                         </button>
                     </div>
                 </div>
+            </div>
+        );
+    }
+
+    if (isOrderLoading) {
+        return (
+            <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-4">
+                <RefreshCw className="w-12 h-12 text-blue-600 animate-spin" />
+                <p className="text-slate-500 font-bold animate-pulse">Memuat detil pembayaran Anda...</p>
             </div>
         );
     }
