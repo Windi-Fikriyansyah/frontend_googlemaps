@@ -310,7 +310,7 @@ function CheckoutContent() {
                                         <div className="bg-white p-6 rounded-[2.5rem] border-4 border-slate-50 shadow-inner mb-8 relative group">
                                             <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors rounded-[2.5rem]"></div>
                                             <img
-                                                src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(paymentResult.payment_number)}`}
+                                                src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=4&data=${encodeURIComponent(paymentResult.payment_number)}`}
                                                 alt="QRIS"
                                                 className="w-56 h-56 md:w-64 md:h-64 relative z-10"
                                             />
@@ -318,7 +318,7 @@ function CheckoutContent() {
                                         <button
                                             onClick={async () => {
                                                 try {
-                                                    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=${encodeURIComponent(paymentResult.payment_number)}`;
+                                                    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=4&data=${encodeURIComponent(paymentResult.payment_number)}`;
                                                     const response = await fetch(qrUrl);
                                                     const blob = await response.blob();
                                                     const url = window.URL.createObjectURL(blob);
