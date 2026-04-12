@@ -30,8 +30,10 @@ export default function LeadTable({ leads }: LeadTableProps) {
     }, []);
 
     useEffect(() => {
-        const initialSaved = new Set(leads.filter(l => l.is_saved).map(l => l.id));
-        setSavedIds(initialSaved);
+        if (Array.isArray(leads)) {
+            const initialSaved = new Set(leads.filter(l => l && l.is_saved).map(l => l.id));
+            setSavedIds(initialSaved);
+        }
     }, [leads]);
 
     const openSaveModal = (leadId: number | "all") => {
@@ -235,7 +237,7 @@ export default function LeadTable({ leads }: LeadTableProps) {
         },
     };
 
-    if (leads.length === 0) return null;
+    if (!Array.isArray(leads) || leads.length === 0) return null;
 
     return (
         <div className="w-full max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">

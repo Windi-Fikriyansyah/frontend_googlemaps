@@ -30,7 +30,7 @@ export default function Home() {
       try {
         const response = await api.get("/auth/me");
         const user = response.data;
-        if (!user.search_api_key || !user.fonnte_token) {
+        if (user && (!user.search_api_key || !user.fonnte_token)) {
           setConfigMissing(true);
         }
       } catch (error) {
@@ -52,18 +52,25 @@ export default function Home() {
         radius,
         max_results,
       });
-      setLeads(response.data.leads);
-      toast.success(`Success! Found ${response.data.leads.length} leads.`);
+      
+      const newLeads = response.data?.leads || [];
+      setLeads(Array.isArray(newLeads) ? newLeads : []);
+      
+      if (Array.isArray(newLeads)) {
+        toast.success(`Success! Found ${newLeads.length} leads.`);
+      } else {
+        toast.error("Format data dari server tidak sesuai.");
+      }
     } catch (err: any) {
       const isInsufficientCredits = err.response?.status === 403;
-      const errorMessage = err.response?.data?.detail || "Failed to fetch leads.";
+      const errorMessage = typeof err.response?.data?.detail === 'string' 
+        ? err.response.data.detail 
+        : (err.response?.data?.message || "Gagal mengambil data leads.");
 
       if (isInsufficientCredits) {
-        toast.error("Insufficient Credits", {
-          description: "Please top up your credits to continue searching for leads.",
+        toast.error("Kredit Tidak Cukup", {
+          description: "Silakan isi ulang kredit Anda untuk melanjutkan pencarian.",
         });
-        // We set error to null so the red alert box doesn't show for credits, 
-        // since the toast is enough and looks better.
         setError(null);
       } else {
         console.error("Search error:", err);
