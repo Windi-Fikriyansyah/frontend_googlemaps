@@ -83,7 +83,7 @@ export default function DevicesPage() {
                     <h1 className="text-3xl font-bold text-slate-900 dark:text-white">WhatsApp Devices</h1>
                     <p className="text-slate-500 dark:text-slate-400">Connect and manage your WhatsApp accounts via Fonnte</p>
                 </div>
-                {devices.length === 0 && !loading && (
+                {!loading && (
                     <button
                         onClick={() => {
                             setSelectedDevice(null);
