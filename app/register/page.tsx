@@ -49,7 +49,7 @@ export default function RegisterPage() {
                 storage.set("token", response.data.access_token);
             }
 
-            router.push("/leads");
+            router.push("/dashboard");
         } catch (err: any) {
             console.error("Registration error:", err);
             setError(err.response?.data?.detail || "Registration failed. Please try again.");
@@ -68,7 +68,7 @@ export default function RegisterPage() {
             if (res.data.access_token) {
                 storage.set("token", res.data.access_token);
             }
-            router.push("/leads");
+            router.push("/dashboard");
         } catch (err: any) {
             setError("Google Login failed. Please try again.");
         } finally {

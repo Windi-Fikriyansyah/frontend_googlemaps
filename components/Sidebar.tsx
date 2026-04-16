@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import {
     Target,
+    LayoutDashboard,
     Search,
     History,
     Settings,
@@ -18,7 +19,8 @@ import {
     Smartphone,
     X,
     Gift,
-    Puzzle
+    Puzzle,
+    Monitor
 } from "lucide-react";
 
 import api from "@/lib/api";
@@ -36,6 +38,7 @@ interface UserData {
 
 
 const menuItems = [
+    { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
     { icon: Search, label: "Search Leads", href: "/leads" },
     { icon: Target, label: "Data Leads", href: "/leads/saved" },
     { icon: MessageSquare, label: "Templates Pesan", href: "/whatsapp/templates" },
@@ -43,6 +46,7 @@ const menuItems = [
     { icon: Smartphone, label: "Devices", href: "/whatsapp/devices" },
     { icon: History, label: "History Pesan", href: "/whatsapp/history" },
     { icon: Gift, label: "Bonus", href: "/bonus" },
+    { icon: Monitor, label: "Versi Desktop", href: "/desktop" },
     { icon: Puzzle, label: "Versi Extension", href: "/extension" },
     { icon: Settings, label: "Pengaturan", href: "/settings" },
 ];
@@ -100,7 +104,7 @@ export default function Sidebar() {
                     </button>
                 </div>
 
-                <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto max-h-[calc(100vh-280px)]">
+                <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto">
                     {menuItems.map((item) => {
                         const isActive = pathname === item.href;
                         return (
@@ -124,7 +128,7 @@ export default function Sidebar() {
                     })}
                 </nav>
 
-                <div className="p-4 border-t border-slate-200 dark:border-slate-800">
+                <div className="px-4 pt-4 pb-2 border-t border-slate-200 dark:border-slate-800">
                     {/* Credits and Plan section removed */}
 
                     <button
@@ -138,12 +142,11 @@ export default function Sidebar() {
                                 window.location.href = "/";
                             }
                         }}
-                        className="flex items-center gap-3 w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors group"
+                        className="flex items-center gap-3 w-full px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors group"
                     >
                         <LogOut className="w-5 h-5 group-hover:scale-110 transition-transform" />
                         <span className="text-sm font-medium">Log Out</span>
                     </button>
-
                 </div>
             </aside>
         </>

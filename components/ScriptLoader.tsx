@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import Script from "next/script";
-import FacebookPixel from "./FacebookPixel";
 
 export default function ScriptLoader() {
   const [loadScripts, setLoadScripts] = useState(false);
@@ -31,9 +30,6 @@ export default function ScriptLoader() {
   return (
     <>
       <Script src="https://accounts.google.com/gsi/client" strategy="lazyOnload" />
-      <Suspense fallback={null}>
-        <FacebookPixel />
-      </Suspense>
     </>
   );
 }

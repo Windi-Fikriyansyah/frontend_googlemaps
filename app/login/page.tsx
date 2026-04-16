@@ -36,7 +36,7 @@ export default function LoginPage() {
                 storage.set("token", response.data.access_token);
             }
 
-            router.push("/leads");
+            router.push("/dashboard");
         } catch (err: any) {
             toast.error(err.response?.data?.detail || "Login failed. Please check your credentials.");
         } finally {

@@ -66,7 +66,7 @@ export default function Navbar() {
                                 Beli Sekarang
                             </Link>
                         ) : (
-                            <Link href="/leads" className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2 rounded-xl font-bold transition-all hover:shadow-lg active:scale-95 flex items-center gap-2">
+                            <Link href="/dashboard" className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2 rounded-xl font-bold transition-all hover:shadow-lg active:scale-95 flex items-center gap-2">
                                 Dashboard <LayoutDashboard className="w-4 h-4" />
                             </Link>
                         )}
@@ -107,7 +107,7 @@ export default function Navbar() {
                         </Link>
                     ) : (
                         <Link
-                            href="/leads"
+                            href="/dashboard"
                             className="block w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-xl text-center font-bold"
                             onClick={() => setIsOpen(false)}
                         >
