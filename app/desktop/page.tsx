@@ -87,7 +87,7 @@ export default function DesktopPage() {
                                         {/* Ganti src iframe di bawah ini jika ada link video YouTube yang asli */}
                                         <iframe
                                             className="w-full h-full z-10 relative"
-                                            src="" // URL Placeholder
+                                            src="https://www.youtube.com/embed/FLdqVpC4gvM?si=26WoEJfsKWMJ1ftu" // URL Placeholder
                                             title="Wamaps Tutorial Desktop"
                                             frameBorder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
