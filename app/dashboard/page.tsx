@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Sidebar from "@/components/Sidebar";
+import TopBar from "@/components/TopBar";
 import {
     LayoutDashboard,
     Users,
@@ -52,51 +53,54 @@ export default function Dashboard() {
         <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
             <Sidebar />
 
-            <main className="flex-1 lg:ml-64 p-8">
-                <div className="max-w-6xl mx-auto space-y-8">
-                    {/* Header */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div>
-                            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-3">
-                                <LayoutDashboard className="w-8 h-8 text-blue-600" />
-                                Dashboard
-                            </h1>
-                            <p className="text-slate-500 dark:text-slate-400 font-medium">
-                                Selamat datang kembali, <span className="text-blue-600 font-bold">{user?.name || user?.email || "User"}</span>! Siap untuk mencari leads hari ini?
-                            </p>
+            <div className="flex-1 flex flex-col lg:ml-64 transition-all duration-300">
+                <TopBar />
+
+                <main className="flex-1 p-4 md:p-8">
+                    <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
+                        {/* Header */}
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h1 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-3">
+                                    <LayoutDashboard className="w-8 h-8 text-blue-600" />
+                                    Dashboard
+                                </h1>
+                                <p className="text-slate-500 dark:text-slate-400 font-medium text-sm md:text-base mt-1 md:mt-0">
+                                    Selamat datang kembali, <span className="text-blue-600 font-bold">{user?.name || user?.email || "User"}</span>! Siap untuk mencari leads hari ini?
+                                </p>
+                            </div>
+                            <div className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 self-start md:self-auto">
+                                <ShieldCheck className="w-4 h-4" />
+                                Status: {user?.plan_type || "Pro Account"}
+                            </div>
                         </div>
-                        <div className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20">
-                            <ShieldCheck className="w-4 h-4" />
-                            Status: {user?.plan_type || "Pro Account"}
-                        </div>
-                    </div>
 
 
 
                     {/* Desktop App Announcement */}
-                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2.5rem] p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl shadow-blue-500/20 relative overflow-hidden group">
+                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl shadow-blue-500/20 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-3xl rounded-full -mr-32 -mt-32 group-hover:bg-white/10 transition-colors duration-500"></div>
-                        <div className="flex items-center gap-6 relative z-10">
-                            <div className="p-5 bg-white/10 rounded-[2rem] backdrop-blur-md border border-white/20 shadow-xl group-hover:scale-110 transition-transform duration-500">
-                                <Monitor className="w-10 h-10" />
+                        <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 relative z-10 text-center md:text-left">
+                            <div className="p-4 md:p-5 bg-white/10 rounded-2xl md:rounded-[2rem] backdrop-blur-md border border-white/20 shadow-xl group-hover:scale-110 transition-transform duration-500 shrink-0">
+                                <Monitor className="w-8 h-8 md:w-10 md:h-10" />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-black tracking-tight mb-1">Wamaps Desktop Tersedia!</h2>
+                                <h2 className="text-xl md:text-2xl font-black tracking-tight mb-2 md:mb-1">Wamaps Desktop Tersedia!</h2>
                                 <p className="text-blue-100/80 text-sm font-medium max-w-md">Nikmati pengalaman scrapping yang lebih stabil, Unlimited, tanpa batas browser, dan performa maksimal langsung dari perangkat Anda.</p>
                             </div>
                         </div>
-                        <Link href="/desktop" className="whitespace-nowrap bg-white text-blue-600 px-10 py-4 rounded-[1.5rem] font-black text-sm hover:translate-y-[-4px] hover:shadow-2xl transition-all duration-300 flex items-center gap-3 relative z-10">
+                        <Link href="/desktop" className="w-full md:w-auto whitespace-nowrap bg-white text-blue-600 px-8 md:px-10 py-3 md:py-4 rounded-xl md:rounded-[1.5rem] font-black text-sm hover:translate-y-[-4px] hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 relative z-10">
                             <Monitor className="w-5 h-5 font-black" />
                             Lihat Tutorial
                         </Link>
                     </div>
 
                     {/* Wamaps Info Section */}
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-3 gap-6 md:gap-8">
                         <section className="md:col-span-2 space-y-6">
-                            <Card className="border-none shadow-xl shadow-slate-200/50 dark:shadow-none bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden">
-                                <CardHeader className="p-8 border-b border-slate-50 dark:border-slate-800">
-                                    <h2 className="text-xl font-bold flex items-center gap-2">
+                            <Card className="border-none shadow-xl shadow-slate-200/50 dark:shadow-none bg-white dark:bg-slate-900 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden">
+                                <CardHeader className="p-6 md:p-8 border-b border-slate-50 dark:border-slate-800">
+                                    <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
                                         <Target className="w-5 h-5 text-blue-600" />
                                         Apa itu Wamaps?
                                     </h2>
@@ -169,5 +173,6 @@ export default function Dashboard() {
                 </div>
             </main>
         </div>
-    );
+    </div>
+  );
 }

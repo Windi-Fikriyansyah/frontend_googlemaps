@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
+import TopBar from "@/components/TopBar";
 import {
     Monitor,
     Download,
@@ -28,20 +29,23 @@ export default function DesktopPage() {
         <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
             <Sidebar />
 
-            <main className="flex-1 lg:ml-64 p-8">
-                <div className="max-w-5xl mx-auto space-y-8">
-                    {/* Header */}
-                    <div>
-                        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-3">
-                            <Monitor className="w-8 h-8 text-blue-600" />
-                            Wamaps Desktop Version
-                        </h1>
-                        <p className="text-slate-500 dark:text-slate-400 font-medium mt-2">
-                            Tingkatkan efisiensi lead generation Anda dengan aplikasi native desktop Wamaps. Lebih ngebut, lebih aman.
-                        </p>
-                    </div>
+            <div className="flex-1 flex flex-col lg:ml-64 transition-all duration-300">
+                <TopBar />
 
-                    <div className="grid lg:grid-cols-5 gap-8">
+                <main className="flex-1 p-4 md:p-8">
+                    <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
+                        {/* Header */}
+                        <div>
+                            <h1 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-3">
+                                <Monitor className="w-8 h-8 text-blue-600" />
+                                Wamaps Desktop Version
+                            </h1>
+                            <p className="text-slate-500 dark:text-slate-400 font-medium mt-1 text-sm md:text-base">
+                                Tingkatkan efisiensi lead generation Anda dengan aplikasi native desktop Wamaps. Lebih ngebut, lebih aman.
+                            </p>
+                        </div>
+
+                        <div className="grid lg:grid-cols-5 gap-6 md:gap-8">
                         {/* Main Content */}
                         <div className="lg:col-span-3 space-y-8">
                             {/* Download Action Section */}
@@ -147,5 +151,6 @@ export default function DesktopPage() {
                 </div>
             </main>
         </div>
-    );
+    </div>
+  );
 }
